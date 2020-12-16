@@ -1,1 +1,1 @@
-# Rii
+# MANAO internship framework
