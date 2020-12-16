@@ -1,1 +1,0 @@
-# MANAO internship framework
