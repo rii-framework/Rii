@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="648d0bfb-1173-4c70-aa5c-5082559d2f2b" name="Default Changelist" comment="" />
+    <list default="true" id="648d0bfb-1173-4c70-aa5c-5082559d2f2b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rii/error404.php" beforeDir="false" afterPath="$PROJECT_DIR$/rii/error404.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,6 +14,19 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1lkSzpigPd7U8W9GMKI5eOqslvg" />
@@ -48,6 +64,7 @@
       <workItem from="1608140708463" duration="1617000" />
       <workItem from="1608142341071" duration="781000" />
       <workItem from="1608272087345" duration="333000" />
+      <workItem from="1608272425166" duration="466000" />
     </task>
     <servers />
   </component>
