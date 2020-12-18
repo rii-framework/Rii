@@ -1,7 +1,5 @@
 <?php
 
-// как я понимаю, должен быть обстрактным классом?
-
 namespace Rii\Core;
 
 class Application
@@ -20,11 +18,22 @@ class Application
 
     private function __clone() {}
 
-    private function __wakeup() {}
+    protected function __wakeup() {}
 
     private static $__components = [];
 
     private $pager = null;         // будет объект класса
 
     private $template = null;      //будет объект класса
+
+    public static function isWork()
+    {
+        $s1 = Application::getInstance();
+        $s2 = Application::getInstance();
+        if ($s1 === $s2) {
+            echo "Singleton works!";
+        } else {
+            echo "Singleton failed!";
+        }
+    }
 }

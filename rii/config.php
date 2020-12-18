@@ -1,14 +1,12 @@
 <?php
 
-    return [
-        "DB" => [
-            "HOST" => "",
-            "PORT" => "",
-            "CHARSET" => "",
-            "NAME" => "",
-            "USER" => "",
-            "PASSWORD" => "",
-        ],
-    ];
-    
-?>
+return [
+    "DB" => [
+        "HOST" => "",
+        "PORT" => "",
+        "CHARSET" => "",
+        "NAME" => "",
+        "USER" => "",
+        "PASSWORD" => "",
+    ],
+];
