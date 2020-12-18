@@ -4,7 +4,11 @@ class Config
 {
     private static $data = [];
 
-    protected function __construct() {}
+    private function __construct() {}
+
+    private function __clone() {}
+
+    protected function __wakeup() {}
 
     private static function init()
     {
