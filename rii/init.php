@@ -1,18 +1,21 @@
 <?php
 session_start();
 
-function autoload ($className)
-{
-    $class = explode('\\', $className);
-    switch ($class[0])
-    {
-        case 'core':
-            require __DIR__ . '/core/' . implode(DIRECTORY_SEPARATOR, $class) . '.php';
-            break;
-        case 'db':
-            require __DIR__ . '/db/' . implode(DIRECTORY_SEPARATOR, $class) . '.php';
-            break;
-    }
-}
+spl_autoload_register(function($class) {
 
-spl_autoload_register('autoload', true, true);
+    $className = '../' .$class  . '.php';
+    $className = str_replace('\\', '/', $className);
+
+    echo '<b>autoload: ' . $class . '</b> file: ' . $className . '<br>';
+
+    if (file_exists($className)) require $className;
+});
+
+//$test = new Rii\Core\test();
+// фнкция получает имя класса типа Rii\Core\
+// т.к. по условию задачи все namespace должны начинаться Rii\Дириктория\
+// в переменную className формируем путь к файлу относить файла init.php
+// путь начинается с '../' нужно выйти из текущей дириктории, а потом заходим по основному
+// пути который передался в $class + расширение .php
+// после заменем обратный слэш
+// проверем если такой файл, если есть подключаем
