@@ -6,8 +6,6 @@ spl_autoload_register(function($class) {
     $className = '../' .$class  . '.php';
     $className = str_replace('\\', '/', $className);
 
-    echo '<b>autoload: ' . $class . '</b> file: ' . $className . '<br>';
-
     if (file_exists($className)) require $className;
 });
 
