@@ -36,23 +36,23 @@ class Application
         ob_end_flush();
     }
 
-    public static function getBuffer()
-    {
-        return $output = ob_get_contents();
-    }
-
     public static function header()
     {
+        self::startBuffer();
         include "templates/default/header.php";
     } // подключение хэдэра шаблона сайта и старт буффера
 
     public static function footer()
     {
         include "templates/default/footer.php";
+        $result = ob_get_contents();
+        self::endBuffer();
+        return $result;
     }// конец буферизации, замена макросов подмены, вывод буффера
 
     public static function restartBuffer()
     {
+        ob_clean();
     }// сброс буффера
 
     private static $__components = [];
@@ -60,15 +60,4 @@ class Application
     private $pager = null;         // будет объект класса
 
     private $template = null;      //будет объект класса
-
-    public static function isWork()
-    {
-        $s1 = Application::getInstance();
-        $s2 = Application::getInstance();
-        if ($s1 === $s2) {
-            echo "Singleton works!";
-        } else {
-            echo "Singleton failed!";
-        }
-    }
 }

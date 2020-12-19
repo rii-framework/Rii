@@ -4,7 +4,6 @@ include 'rii/core/application.php';
 
 use Rii\Core\Config\Application;
 
-Application::startBuffer();
 Application::getInstance()->header();
 ?>
     <pre>
@@ -12,6 +11,5 @@ Application::getInstance()->header();
         19.12.20 14:40 Работаю над буфером
 </pre>
 <?
-Application::getInstance()->footer();
-Application::endBuffer();
+echo $output = Application::getInstance()->footer();
 ?>
