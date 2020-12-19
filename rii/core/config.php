@@ -13,26 +13,17 @@
             }
         }
 
-        public static function get(string $requestData)
+        public static function get(string $path)
         {
             self::init();
 
-            $requestKey = explode("/", $requestData);
+            $config = self::$data;
 
-            $searchData = self::$data;
-
-            for ($i = 0; $i < count($requestKey); $i++) {
-                if (array_key_exists($requestKey[$i], $searchData)) {
-                    if (is_array($searchData[$requestKey[$i]])){
-                        $result = $searchData = $searchData[$requestKey[$i]];                     
-                    } else{
-                        $result = $searchData[$requestKey[$i]];
-                        break;
-                    }
-                }
+            foreach (explode('/', $path) as $key) {
+                $config = $config[$key];
             }
 
-            return $result;
+            return $config;
         }
     }
 
