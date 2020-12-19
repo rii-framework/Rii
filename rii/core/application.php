@@ -1,6 +1,6 @@
 <?php
 
-namespace Rii\Core;
+namespace Rii\Core\Config;
 
 class Application
 {
