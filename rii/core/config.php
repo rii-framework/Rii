@@ -1,14 +1,12 @@
-<?php namespace Rii\Core\Config;
+<?php
+
+namespace Rii\Core\Config;
 
 class Config
 {
     private static $data = [];
 
-    private function __construct() {}
-
-    private function __clone() {}
-
-    protected function __wakeup() {}
+    protected function __construct() {}
 
     private static function init()
     {
@@ -17,22 +15,16 @@ class Config
         }
     }
 
-    public static function get(string $requestData)
+    public static function get(string $path)
     {
         self::init();
-        $requestKey = explode("/", $requestData);
-        $searchData = self::$data;
 
-        for ($i = 0; $i < count($requestKey); $i++) {
-            if (array_key_exists($requestKey[$i], $searchData)) {
-                if (is_array($searchData[$requestKey[$i]])) {
-                    $result = $searchData = $searchData[$requestKey[$i]];
-                } else {
-                    $result = $searchData[$requestKey[$i]];
-                    break;
-                }
-            }
+        $config = self::$data;
+
+        foreach (explode('/', $path) as $key) {
+            $config = $config[$key];
         }
-        return $result;
+
+        return $config;
     }
 }
