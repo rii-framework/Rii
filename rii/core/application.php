@@ -4,7 +4,9 @@ namespace Rii\Core\Config;
 
 class Application
 {
-    private function __construct() {} // невозможность создания объекта класса на прямую
+    private function __construct()
+    {
+    } // невозможность создания объекта класса на прямую
 
     private static $instance = null;   // хранение единственного экземпляра данного класса
 
@@ -16,9 +18,42 @@ class Application
         return self::$instance;
     }
 
-    private function __clone() {}
+    private function __clone()
+    {
+    }
 
-    protected function __wakeup() {}
+    protected function __wakeup()
+    {
+    }
+
+    public static function startBuffer()
+    {
+        ob_start();
+    }
+
+    public static function endBuffer()
+    {
+        ob_end_flush();
+    }
+
+    public static function getBuffer()
+    {
+        return $output = ob_get_contents();
+    }
+
+    public static function header()
+    {
+        include "templates/default/header.php";
+    } // подключение хэдэра шаблона сайта и старт буффера
+
+    public static function footer()
+    {
+        include "templates/default/footer.php";
+    }// конец буферизации, замена макросов подмены, вывод буффера
+
+    public static function restartBuffer()
+    {
+    }// сброс буффера
 
     private static $__components = [];
 
