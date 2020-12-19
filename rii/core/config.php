@@ -24,7 +24,6 @@ class Config
         foreach (explode('/', $path) as $key) {
             $config = $config[$key];
         }
-
         return $config;
     }
 }
