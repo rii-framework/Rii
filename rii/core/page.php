@@ -6,6 +6,7 @@
         private $property = []; //Массив свойств
         private $scripts = []; //Массив скриптов
         private $links = []; //Массив стилей
+        private $strings = []; //Массив строк
         
         //Скрытие конструктора
         private function __construct() { }
@@ -72,6 +73,18 @@
             echo $this->getMacro("CSS");
         }
 
+        //Добавление text в массив
+        public function addString(string $text): void
+        {
+            $this->strings[] = $text;
+        }
+
+        //Вывод макрос для будущей замены string #RII_PAGE_STR#
+        public function showStrings(): void
+        {
+            echo $this->getMacro("STR");
+        }
+
         //Формирование макроса для будущей замены #RII_PAGE_{$param}#
         private function getMacro($param): string
         {
@@ -81,11 +94,7 @@
         {
         }
 
-        //Добавляет в массив для хранения
-        /*static function addString(string $path): void
         {
-            
-        }*/
     }
 
 ?>
