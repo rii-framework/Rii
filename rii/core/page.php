@@ -2,8 +2,6 @@
 
     final class Page
     {
-        private $addList = [];
-        private $macros = [];
         private static $instance = null; //Поле для хранения экземпляра класса
         private $property = []; //Массив свойств
         
@@ -38,14 +36,17 @@
             return $this->property[$key];
         }
 
+        //Вывод макрос для будущей замены #RII_PAGE_PROPERY_{$key}#
+        public function showProperty($key): void
         {
-            $this->$property[$id] = $value;
+            if (is_null($this->getProperty($key))) {
+                $this->setProperty($key, "");
+            }
+
+            echo $this->getMacro("PROPERY_{$key}");
         }
 
-        //Выводит макрос для будущей замены #RII_PAGE_PROPERY_{$id}#
-        public function showProperty($id): string
         {
-            return "#RII_PAGE_PROPERY_{$id}#";
         }
         
         //Добавляет src в массив сохраняя уникальность
