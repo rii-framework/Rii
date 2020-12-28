@@ -107,7 +107,18 @@
             return $replace;
         }
 
+        //Групировка массива в строку
+        private function getStr($mass): string
         {
+            $str = "";
+
+            if (count($this->$mass) > 0) {
+                $str = implode("\n", $this->$mass);
+            }            
+
+            return $str;
+        }
+
     }
 
 ?>
