@@ -5,6 +5,7 @@
         private static $instance = null; //Поле для хранения экземпляра класса
         private $property = []; //Массив свойств
         private $scripts = []; //Массив скриптов
+        private $links = []; //Массив стилей
         
         //Скрытие конструктора
         private function __construct() { }
@@ -59,16 +60,25 @@
             echo $this->getMacro("JS");
         }
 
+        //Добавление link сохраняя уникальность
+        public function addCss(string $href): void
+        {
+            $this->links[$href] = "<link href=\"{$href}\" rel=\"stylesheet\">";
+        }
+
+        //Вывод макрос для будущей замены css #RII_PAGE_CSS#
+        public function showCss(): void
+        {
+            echo $this->getMacro("CSS");
+        }
+
         //Формирование макроса для будущей замены #RII_PAGE_{$param}#
         private function getMacro($param): string
         {
             return "#RII_PAGE_{$param}#";
         }
 
-        //Добавляет link сохраняя уникальность
-        static function addCss(string $path): void
         {
-            $this->$addList[$path] = true;
         }
 
         //Добавляет в массив для хранения
