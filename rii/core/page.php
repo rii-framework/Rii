@@ -119,6 +119,17 @@
             return $str;
         }
 
+        //Формирование массива property с макросами
+        private function getGroupingProperty(): array
+        {
+            $property = [];
+
+            foreach ($this->property as $key => $value) {
+               $property[$this->getMacro("PROPERY_{$key}")] = $value;
+            }
+
+            return $property;
+        }
     }
 
 ?>
