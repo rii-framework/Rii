@@ -1,30 +1,31 @@
 <?php namespace Rii\Core\Page;
 
-    class Page
+    final class Page
     {
-        private static $instances = [];
         private $property = [];
         private $addList = [];
         private $macros = [];
+        private static $instance = null; //Поле для хранения экземпляра класса
         
         //Скрытие конструктора
-        protected function __construct() { }
+        private function __construct() { }
         
         //Скрытие клонирования
-        protected function __clone() { }
+        private function __clone() { }
         
         //Скрытие востановления  
-        public function __wakeup() { }
+        private function __wakeup() { }
 
+        //Пользовательский конструктор (singleton)
         static function getInstance(): Page
         {
-            $cls = static::class;
-
-            if (!isset(self::$instances[$cls])) {
-                self::$instances[$cls] = new static();
+            if (is_null(self::$instance)) {
+                self::$instance = new static();
             }
 
-            return self::$instances[$cls];
+            return self::$instance;
+        }
+
         }
 
         //Получение свойства по ключу
