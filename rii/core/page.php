@@ -51,8 +51,10 @@
         
         //Добавляет src в массив сохраняя уникальность
         static function addJs(string $path): void
+        //Формирование макроса для будущей замены #RII_PAGE_{$param}#
+        private function getMacro($param): string
         {
-            $this->$addList[$path] = true;
+            return "#RII_PAGE_{$param}#";
         }
 
         //Добавляет link сохраняя уникальность
