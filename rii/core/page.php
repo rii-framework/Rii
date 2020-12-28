@@ -91,7 +91,20 @@
             return "#RII_PAGE_{$param}#";
         }
 
+        //Формирование сгруппированного массива(js + css + string + property) для замены
+        public function getAllReplace(): array
         {
+            $replace = [];
+
+            $replace[$this->getMacro("JS")] = $this->getStr("scripts");
+            $replace[$this->getMacro("CSS")] = $this->getStr("links");
+            $replace[$this->getMacro("STR")] = $this->getStr("strings");
+
+            if ($propertyArray = $this->getGroupingProperty()) {
+                $replace = array_merge($replace, $propertyArray);
+            }
+
+            return $replace;
         }
 
         {
