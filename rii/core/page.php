@@ -4,6 +4,7 @@
     {
         private static $instance = null; //Поле для хранения экземпляра класса
         private $property = []; //Массив свойств
+        private $scripts = []; //Массив скриптов
         
         //Скрытие конструктора
         private function __construct() { }
@@ -46,11 +47,18 @@
             echo $this->getMacro("PROPERY_{$key}");
         }
 
+        //Добавление src в массив сохраняя уникальность
+        public function addJs(string $src): void
         {
+            $this->scripts[$src] = "<script src=\"{$src}\"></script>";
         }
-        
-        //Добавляет src в массив сохраняя уникальность
-        static function addJs(string $path): void
+
+        //Вывод макрос для будущей замены js #RII_PAGE_JS#
+        public function showJs(): void
+        {
+            echo $this->getMacro("JS");
+        }
+
         //Формирование макроса для будущей замены #RII_PAGE_{$param}#
         private function getMacro($param): string
         {
