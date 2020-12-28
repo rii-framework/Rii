@@ -2,10 +2,10 @@
 
     final class Page
     {
-        private $property = [];
         private $addList = [];
         private $macros = [];
         private static $instance = null; //Поле для хранения экземпляра класса
+        private $property = []; //Массив свойств
         
         //Скрытие конструктора
         private function __construct() { }
@@ -26,16 +26,18 @@
             return self::$instance;
         }
 
+        //Добавление свойства для хранение по ключу
+        public function setProperty($key, $value): void
+        {
+            $this->property[$key] = $value;
         }
 
         //Получение свойства по ключу
-        public function getProperty(string $id): string
+        public function getProperty($key)
         {
-            return $this->$property[$id];
+            return $this->property[$key];
         }
 
-        //Добавление свойства для хранение по ключу
-        public function setProperty($id, $value): void
         {
             $this->$property[$id] = $value;
         }
