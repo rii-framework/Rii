@@ -10,6 +10,7 @@ Application::getInstance()->header();
     19.12.20 12:40 Начинанаем делать внешнюю оболочку
         19.12.20 14:40 Работаю над буфером
 </pre>
+
 <?
-echo $output = Application::getInstance()->footer();
+Application::getInstance()->footer();
 ?>

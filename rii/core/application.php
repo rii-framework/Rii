@@ -4,13 +4,16 @@ namespace Rii\Core\Config;
 
 class Application
 {
+    //Скрытие конструктора
     private function __construct()
     {
-    } // невозможность создания объекта класса на прямую
+    }
 
-    private static $instance = null;   // хранение единственного экземпляра данного класса
+    //Поле для хранения экземпляра класса
+    private static $instance = null;
 
-    public static function getInstance(): Application   // создание объекта указанного класса
+    //Создание объекта указанного класса
+    public static function getInstance(): Application
     {
         if (null === self::$instance) {
             self::$instance = new static();
@@ -18,46 +21,56 @@ class Application
         return self::$instance;
     }
 
+    //Скрытие клонирования
     private function __clone()
     {
     }
 
+    //Скрытие востановления
     protected function __wakeup()
     {
     }
 
-    public static function startBuffer()
+    //Запуск буффера
+    public function startBuffer()
     {
         ob_start();
     }
 
-    public static function endBuffer()
+    //Завершение работы буффера
+    public function endBuffer()
     {
         ob_end_flush();
     }
 
-    public static function header()
+    //Подключение хэдэра шаблона сайта и запуск буффера
+    public function header()
     {
         self::startBuffer();
-        include "templates/default/header.php";
-    } // подключение хэдэра шаблона сайта и старт буффера
+        include $_SERVER['DOCUMENT_ROOT'] . "/rii/templates/default/header.php";  // добавить DOCUMENT_ROOT
+    }
 
-    public static function footer()
+    //Завершение работы буффера, замена макросов подмены, вывод содержимого буффера
+    public function footer()
     {
-        include "templates/default/footer.php";
-        $result = ob_get_contents();
+        include $_SERVER['DOCUMENT_ROOT'] . "/rii/templates/default/footer.php";  // добавить DOCUMENT_ROOT
+        $content = ob_get_contents();
         self::endBuffer();
-        return $result;
-    }// конец буферизации, замена макросов подмены, вывод буффера
+        echo $content;
+    }
 
-    public static function restartBuffer()
+    //Сброс контента буффера и продолжение его работы
+    public function restartBuffer()
     {
         ob_clean();
-    }// сброс буффера
+    }
 
+    //Массив компонентов
     private static $__components = [];
 
-    private $pager = null;         // будет объект класса
+    private $pager = null;
 
-    private $template = null;      //будет объект класса
+
+
+    private $template = null;
 }
