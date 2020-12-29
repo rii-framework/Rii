@@ -16,6 +16,7 @@ spl_autoload_register(function($class) {
     }
 });
 
+
 //$test = new Rii\Core\test();
 // функция получает имя класса типа Rii\Core\
 // переводим имя класса в нижний регистр
