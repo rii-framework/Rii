@@ -9,4 +9,7 @@ return [
         "USER" => "",
         "PASSWORD" => "",
     ],
+    "TEMPLATE" => [
+        "ID" => "default"
+    ]
 ];

@@ -1,4 +1,4 @@
-<?php namespace Rii\Core\Page;
+<?php namespace Rii\Core;
 
 final class Page
 {
@@ -9,13 +9,19 @@ final class Page
     private $strings = []; //Массив строк
 
     //Скрытие конструктора
-    private function __construct() { }
+    private function __construct()
+    {
+    }
 
     //Скрытие клонирования
-    private function __clone() { }
+    private function __clone()
+    {
+    }
 
     //Скрытие востановления
-    private function __wakeup() { }
+    private function __wakeup()
+    {
+    }
 
     //Пользовательский конструктор (singleton)
     static function getInstance(): Page
@@ -23,7 +29,6 @@ final class Page
         if (is_null(self::$instance)) {
             self::$instance = new static();
         }
-
         return self::$instance;
     }
 
@@ -45,7 +50,6 @@ final class Page
         if (is_null($this->getProperty($key))) {
             $this->setProperty($key, "");
         }
-
         echo $this->getMacro("PROPERY_{$key}");
     }
 
@@ -103,7 +107,6 @@ final class Page
         if ($propertyArray = $this->getGroupingProperty()) {
             $replace = array_merge($replace, $propertyArray);
         }
-
         return $replace;
     }
 
@@ -115,7 +118,6 @@ final class Page
         if (count($this->$mass) > 0) {
             $str = implode("\n", $this->$mass);
         }
-
         return $str;
     }
 
@@ -127,7 +129,6 @@ final class Page
         foreach ($this->property as $key => $value) {
             $property[$this->getMacro("PROPERY_{$key}")] = $value;
         }
-
         return $property;
     }
 }

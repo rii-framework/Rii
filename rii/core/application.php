@@ -1,12 +1,23 @@
 <?php
 
-namespace Rii\Core\Config;
+namespace Rii\Core;
+
+include 'rii/core/page.php';
+
+use Rii\Core\Page;
+
+include 'rii/core/config.php';
+
+use Rii\Core\Config;
 
 class Application
 {
+    private $page = null;
+
     //Скрытие конструктора
     private function __construct()
     {
+        $this->page = Page::getInstance();
     }
 
     //Поле для хранения экземпляра класса
@@ -35,42 +46,50 @@ class Application
     public function startBuffer()
     {
         ob_start();
+        $flag = new Application();
+        $flag->isBufferStart = true;
     }
 
     //Завершение работы буффера
-    public function endBuffer()
+    private function endBuffer()
     {
-        ob_end_flush();
+        $content = ob_get_clean();
+        $this->isBufferStart = false;
+        $replacement = $this->page->getAllReplace();
+        $content = str_replace(array_keys($replacement), $replacement, $content);
+        return $content;
     }
 
     //Подключение хэдэра шаблона сайта и запуск буффера
-    public function header()
+    public static function header()
     {
-        self::startBuffer();
-        include $_SERVER['DOCUMENT_ROOT'] . "/rii/templates/default/header.php";  // добавить DOCUMENT_ROOT
+        self::getInstance()->startBuffer();
+        include $_SERVER['DOCUMENT_ROOT'] . "/rii/templates/" . Config::get("TEMPLATE/ID") . "/header.php";
     }
 
     //Завершение работы буффера, замена макросов подмены, вывод содержимого буффера
-    public function footer()
+    public static function footer()
     {
-        include $_SERVER['DOCUMENT_ROOT'] . "/rii/templates/default/footer.php";  // добавить DOCUMENT_ROOT
-        $content = ob_get_contents();
-        self::endBuffer();
+        include $_SERVER['DOCUMENT_ROOT'] . "/rii/templates/" . Config::get("TEMPLATE/ID") . "/footer.php";
+        $content = self::getInstance()->endBuffer();
         echo $content;
     }
 
     //Сброс контента буффера и продолжение его работы
     public function restartBuffer()
     {
-        ob_clean();
+        if ($this->isBufferStart == true) {
+            ob_clean();
+        } else {
+            $this->startBuffer();
+        }
     }
+
+    //Проверка старта буффера
+    private $isBufferStart = false;
 
     //Массив компонентов
     private static $__components = [];
-
-    private $pager = null;
-
-
 
     private $template = null;
 }

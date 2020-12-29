@@ -1,6 +1,6 @@
 <?php
 
-namespace Rii\Core\Config;
+namespace Rii\Core;
 
 class Config
 {
@@ -24,7 +24,6 @@ class Config
         foreach (explode('/', $path) as $key) {
             $config = $config[$key];
         }
-
         return $config;
     }
 }
