@@ -1,3 +1,6 @@
+<?php if (!RII_CORE_INCLUDED) {
+    die('Ошибка константы!');
+} ?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -8,6 +11,5 @@
     <title><? \Rii\Core\Page::getInstance()->showProperty('Title'); ?></title>
 </head>
 <body>
-
-<h3>Header</h3>
+<h3>Дневник проекта</h3>
 <hr>
