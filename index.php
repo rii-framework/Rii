@@ -1,9 +1,10 @@
 <?php
 include 'rii/init.php';
 use Rii\Core\Application;
+use Rii\Core\Page;
 
 Application::getInstance()->header();
-\Rii\Core\Page::getInstance()->setProperty('Title', "История изменений");
+Page::getInstance()->setProperty('Title', "История изменений");
 ?>
 <pre>
 29.12.20 9:00
