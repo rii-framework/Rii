@@ -135,8 +135,6 @@ final class Page
     //Создание макросов для head (css, string, js)
     public function showHead(): void
     {
-        $this->showCss();
-        $this->showStrings();
-        $this->showJs();
+        echo implode(" ", [$this->getMacro("CSS"), $this->getMacro("STR"), $this->getMacro("JS")]);
     }
 }
