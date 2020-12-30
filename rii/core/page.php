@@ -1,4 +1,6 @@
-<?php namespace Rii\Core;
+<?php
+
+namespace Rii\Core;
 
 final class Page
 {
@@ -130,5 +132,13 @@ final class Page
             $property[$this->getMacro("PROPERY_{$key}")] = $value;
         }
         return $property;
+    }
+
+    //Создание макросов для head (css, string, js)
+    public function showHead(): void
+    {
+        $this->showCss();
+        $this->showStrings();
+        $this->showJs();
     }
 }

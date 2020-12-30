@@ -2,14 +2,6 @@
 
 namespace Rii\Core;
 
-include 'rii/core/page.php';
-
-use Rii\Core\Page;
-
-include 'rii/core/config.php';
-
-use Rii\Core\Config;
-
 class Application
 {
     private $page = null;

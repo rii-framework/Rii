@@ -1,6 +1,4 @@
-<?php if (!RII_CORE_INCLUDED) {
-    die('Ошибка константы!');
-} ?>
+<?php if ( !defined('RII_CORE_INCLUDED') ) die;?>
 <!doctype html>
 <html lang="ru">
 <head>
