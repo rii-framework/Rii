@@ -36,7 +36,6 @@ Page::getInstance()->setProperty('Title', "История изменений");
     2. Создал класс Page (Singleton)
     3. Содал макет под методы getProperty, setProperty, showProperty, addJs, addCss, addString
 </pre>
-
 <?
 Application::getInstance()->footer();
 ?>

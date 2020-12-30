@@ -1,4 +1,6 @@
-<?php namespace Rii\Core;
+<?php
+
+namespace Rii\Core;
 
 final class Page
 {
