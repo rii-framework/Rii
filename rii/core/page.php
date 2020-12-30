@@ -131,4 +131,12 @@ final class Page
         }
         return $property;
     }
+
+    //Создание макросов для head (css, string, js)
+    public function showHead(): void
+    {
+        $this->showCss();
+        $this->showStrings();
+        $this->showJs();
+    }
 }
