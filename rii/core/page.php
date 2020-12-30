@@ -101,7 +101,6 @@ final class Page
     public function getAllReplace(): array
     {
         $replace = [];
-
         $replace[$this->getMacro("JS")] = $this->getStr("scripts");
         $replace[$this->getMacro("CSS")] = $this->getStr("links");
         $replace[$this->getMacro("STR")] = $this->getStr("strings");
