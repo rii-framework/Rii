@@ -22,7 +22,7 @@ abstract class Base
         }
         $this->id = $id;
         $this->params = $params;
-        $this->__path = $_SERVER['DOCUMENT_ROOT'] . "/rii/components/" . $id . "/"; // Rii/rii/core/component/component_id
+        $this->__path = $_SERVER['DOCUMENT_ROOT'] . "/rii/components/" . $id . "/"; // Rii/rii/components/rii/component_id
         $this->__path = str_replace(':', '/', $this->__path);
     }
 
