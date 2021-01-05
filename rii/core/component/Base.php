@@ -18,7 +18,7 @@ abstract class Base
             $this->id = $id;
             $this->params = $params;
             $this->template = $template;
-            $this->_path = $_SERVER['DOCUMENT_ROOT'] . '/' . $id;
+            $this->_path = $_SERVER['DOCUMENT_ROOT'] . '/rii/core/component' . $id;// Rii/rii/core/component/component_id
         }
     }
 
