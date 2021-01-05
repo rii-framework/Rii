@@ -6,12 +6,11 @@ class ElementList extends Base
 {
     public function __construct()
     {
-        parent::__construct('element.list');
+        parent::__construct('ElementList');
     }
 
     public function executeComponent()
     {
-        // код
-        // TODO: Implement executeComponent() method.
+
     }
 }

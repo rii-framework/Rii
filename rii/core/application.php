@@ -33,10 +33,20 @@ class Application
 
     //Создание метода, который подключает и инициализирует компонент по указанным параметрам
     public static function includeComponent (string $componentName, string $componentTemplate, array $arParams){
-        require $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' .str_replace(':', '/', $componentName).'/class.php';
-        $component = new ElementList();
-        $component->__construct();
-        $component->executeComponent();
+        $classPath = $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' .str_replace(':', '/', $componentName).'/class.php'; // проверка на существование
+        if (file_exists($classPath)) {
+            $classesArray = get_declared_classes();
+            require $classPath;
+            $newClassesArray = get_declared_classes();
+            $classname = array_diff($newClassesArray,$classesArray);
+            print_r($classname);
+
+            $component = new ElementList(); // classname сделать изменяемым c помощью get_declared_classes и array_diff (разница массивов)
+            //new $classname сюда кинуть значение разницы
+            ////проверка на наследование (проверка не только parent)
+            $component->executeComponent();
+        }
+        else die;
     }
 
     //Скрытие клонирования

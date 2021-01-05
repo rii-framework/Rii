@@ -18,7 +18,7 @@ abstract class Base
         }
         $this->id = $id;
         $this->params = $params;
-        $this->__path = $_SERVER['DOCUMENT_ROOT'] . '/rii/components' . $id;// Rii/rii/components
+        $this->__path = $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' . $id;// Rii/rii/components
     }
 
     abstract public function executeComponent(); // метод обязателен для переопределения
