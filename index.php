@@ -5,8 +5,12 @@ use Rii\Core\Page;
 
 Application::getInstance()->header();
 Page::getInstance()->setProperty('Title', "История изменений");
+Application::includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10 ]);
 ?>
 <pre>
+-------- 05.01.2021 - Ilya_Ch --------
+    1. Создание метода Application::includeComponent
+
 -------- 29.12.2020 - Ilya_Ch --------
     1. Вывожу footer через echo
     2. Прописываю в своем классе DOCUMENT_ROOT

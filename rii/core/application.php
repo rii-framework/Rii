@@ -2,6 +2,9 @@
 
 namespace Rii\Core;
 
+use Rii\Core\Component\Base;
+use Rii\Core\Component\Template;
+
 class Application
 {
     private $page = null;
@@ -24,6 +27,11 @@ class Application
         return self::$instance;
     }
 
+    //Создание метода, который подключает и инициализирует компонент по указанным параметрам
+    public static function includeComponent(string $componentName, string $componentTemplate, array $arParams){
+        
+    }
+
     //Скрытие клонирования
     private function __clone()
     {
@@ -35,7 +43,7 @@ class Application
     }
 
     //Запуск буффера
-    public function startBuffer()
+    private function startBuffer()
     {
         ob_start();
         $flag = new Application();
