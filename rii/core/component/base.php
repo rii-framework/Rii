@@ -18,7 +18,7 @@ abstract class Base
             $this->template = $template;
         } elseif ($template = '')
         {
-            $this->template = 'default';
+            $this->template = new Template;
         }
         $this->id = $id;
         $this->params = $params;
