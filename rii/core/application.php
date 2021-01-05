@@ -2,21 +2,25 @@
 
 namespace Rii\Core;
 
-use Rii\Core\Component\Base;
-use Rii\Core\Component\Template;
+use Rii\Components\ElementList;
 
 class Application
 {
     private $page = null;
+
+    private $template = null;
+
+    //Поле для хранения экземпляра класса
+    private static $instance = null;
+
+    //Массив компонентов
+    private static $__components = [];  // массив объектов класса
 
     //Скрытие конструктора
     private function __construct()
     {
         $this->page = Page::getInstance();
     }
-
-    //Поле для хранения экземпляра класса
-    private static $instance = null;
 
     //Создание объекта указанного класса
     public static function getInstance(): Application
@@ -28,8 +32,11 @@ class Application
     }
 
     //Создание метода, который подключает и инициализирует компонент по указанным параметрам
-    public static function includeComponent(string $componentName, string $componentTemplate, array $arParams){
-
+    public static function includeComponent (string $componentName, string $componentTemplate, array $arParams){
+        require $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' .str_replace(':', '/', $componentName).'/class.php';
+        $component = new ElementList();
+        $component->__construct();
+        $component->executeComponent();
     }
 
     //Скрытие клонирования
@@ -87,9 +94,4 @@ class Application
 
     //Проверка старта буффера
     private $isBufferStart = false;
-
-    //Массив компонентов
-    private static $__components = [];
-
-    private $template = null;
 }
