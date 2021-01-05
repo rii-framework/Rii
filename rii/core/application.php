@@ -29,7 +29,7 @@ class Application
 
     //Создание метода, который подключает и инициализирует компонент по указанным параметрам
     public static function includeComponent(string $componentName, string $componentTemplate, array $arParams){
-        
+
     }
 
     //Скрытие клонирования
