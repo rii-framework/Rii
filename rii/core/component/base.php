@@ -1,28 +1,29 @@
 <?php
 
-namespace Rii\Core\component;
+namespace Rii\Core\Component;
 
-abstract class Base
+abstract class base
 {
 
     public $result = []; // результат работы компонента
-    public $id = 'element.list'; // имя компонента
+    public $id = ' '; // имя компонента
     public $params = []; // параметры для инициализации компонента
-    public $template = 'default'; // экземпляр компонента
-    public $_path; // путь к компоненту
+    public $template = ' '; // экземпляр компонента
+    public $__path; // путь к компоненту
 
     public function __construct($id, $template = null, $params = [])
     {
         if ($template != null)
         {
-            $this->id = $id;
-            $this->params = $params;
             $this->template = $template;
-            $this->_path = $_SERVER['DOCUMENT_ROOT'] . '/rii/core/component' . $id;// Rii/rii/core/component/component_id
+        } elseif ($template = ' ')
+        {
+            $this->template = 'default';
         }
+        $this->id = $id;
+        $this->params = $params;
+        $this->__path = $_SERVER['DOCUMENT_ROOT'] . '/rii/components' . $id;// Rii/rii/core/component/component_id
     }
 
     abstract public function executeComponent(); // метод обязателен для переопределения
-
-
 }
