@@ -6,7 +6,7 @@ use Rii\Core\Page;
 $app = Application::getInstance();
 $app->header();
 Page::getInstance()->setProperty('Title', "История изменений");
-$app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10 ]);
+$app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10, 'time' => date('d.m.Y H:i:s') ]);
 ?>
 <pre>
 -------- 06.01.2021 - Ilya_Ch --------
