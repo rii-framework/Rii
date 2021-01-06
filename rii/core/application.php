@@ -32,20 +32,20 @@ class Application
     //Создание метода, который подключает и инициализирует компонент по указанным параметрам
     public static function includeComponent(string $componentName, string $componentTemplate, array $arParams)
     {
-        $classPath = $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' . str_replace(':', '/', $componentName) . '/class.php'; // проверка на существование
-        if (!file_exists($classPath)) {
+        $componentPath = $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' . str_replace(':', '/', $componentName) . '/class.php'; // проверка на существование
+        if (!file_exists($componentPath)) {
             die();
         }
         $allClassesArray = get_declared_classes();
-        require_once $classPath;
+        require_once $componentPath;
         $newClassesArray = get_declared_classes();
 
         $classname = array_diff($newClassesArray, $allClassesArray); // ElementList и Base
-        var_dump(new $classname[169]);
+        $componentClass = current($classname);
 
-        $component = new $classname[169]; // classname сделать изменяемым c помощью get_declared_classes и array_diff (разница массивов)
-//      var_dump($component);
-//      проверка на наследование (проверка не только parent)
+        $component = new $componentClass;
+//        class_parents($component);     тут должна быть проверка на наследование, но я не понимаю в чем она должна заключаться
+//        эта функция будет возвращать список родительских классов нашего класса
         $component->executeComponent();
     }
 
