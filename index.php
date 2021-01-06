@@ -17,13 +17,9 @@ $app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit'
     2. Создан компонент rii/components/rii/element.list/class.php
     3. Создан rii/components/rii/element.list/templates/default/template.php
 
--------- 05.01.2021 - Ilya_Ch --------
-    1. Неудачная попытка создания метода Application::includeComponent
-    2. Неудачная попытка создания компонента rii/components/rii/element.list/class.php
-
 -------- 04.01.2021 - Ilya_V --------
     1. Создание класса Template
-    2. Создание метода rander для подключения файлов шаблона
+    2. Создание метода render для подключения файлов шаблона
 
 -------- 29.12.2020 - Ilya_Ch --------
     1. Вывожу footer через echo
@@ -46,8 +42,8 @@ $app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit'
     10. Создал функцию getGroupingProperty для формирования массива property (макрос => значение) 
 
 -------- 19.12.2020 - Ilya_Ch --------
-    1. Создаем макет внешней оболочки сайта
-    2. Создаем буффер
+    1. Создал макет внешней оболочки сайта
+    2. Создал буффер
 
 -------- 19.12.2020 - Ilya_V --------
     1. Переписал функцию get класс Config
