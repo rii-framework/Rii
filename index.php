@@ -9,6 +9,9 @@ Page::getInstance()->setProperty('Title', "История изменений");
 $app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10 ]);
 ?>
 <pre>
+-------- 06.01.2021 - Ilya_V --------
+    1. Доработка класса Template
+
 -------- 06.01.2021 - Ilya_Ch --------
     1. Создан метод Application::includeComponent
     1. Создан компонент rii/components/rii/element.list/class.php
@@ -16,6 +19,10 @@ $app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit'
 -------- 05.01.2021 - Ilya_Ch --------
     1. Неудачная попытка создания метода Application::includeComponent
     1. Неудачная попытка создания компонента rii/components/rii/element.list/class.php
+
+-------- 04.01.2021 - Ilya_V --------
+    1. Создание класса Template
+    2. Создание метода rander для подключения файлов шаблона
 
 -------- 29.12.2020 - Ilya_Ch --------
     1. Вывожу footer через echo
