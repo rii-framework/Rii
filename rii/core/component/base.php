@@ -4,6 +4,7 @@ namespace Rii\Core\Component;
 
 abstract class Base
 {
+
     public $result = []; // результат работы компонента
     public $id = ''; // имя компонента
     public $params = []; // параметры для инициализации компонента
@@ -14,7 +15,9 @@ abstract class Base
     {
         $this->id = $id;
         $this->params = $params;
-        $this->__path = $_SERVER['DOCUMENT_ROOT'] . "/rii/components/" . str_replace(':', '/', $id) . "/";
+        $id = str_replace(':', '/', $id);
+        $this->__path = $_SERVER['DOCUMENT_ROOT'] . "/rii/components/" . $id . "/"; // Rii/rii/components/rii/component_id
+
         if ($template != null)
         {
             if ($template == '')
@@ -23,6 +26,7 @@ abstract class Base
             }
             $this->template = new Template($template, $this);
         }
+
     }
 
     abstract public function executeComponent(); // метод обязателен для переопределения
