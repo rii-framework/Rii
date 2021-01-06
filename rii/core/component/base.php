@@ -20,7 +20,7 @@ abstract class Base
 
         if ($template != null)
         {
-            if ($template = '')
+            if ($template == '')
             {
                 $this->template = 'default';
             }
