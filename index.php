@@ -35,6 +35,16 @@ Page::getInstance()->setProperty('Title', "История изменений");
     1. Переписал функцию get класс Config
     2. Создал класс Page (Singleton)
     3. Содал макет под методы getProperty, setProperty, showProperty, addJs, addCss, addString
+
+-------- 19.12.2020 - Roma --------
+    1. Создан файл автозагрузки классов
+    2. Добвалена константа проверки (RII_CORE_INCLUDED) для проверки подключения ядра
+    3. Исправлена переменная формирования пути. (добавлена переменная $_SERVER['DOCUMENT_ROOT'])
+
+-------- 04.01.2020 - Roma --------
+    1. Создание базового класса для шаблонов
+
+
 </pre>
 <?
 Application::getInstance()->footer();
