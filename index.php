@@ -30,6 +30,9 @@ $app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit'
 -------- 04.01.2020 - Roma --------
     1. Создание базового класса для шаблонов
 
+-------- 30.12.2020 - Ilya_V --------
+    1. Создание метода showHead для добавления макросов (css, string, js)
+
 -------- 29.12.2020 - Ilya_Ch --------
     1. Вывожу footer через echo
     2. Прописываю в своем классе DOCUMENT_ROOT
