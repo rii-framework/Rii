@@ -2,8 +2,6 @@
 
 namespace Rii\Core;
 
-use Rii\Components\ElementList;
-
 class Application
 {
     private $page = null;
@@ -32,21 +30,23 @@ class Application
     }
 
     //Создание метода, который подключает и инициализирует компонент по указанным параметрам
-    public static function includeComponent (string $componentName, string $componentTemplate, array $arParams){
-        $classPath = $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' .str_replace(':', '/', $componentName).'/class.php'; // проверка на существование
-        if (file_exists($classPath)) {
-            $classesArray = get_declared_classes();
-            require $classPath;
-            $newClassesArray = get_declared_classes();
-            $classname = array_diff($newClassesArray,$classesArray);
-            print_r($classname);
-
-            $component = new ElementList(); // classname сделать изменяемым c помощью get_declared_classes и array_diff (разница массивов)
-            //new $classname сюда кинуть значение разницы
-            ////проверка на наследование (проверка не только parent)
-            $component->executeComponent();
+    public static function includeComponent(string $componentName, string $componentTemplate, array $arParams)
+    {
+        $classPath = $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' . str_replace(':', '/', $componentName) . '/class.php'; // проверка на существование
+        if (!file_exists($classPath)) {
+            die();
         }
-        else die;
+        $allClassesArray = get_declared_classes();
+        require_once $classPath;
+        $newClassesArray = get_declared_classes();
+
+        $classname = array_diff($newClassesArray, $allClassesArray); // ElementList и Base
+        var_dump(new $classname[169]);
+
+        $component = new $classname[169]; // classname сделать изменяемым c помощью get_declared_classes и array_diff (разница массивов)
+//      var_dump($component);
+//      проверка на наследование (проверка не только parent)
+        $component->executeComponent();
     }
 
     //Скрытие клонирования

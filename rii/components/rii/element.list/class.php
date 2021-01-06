@@ -11,6 +11,6 @@ class ElementList extends Base
 
     public function executeComponent()
     {
-
+        echo '+++';
     }
 }
