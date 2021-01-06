@@ -13,17 +13,19 @@ abstract class Base
 
     public function __construct($id, $template = null, $params = [])
     {
-        if ($template != null)
-        {
-            $this->template = $template;
-        } elseif ($template = '')
-        {
-            $this->template = new Template;
-        }
         $this->id = $id;
         $this->params = $params;
         $this->__path = $_SERVER['DOCUMENT_ROOT'] . "/rii/components/" . $id . "/"; // Rii/rii/components/rii/component_id
         $this->__path = str_replace(':', '/', $this->__path);
+        if ($template != null)
+        {
+            if ($template = '')
+            {
+                $this->template = 'default';
+            }
+            $this->template = new Template($template, $this);
+        }
+
     }
 
     abstract public function executeComponent(); // метод обязателен для переопределения
