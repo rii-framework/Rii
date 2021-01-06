@@ -38,19 +38,12 @@ class Application
                 throw new \Exception("Компонент $componentName не найдет");
             } // проверка на существование
 
-//            $this->__components[$componentName] = "Rii\Core\Component\ElementList";
-//            var_dump($this->__components[$componentName]);
-
-
-            if ( isset($this->__components[$componentName]) ) {
+            if (isset($this->__components[$componentName])) {
                 $componentClass = $this->__components[$componentName];
-                var_dump($componentClass);
-            }
-            else {
+            } else {
                 $allClassesArray = get_declared_classes();
                 include $componentPath;
                 $newClassesArray = get_declared_classes();
-
                 $classname = array_diff($newClassesArray, $allClassesArray);
                 foreach ($classname as $item) {
                     if (get_parent_class($item) == "Rii\Core\Component\Base") {

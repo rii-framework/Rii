@@ -1,6 +1,6 @@
 <?php
 
-namespace Rii\Components;
+namespace Rii\Core\Component;
 
 class ElementList extends Base
 {
