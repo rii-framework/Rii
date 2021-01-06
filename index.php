@@ -13,13 +13,14 @@ $app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit'
 -------- 06.01.2020 - Roma --------
     1. Доработана инициализация $template. Если $template пустая строка, то инициализируем дефолтный шаблон
 
+    -------- 06.01.2021 - Ilya_V --------
+    1. Доработка класса Template
+
 -------- 06.01.2021 - Ilya_Ch --------
     1. Создан метод Application::includeComponent
-    1. Создан компонент rii/components/rii/element.list/class.php
+    2. Создан компонент rii/components/rii/element.list/class.php
+    3. Создан rii/components/rii/element.list/templates/default/template.php
 
--------- 05.01.2021 - Ilya_Ch --------
-    1. Неудачная попытка создания метода Application::includeComponent
-    1. Неудачная попытка создания компонента rii/components/rii/element.list/class.php
 
 -------- 05.01.2020 - Roma --------
     1. Исправлена переменная __path (теперь символы заменяются только в $id)
@@ -29,6 +30,10 @@ $app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit'
 
 -------- 04.01.2020 - Roma --------
     1. Создание базового класса для шаблонов
+    
+-------- 04.01.2021 - Ilya_V --------
+    1. Создание класса Template
+    2. Создание метода render для подключения файлов шаблона
 
 -------- 30.12.2020 - Ilya_V --------
     1. Создание метода showHead для добавления макросов (css, string, js)
