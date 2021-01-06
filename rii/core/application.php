@@ -12,7 +12,7 @@ class Application
     private static $instance = null;
 
     //Массив компонентов
-    private array $__components = [];
+    private $__components = [];
 
     //Скрытие конструктора
     private function __construct()
