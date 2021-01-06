@@ -4,13 +4,13 @@ namespace Rii\Components;
 
 class ElementList extends Base
 {
-    public function __construct()
+    public function __construct($componentName, $componentTemplate, $arParams)
     {
-        parent::__construct('ElementList');
+        parent::__construct($componentName, $componentTemplate, $arParams);
     }
 
     public function executeComponent()
     {
-        echo '+++';
+        echo 'Компонент работает!';
     }
 }

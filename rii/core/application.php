@@ -32,21 +32,28 @@ class Application
     //Создание метода, который подключает и инициализирует компонент по указанным параметрам
     public static function includeComponent(string $componentName, string $componentTemplate, array $arParams)
     {
-        $componentPath = $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' . str_replace(':', '/', $componentName) . '/class.php'; // проверка на существование
-        if (!file_exists($componentPath)) {
-            die();
+        $componentPath = $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' . str_replace(':', '/', $componentName) . '/class.php';
+        try {
+            if (!file_exists($componentPath)) {
+                throw new \Exception("Ошибка загрузки компонента!");
+            } // проверка на существование
+            else {
+                $allClassesArray = get_declared_classes();
+                include $componentPath;
+                $newClassesArray = get_declared_classes();
+
+                $classname = array_diff($newClassesArray, $allClassesArray);
+                foreach ($classname as $item) {
+                    if (get_parent_class($item) == "Rii\Components\Base") {
+                        $componentClass = $item;
+                    }
+                }
+                $component = new $componentClass($componentName, $componentTemplate, $arParams);
+                $component->executeComponent();
+            }
+        } catch (\Exception $ex) {
+            echo $ex->getMessage();
         }
-        $allClassesArray = get_declared_classes();
-        require_once $componentPath;
-        $newClassesArray = get_declared_classes();
-
-        $classname = array_diff($newClassesArray, $allClassesArray); // ElementList и Base
-        $componentClass = current($classname);
-
-        $component = new $componentClass;
-//        class_parents($component);     тут должна быть проверка на наследование, но я не понимаю в чем она должна заключаться
-//        эта функция будет возвращать список родительских классов нашего класса
-        $component->executeComponent();
     }
 
     //Скрытие клонирования
