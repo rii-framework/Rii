@@ -1,12 +1,13 @@
 <?php
 include 'rii/init.php';
+
 use Rii\Core\Application;
 use Rii\Core\Page;
 
 $app = Application::getInstance();
 $app->header();
 Page::getInstance()->setProperty('Title', "История изменений");
-$app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10, 'time' => date('d.m.Y H:i:s') ]);
+$app->includeComponent("rii:element.list", "default", ['sort' => ['date' => 'desc'], 'limit' => 10, 'data_type' => 'json', 'data_file' => '/upload/history.json', 'time' => date('d.m.Y H:i:s')]);
 ?>
 <pre>
 -------- 06.01.2021 - Ilya_V --------
