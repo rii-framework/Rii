@@ -11,11 +11,12 @@ $app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit'
 <pre>
 -------- 06.01.2021 - Ilya_Ch --------
     1. Создан метод Application::includeComponent
-    1. Создан компонент rii/components/rii/element.list/class.php
+    2. Создан компонент rii/components/rii/element.list/class.php
+    3. Создан rii/components/rii/element.list/templates/default/template.php
 
 -------- 05.01.2021 - Ilya_Ch --------
     1. Неудачная попытка создания метода Application::includeComponent
-    1. Неудачная попытка создания компонента rii/components/rii/element.list/class.php
+    2. Неудачная попытка создания компонента rii/components/rii/element.list/class.php
 
 -------- 29.12.2020 - Ilya_Ch --------
     1. Вывожу footer через echo
