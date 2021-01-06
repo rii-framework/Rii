@@ -21,7 +21,8 @@ class Template
         $this->id = $id;
         $this->component = $component;
 
-        $this->__relativePath = pathinfo($_SERVER["REQUEST_URI"])["dirname"] . "/templates/" . $this->id . "/";
+        $this->__relativePath = substr($this->component->__path, strlen($_SERVER['DOCUMENT_ROOT']), -1) . "/templates/" . $this->id . "/";
+
         $this->__path =  $this->component->__path . "templates/" . $this->id . "/";
 
         $this->page = Page::getInstance();
@@ -37,9 +38,11 @@ class Template
             include $this->__path . "/result_modifier.php";
         }
 
-        if (file_exists($this->__path . "/" . $page . ".php")) {
-            include ($this->__path . "/" . $page . ".php");
+        if (!file_exists($this->__path . "/" . $page . ".php")) {
+            throw new \Exception("Папка с шаблоном не найдена!");
         }
+
+        include ($this->__path . "/" . $page . ".php");
 
         if (file_exists($this->__path . "/component_epilog.php")) {
             include ($this->__path . "/component_epilog.php");
