@@ -3,9 +3,10 @@ include 'rii/init.php';
 use Rii\Core\Application;
 use Rii\Core\Page;
 
-Application::getInstance()->header();
+$app = Application::getInstance();
+$app->header();
 Page::getInstance()->setProperty('Title', "История изменений");
-Application::includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10 ]);
+$app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10 ]);
 ?>
 <pre>
 -------- 06.01.2021 - Ilya_Ch --------

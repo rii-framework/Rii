@@ -12,7 +12,7 @@ class Application
     private static $instance = null;
 
     //Массив компонентов
-    private static $__components = [];  // массив объектов класса
+    private array $__components = [];
 
     //Скрытие конструктора
     private function __construct()
@@ -30,13 +30,22 @@ class Application
     }
 
     //Создание метода, который подключает и инициализирует компонент по указанным параметрам
-    public static function includeComponent(string $componentName, string $componentTemplate, array $arParams)
+    public function includeComponent(string $componentName, string $componentTemplate, array $arParams)
     {
         $componentPath = $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' . str_replace(':', '/', $componentName) . '/class.php';
         try {
             if (!file_exists($componentPath)) {
-                throw new \Exception("Ошибка загрузки компонента!");
+                throw new \Exception("Компонент $componentName не найдет");
             } // проверка на существование
+
+//            $this->__components[$componentName] = "Rii\Core\Component\ElementList";
+//            var_dump($this->__components[$componentName]);
+
+
+            if ( isset($this->__components[$componentName]) ) {
+                $componentClass = $this->__components[$componentName];
+                var_dump($componentClass);
+            }
             else {
                 $allClassesArray = get_declared_classes();
                 include $componentPath;
@@ -44,13 +53,14 @@ class Application
 
                 $classname = array_diff($newClassesArray, $allClassesArray);
                 foreach ($classname as $item) {
-                    if (get_parent_class($item) == "Rii\Components\Base") {
+                    if (get_parent_class($item) == "Rii\Core\Component\Base") {
                         $componentClass = $item;
+                        $this->__components[$componentName] = $componentClass;
                     }
                 }
-                $component = new $componentClass($componentName, $componentTemplate, $arParams);
-                $component->executeComponent();
             }
+            $component = new $componentClass($componentName, $componentTemplate, $arParams);
+            $component->executeComponent();
         } catch (\Exception $ex) {
             echo $ex->getMessage();
         }
