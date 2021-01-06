@@ -3,10 +3,20 @@ include 'rii/init.php';
 use Rii\Core\Application;
 use Rii\Core\Page;
 
-Application::getInstance()->header();
+$app = Application::getInstance();
+$app->header();
 Page::getInstance()->setProperty('Title', "История изменений");
+$app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10 ]);
 ?>
 <pre>
+-------- 06.01.2021 - Ilya_Ch --------
+    1. Создан метод Application::includeComponent
+    1. Создан компонент rii/components/rii/element.list/class.php
+
+-------- 05.01.2021 - Ilya_Ch --------
+    1. Неудачная попытка создания метода Application::includeComponent
+    1. Неудачная попытка создания компонента rii/components/rii/element.list/class.php
+
 -------- 29.12.2020 - Ilya_Ch --------
     1. Вывожу footer через echo
     2. Прописываю в своем классе DOCUMENT_ROOT
