@@ -6,14 +6,19 @@ class Application
 {
     private $page = null;
 
+    private $template = null;
+
+    //Поле для хранения экземпляра класса
+    private static $instance = null;
+
+    //Массив компонентов
+    private $__components = [];
+
     //Скрытие конструктора
     private function __construct()
     {
         $this->page = Page::getInstance();
     }
-
-    //Поле для хранения экземпляра класса
-    private static $instance = null;
 
     //Создание объекта указанного класса
     public static function getInstance(): Application
@@ -22,6 +27,36 @@ class Application
             self::$instance = new static();
         }
         return self::$instance;
+    }
+
+    //Создание метода, который подключает и инициализирует компонент по указанным параметрам
+    public function includeComponent(string $componentName, string $componentTemplate, array $arParams)
+    {
+        $componentPath = $_SERVER['DOCUMENT_ROOT'] . '/rii/components/' . str_replace(':', '/', $componentName) . '/class.php';
+        try {
+            if (!file_exists($componentPath)) {
+                throw new \Exception("Компонент $componentName не найдет");
+            } // проверка на существование
+
+            if (isset($this->__components[$componentName])) {
+                $componentClass = $this->__components[$componentName];
+            } else {
+                $allClassesArray = get_declared_classes();
+                include $componentPath;
+                $newClassesArray = get_declared_classes();
+                $classname = array_diff($newClassesArray, $allClassesArray);
+                foreach ($classname as $item) {
+                    if (get_parent_class($item) == "Rii\Core\Component\Base") {
+                        $componentClass = $item;
+                        $this->__components[$componentName] = $componentClass;
+                    }
+                }
+            }
+            $component = new $componentClass($componentName, $componentTemplate, $arParams);
+            $component->executeComponent();
+        } catch (\Exception $ex) {
+            echo $ex->getMessage();
+        }
     }
 
     //Скрытие клонирования
@@ -35,7 +70,7 @@ class Application
     }
 
     //Запуск буффера
-    public function startBuffer()
+    private function startBuffer()
     {
         ob_start();
         $flag = new Application();
@@ -79,9 +114,4 @@ class Application
 
     //Проверка старта буффера
     private $isBufferStart = false;
-
-    //Массив компонентов
-    private static $__components = [];
-
-    private $template = null;
 }

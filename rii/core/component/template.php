@@ -1,6 +1,6 @@
 <?php
 
-namespace Rii\Core\Сomponent;
+namespace Rii\Core\Component;
 
 use Rii\Core\Page;
 
@@ -15,19 +15,20 @@ class Template
     public function __construct($id, $component)
     {
         if (!file_exists($component->__path . "templates/" . $id)) {
-            throw new Exception("Папка с шаблоном не найдена!");
+            throw new \Exception("Папка с шаблоном не найдена!");
         }
 
         $this->id = $id;
         $this->component = $component;
 
-        $this->__relativePath = pathinfo($_SERVER["REQUEST_URI"])["dirname"] . "/templates/" . $this->id . "/";
+        $this->__relativePath = substr($this->component->__path, strlen($_SERVER['DOCUMENT_ROOT']), -1) . "/templates/" . $this->id . "/";
+
         $this->__path =  $this->component->__path . "templates/" . $this->id . "/";
 
         $this->page = Page::getInstance();
     }
 
-    //Подключение файла шаблона | $page - страница подключения в шаблоне. По дефолту template.php 
+    //Подключение файла шаблона | $page - страница подключения в шаблоне. По дефолту template.php
     public function render($page = "template"): void
     {
         $result = $this->component->result;
@@ -37,9 +38,11 @@ class Template
             include $this->__path . "/result_modifier.php";
         }
 
-        if (file_exists($this->__path . "/" . $page . ".php")) {
-            include ($this->__path . "/" . $page . ".php");
+        if (!file_exists($this->__path . "/" . $page . ".php")) {
+            throw new \Exception("Папка с шаблоном не найдена!");
         }
+
+        include ($this->__path . "/" . $page . ".php");
 
         if (file_exists($this->__path . "/component_epilog.php")) {
             include ($this->__path . "/component_epilog.php");
@@ -52,5 +55,5 @@ class Template
         if (file_exists($this->__path . "/script.js")) {
             $this->page->addJs($this->__relativePath . "/script.js");
         }
-    }    
+    }
 }

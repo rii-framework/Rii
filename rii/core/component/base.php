@@ -15,8 +15,9 @@ abstract class Base
     {
         $this->id = $id;
         $this->params = $params;
+        $id = str_replace(':', '/', $id);
         $this->__path = $_SERVER['DOCUMENT_ROOT'] . "/rii/components/" . $id . "/"; // Rii/rii/components/rii/component_id
-        $this->__path = str_replace(':', '/', $this->__path);
+
         if ($template != null)
         {
             if ($template == '')
