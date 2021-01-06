@@ -6,7 +6,7 @@ use Rii\Core\Page;
 $app = Application::getInstance();
 $app->header();
 Page::getInstance()->setProperty('Title', "История изменений");
-$app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10 ]);
+$app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10, 'time' => date('d.m.Y H:i:s') ]);
 ?>
 <pre>
 -------- 06.01.2021 - Ilya_V --------
@@ -14,11 +14,12 @@ $app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit'
 
 -------- 06.01.2021 - Ilya_Ch --------
     1. Создан метод Application::includeComponent
-    1. Создан компонент rii/components/rii/element.list/class.php
+    2. Создан компонент rii/components/rii/element.list/class.php
+    3. Создан rii/components/rii/element.list/templates/default/template.php
 
 -------- 05.01.2021 - Ilya_Ch --------
     1. Неудачная попытка создания метода Application::includeComponent
-    1. Неудачная попытка создания компонента rii/components/rii/element.list/class.php
+    2. Неудачная попытка создания компонента rii/components/rii/element.list/class.php
 
 -------- 04.01.2021 - Ilya_V --------
     1. Создание класса Template
