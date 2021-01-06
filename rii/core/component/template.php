@@ -6,7 +6,7 @@ use Rii\Core\Page;
 
 class Template
 {
-    public $__path; //Путь к шаблону компонента tepmlates
+    public $__path; //Путь к шаблону компонента templates
     public $__relativePath; //URL к папке с шаблоном
     public $id; //Имя шаблона
     public $component; //Компонент
@@ -14,15 +14,15 @@ class Template
 
     public function __construct($id, $component)
     {
-        if (!file_exists($component->__path . "tepmlates/" . $id)) {
+        if (!file_exists($component->__path . "templates/" . $id)) {
             throw new Exception("Папка с шаблоном не найдена!");
         }
 
         $this->id = $id;
         $this->component = $component;
 
-        $this->__relativePath = pathinfo($_SERVER["REQUEST_URI"])["dirname"] . "/tepmlates/" . $this->id . "/";
-        $this->__path =  $this->component->__path . "tepmlates/" . $this->id . "/";
+        $this->__relativePath = pathinfo($_SERVER["REQUEST_URI"])["dirname"] . "/templates/" . $this->id . "/";
+        $this->__path =  $this->component->__path . "templates/" . $this->id . "/";
 
         $this->page = Page::getInstance();
     }
