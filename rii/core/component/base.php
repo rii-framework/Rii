@@ -19,7 +19,7 @@ abstract class Base
         $this->__path = str_replace(':', '/', $this->__path);
         if ($template != null)
         {
-            if ($template = '')
+            if ($template == '')
             {
                 $this->template = 'default';
             }
