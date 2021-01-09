@@ -1,7 +1,20 @@
 <?php if (!defined('RII_CORE_INCLUDED')) die;
 
-echo "<pre>";
-//print_r($params);
-echo '<br>Сегодня: '.$params['time'].'<br>';
-echo '<br>Data-тип: '.$params['data_type'].'<br>';
-echo '<br>Путь к файлу: '.$params['data_file'].'<br>';
+//Здесь можно будет сделать json_encode при добавлении новых записей через форму отправки
+
+$strJsonFileContent = file_get_contents("upload/history.json");
+$array = json_decode($strJsonFileContent, true);
+
+$endId = end($array['listOfChanges']);
+$numOfPosts = $endId["postId"]-$params["limit"];
+
+for ($i = $endId["postId"]; $i > $numOfPosts; $i--) {
+    if ($array["listOfChanges"][$i]) {
+        echo "<pre>";
+        echo "-------- " . $array["listOfChanges"][$i]["updateTime"] . " - " . $array["listOfChanges"][$i]["programmerName"] . " --------<br>";
+        foreach ($array["listOfChanges"][$i]["changes"] as $item) {
+            echo "    " . $item . "<br>";
+        }
+        echo "</pre>";
+    } else break;
+}
