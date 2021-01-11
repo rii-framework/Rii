@@ -2,8 +2,8 @@
   "listOfChanges": [
     {
       "postId": 0,
-      "programmerName": "Roma",
-      "updateTime": "19.12.2020",
+      "programmer": "Роман Дудойть",
+      "date": "19.12.2020",
       "changes": [
         "1. Создан файл автозагрузки классов",
         "2. Добвалена константа проверки (RII_CORE_INCLUDED) для проверки подключения ядра",
@@ -12,8 +12,8 @@
     },
     {
       "postId": 1,
-      "programmerName": "Ilya_V",
-      "updateTime": "19.12.2020",
+      "programmer": "Илья Василевич",
+      "date": "19.12.2020",
       "changes": [
         "1. Переписал функцию get класс Config",
         "2. Создал класс Page (Singleton)",
@@ -22,8 +22,8 @@
     },
     {
       "postId": 2,
-      "programmerName": "Ilya_Ch",
-      "updateTime": "19.12.2020",
+      "programmer": "Илья Чернецкий",
+      "date": "19.12.2020",
       "changes": [
         "1. Создал макет внешней оболочки сайта",
         "2. Создал буффер"
@@ -31,8 +31,8 @@
     },
     {
       "postId": 3,
-      "programmerName": "Ilya_V ",
-      "updateTime": "28.12.2020",
+      "programmer": "Илья Василевич",
+      "date": "28.12.2020",
       "changes": [
         "1. Подправил наследование класса Page, и доступность полей и методов",
         "2. Переделал пользовательский конструктор",
@@ -48,8 +48,8 @@
     },
     {
       "postId": 4,
-      "programmerName": "Ilya_Ch",
-      "updateTime": "29.12.2020",
+      "programmer": "Илья Чернецкий",
+      "date": "29.12.2020",
       "changes": [
         "1. Вывожу footer через echo",
         "2. Прописываю в своем классе DOCUMENT_ROOT",
@@ -61,17 +61,36 @@
     },
     {
       "postId": 5,
-      "programmerName": "Ilya_V",
-      "updateTime": "",
+      "programmer": "Роман Дудойть",
+      "date": "04.01.2021",
+      "changes": [
+        "1. Создание базового класса для шаблонов"
+      ]
+    },
+    {
+      "postId": 6,
+      "programmer": "Илья Василевич",
+      "date": "04.01.2021",
       "changes": [
         "1. Создание класса Template",
         "2. Создание метода render для подключения файлов шаблона"
       ]
     },
     {
-      "postId": 6,
-      "programmerName": "Ilya_Ch",
-      "updateTime": "06.01.2021",
+      "postId": 7,
+      "programmer": "Роман Дудойть",
+      "date": "05.01.2021",
+      "changes": [
+        "1. Исправлена переменная __path (теперь символы заменяются только в $id)",
+        "2. Исправлен конструктор. Передаётся одна обязательная $id и две дефолтные $template и $params.",
+        "3. Добавлены типы полям класса",
+        "4. Доработана инициализация $template (теперь если значение равно null шаблон не загружается)"
+      ]
+    },
+    {
+      "postId": 8,
+      "programmer": "Илья Чернецкий",
+      "date": "06.01.2021",
       "changes": [
         "1. Создан метод Application::includeComponent",
         "2. Создан компонент rii/components/rii/element.list/class.php",
@@ -79,17 +98,25 @@
       ]
     },
     {
-      "postId": 7,
-      "programmerName": "Ilya_V",
-      "updateTime": "06.01.2021",
+      "postId": 9,
+      "programmer": "Илья Василевич",
+      "date": "06.01.2021",
       "changes": [
         "1. Доработка класса Template"
       ]
     },
     {
-      "postId": 8,
-      "programmerName": "Ilya_Ch",
-      "updateTime": "09.01.2021",
+      "postId": 10,
+      "programmer": "Роман Дудойть",
+      "date": "06.01.2021",
+      "changes": [
+        "1. Доработана инициализация $template. Если $template пустая строка, то инициализируем дефолтный шаблон"
+      ]
+    },
+    {
+      "postId": 11,
+      "programmer": "Илья Чернецкий",
+      "date": "09.01.2021",
       "changes": [
         "1. Разработка функционала компонента"
       ]

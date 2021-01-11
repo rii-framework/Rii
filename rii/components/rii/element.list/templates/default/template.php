@@ -2,18 +2,18 @@
 
 //Здесь можно будет сделать json_encode при добавлении новых записей через форму отправки
 
-$strJsonFileContent = file_get_contents("upload/history.json");
-$array = json_decode($strJsonFileContent, true);
+$strJsonFileContent = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $params["data_file"]);   //Получаем содержимое upload/history.json в виде строки
+$array = json_decode($strJsonFileContent, true);   //Преобразуем строку в массив
 
-$endId = end($array['listOfChanges']);
-$numOfPosts = $endId["postId"]-$params["limit"];
+$lastId = end($array['listOfChanges']);   //Получаем последний элемент массива (последний пост)
+$numOfPosts = $lastId["postId"] - $params["limit"];  //Записываем в переменную количество постов, которое хотим отобразить
 
-for ($i = $endId["postId"]; $i > $numOfPosts; $i--) {
+for ($i = $lastId["postId"]; $i > $numOfPosts; $i--) {
     if ($array["listOfChanges"][$i]) {
         echo "<pre>";
-        echo "-------- " . $array["listOfChanges"][$i]["updateTime"] . " - " . $array["listOfChanges"][$i]["programmerName"] . " --------<br>";
+        echo "Дата: " . $array["listOfChanges"][$i]["date"] . "<br>Разработчик: " . $array["listOfChanges"][$i]["programmer"] . "<br>Изменения:<br>";
         foreach ($array["listOfChanges"][$i]["changes"] as $item) {
-            echo "    " . $item . "<br>";
+            echo "&nbsp" . $item . "<br>";
         }
         echo "</pre>";
     } else break;
