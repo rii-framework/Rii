@@ -6,7 +6,87 @@ use Rii\Core\Page;
 $app = Application::getInstance();
 $app->header();
 Page::getInstance()->setProperty('Title', "История изменений");
-$app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10 ]);
+$app->includeComponent("rii:interfaceform", "default", 
+[
+    'additional_class' => 'form-25', //доп класс на контейнер формы
+    'attr' => [  // доп атрибуты
+        'data-form-id' => 'form-123'
+    ],
+    'method' => 'post',
+    'action' => '',
+    'elements' => [  //список элементов формы
+        [
+            'type' => 'text',
+            'name' => 'login',
+            'additional_class' => ['js-login', 'bor-r'],
+            'attr' => [
+                'data-id' => '17'
+            ],
+            'title' => 'Логин',
+            'default' => 'Введите имя',
+            'wrap' => [ //обёртка в div
+                'additional_class' => 'form-group'
+            ]
+        ],
+        [
+            'type' => 'password',
+            'name' => 'password',
+            'title' => 'Пароль',
+            'default' => 'Введите пароль',
+            'wrap' => [
+                'additional_class' => 'form-group'
+            ]
+        ],
+        [
+            'type' => 'select',
+            'name' => 'login',
+            'additional_class' => 'js-login',
+            'attr' => [
+                'data-id' => '17'
+            ],
+            'wrap' => [
+                'additional_class' => 'form-group'
+            ],
+            'title' => 'Выберите сервер',
+            'list' => [
+                [
+                    'title' => 'Онлайнер',
+                    'value' => 'onliner',
+                    'additional_class' => 'mini--option',
+                    'attr' => [
+                        'data-id' => '188'
+                    ],
+                    'selected' => true
+                ],
+                [
+                    'title' => 'Тутбай',
+                    'value' => 'tut',
+                ]
+            ]
+        ],
+        [
+            'type' => 'checkbox',
+            'name' => 'login',
+            'additional_class' => 'js-login',
+            'attr' => [
+                'data-id' => '17'
+            ],
+            'title' => 'Логин',
+            'wrap' => [
+                'additional_class' => 'form-group'
+            ]
+        ],
+        [
+            'type' => 'submit',
+            'additional_class' => 'js-btn',
+            'attr' => [
+                'data-id' => '17'
+            ],
+            'value' => 'Отправить'
+        ],
+        
+    ]
+]);
 ?>
 <pre>
 
