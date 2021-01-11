@@ -1,4 +1,4 @@
-<?php if ( !defined('RII_CORE_INCLUDED') ) die;?>
+<?php if (!defined('RII_CORE_INCLUDED')) die; ?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -10,5 +10,5 @@
     <? \Rii\Core\Page::getInstance()->showHead(); ?>
 </head>
 <body>
-<h3>Дневник проекта</h3>
+<h2>Дневник проекта</h2>
 <hr>
