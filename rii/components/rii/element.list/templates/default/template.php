@@ -4,17 +4,24 @@
 
 $strJsonFileContent = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $params["data_file"]);   //Получаем содержимое upload/history.json в виде строки
 $array = json_decode($strJsonFileContent, true);   //Преобразуем строку в массив
+$reversedArray = array_reverse($array["listOfChanges"]);
 
-$lastId = end($array['listOfChanges']);   //Получаем последний элемент массива (последний пост)
-$numOfPosts = $lastId["postId"] - $params["limit"];  //Записываем в переменную количество постов, которое хотим отобразить
+$page = $_GET['page'];
+$limit = $params["limit"];
+$offset = $limit * ($page - 1);
 
-for ($i = $lastId["postId"]; $i > $numOfPosts; $i--) {  //Вывод последних n постов
-    if ($array["listOfChanges"][$i]) {
-        echo "<pre>Дата: " . $array["listOfChanges"][$i]["date"] . "<br>Разработчик: " . $array["listOfChanges"][$i]["programmer"] . "<br>Изменения:<br>";
-        foreach ($array["listOfChanges"][$i]["changes"] as $item) {
-            echo "&nbsp" . $item . "<br>";
+for ($i = $offset; $i < $offset + $limit; $i++) {
+    if ($reversedArray[$i]) {
+        echo "<div class='post'>Дата: " . $reversedArray[$i]["date"] . "<br>Разработчик: " . $reversedArray[$i]["programmer"] . "<br>Изменения:<br>";
+        foreach ($reversedArray[$i]["changes"] as $item) {
+            echo "<div class ='changes'>" . $item . "</div>";
         }
-        echo "</pre>";
-    } else break;
+        echo "</div>";
+    }
 }
-//Попробовал сделать сортировку по дате через strtotime()+usort() и array_multisort()+foreach, но даты распологаются в неверном порядке.
+
+$pagLink = "<div class='pagination'>";
+for ($i = 1; $i <= ceil(count($reversedArray) / $limit); $i++) {
+    $pagLink .= "<a href='index.php?page=" . $i . "'>" . $i . "</a>";
+}
+echo $pagLink . "</div>";
