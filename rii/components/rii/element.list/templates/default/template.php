@@ -8,13 +8,13 @@ $array = json_decode($strJsonFileContent, true);   //Преобразуем ст
 $lastId = end($array['listOfChanges']);   //Получаем последний элемент массива (последний пост)
 $numOfPosts = $lastId["postId"] - $params["limit"];  //Записываем в переменную количество постов, которое хотим отобразить
 
-for ($i = $lastId["postId"]; $i > $numOfPosts; $i--) {
+for ($i = $lastId["postId"]; $i > $numOfPosts; $i--) {  //Вывод последних n постов
     if ($array["listOfChanges"][$i]) {
-        echo "<pre>";
-        echo "Дата: " . $array["listOfChanges"][$i]["date"] . "<br>Разработчик: " . $array["listOfChanges"][$i]["programmer"] . "<br>Изменения:<br>";
+        echo "<pre>Дата: " . $array["listOfChanges"][$i]["date"] . "<br>Разработчик: " . $array["listOfChanges"][$i]["programmer"] . "<br>Изменения:<br>";
         foreach ($array["listOfChanges"][$i]["changes"] as $item) {
             echo "&nbsp" . $item . "<br>";
         }
         echo "</pre>";
     } else break;
 }
+//Попробовал сделать сортировку по дате через strtotime()+usort() и array_multisort()+foreach, но даты распологаются в неверном порядке.
