@@ -1,5 +1,5 @@
 <?php
-//if ( !defined('RII_CORE_INCLUDED') ) die;?>
+if ( !defined('RII_CORE_INCLUDED') ) die;?>
 <!doctype html>
 <html lang="ru">
 <head>
