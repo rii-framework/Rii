@@ -34,6 +34,10 @@ class ElementList extends Base
         return $content;
     }
 
+    private function test($params){
+        return $this->params["data_type"];
+    }
+
 //    private function paginationParams($params)
 //    {
 //        $page = $_GET['page'];
@@ -53,7 +57,8 @@ class ElementList extends Base
     {
 //        $this->getContentJSON($this->params);
 //        $this->paginationParams($this->params);
-        $this->result['changeLog'] = $this->getContentJSON($this->params);
+        $dataType = $this->test($this->params);
+        $this->result['element.list'] = $this->getContentJSON($this->params);
         $this->template->render();
     }
 }
