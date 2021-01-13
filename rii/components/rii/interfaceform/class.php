@@ -6,66 +6,75 @@ use Rii\Core\Component\Base;
 
 class InterfaceForm extends Base
 {
+    private $elements = "";
+    private $attributes = "";
+
     public function executeComponent()
     {
-        $this->renderForm();
+        $this->result['attributes'] = $this->renderFormAttributes();
+
+        $this->result['elements'] = $this->renderFormElements();
 
         $this->template->render();
     }
 
-    //Формирование формы
-    private function renderForm()
+    //Формирование атрибутов формы
+    private function renderFormAttributes()
     {
-        $this->result = "<form ";
+        $this->attributes .= $this->getClass($this->params) . " ";
 
-        $this->result .= $this->getClass($this->params);
+        $this->attributes .= $this->getAttr($this->params) . " ";
 
-        $this->result .= $this->getAttr($this->params);
+        $this->attributes .= $this->getMethod($this->params) . " ";
 
-        $this->result .= $this->getMethod($this->params);
+        $this->attributes .= $this->getAction($this->params);
 
-        $this->result .= $this->getAction($this->params);
-
-        $this->result .= ">";
-
-        foreach ($this->params["elements"] as $elem) {
-            if (isset($elem["wrap"])) {
-                $this->result .= "<div " . $this->getClass($elem["wrap"]) . ">";
-                $this->renderElements($elem);
-                $this->result .= "</div>";
-
-            } else {
-                $this->renderElements($elem);
-            }
-            
-        }
-        
-        $this->result .= "</form>";
+        return $this->attributes;
     }
 
     //Формирование элементов формы
-    private function renderElements($elem)
+    private function renderFormElements()
     {
+        foreach ($this->params["elements"] as $elem) {
+            if (isset($elem["wrap"])) {
+                $this->elements .= "<div " . $this->getClass($elem["wrap"]) . ">";
+                $this->elements .= $this->renderElem($elem);
+                $this->elements .= "</div>";
+            } else {
+                $this->elements .= $this->renderElem($elem);
+            }
+        }
+
+        return $this->elements;
+    }
+
+    //Формирование элементов формы
+    private function renderElem($elem)
+    {
+        $currentElem;
+
         switch ($elem["type"]) {
             case "label":
-                $this->getTagLabel($elem);
+                $currentElem = $this->getTagLabel($elem);
                 break;
             case "checkbox":
             case "button":
             case "submit":
             case "text":
             case "password":
-                $this->getTagInput($elem);
+                $currentElem = $this->getTagInput($elem);
                 break;
             case "select":
-                $this->getTagSelect($elem);
+                $currentElem = $this->getTagSelect($elem);
                 break;
             case "textarea":
-                $this->getTagTextarea($elem);
+                $currentElem = $this->getTagTextarea($elem);
                 break;
             default:
                 break;
         }
+
+        return $currentElem;
     }
 
     //Формирование атрибута class
@@ -230,27 +239,33 @@ class InterfaceForm extends Base
         return $output;
     }
 
-    //Формирование тег label
-    private function getTagLabel($array)
+    //Формирование тега label
+    private function getTagLabel($elem)
     {
         $label = "<label ";
 
-        /*$label .= $this->getClass($array);
+        if (is_array($elem)) {
+            $label .= $this->getClass($elem);
 
-        $label .= $this->getId($array);
+            $label .= $this->getId($elem);
 
-        $label .= $this->getFor($array);
+            $label .= $this->getFor($elem);
 
-        $label .= $this->getAccesskey($array);*/
+            $label .= $this->getAccesskey($elem);
 
-        $label .= ">";
+            $label .= ">";
 
-        $label .= $array["title"];
+            $label .= htmlspecialchars($elem["text"]);
+        } else {
+            $label .= ">";
 
-        $this->result .= $label .= "</label>";
+            $label .= htmlspecialchars($elem);
+        }
+        
+        return $label .= "</label>";
     }
 
-    //Формирование тег option
+    //Формирование тега option
     private function getTagOption($array)
     {
         $option = "<option ";
@@ -267,16 +282,16 @@ class InterfaceForm extends Base
 
         $option .= ">";
 
-        $option .= $array["title"];
+        $option .= htmlspecialchars($array["title"]);
 
         return $option .= "</option>";
     }
 
-    //Формирование тег input
+    //Формирование тега input
     private function getTagInput($elem)
     {
         if (isset($elem["title"]) && $elem["title"]) {
-            $this->getTagLabel($elem);
+            $input .= $this->getTagLabel($elem["title"]);
         }
 
         $input .= "<input type=\"" . $elem["type"] . "\"";
@@ -293,14 +308,14 @@ class InterfaceForm extends Base
 
         $input .= $this->getChecked($elem);
 
-        $this->result .= $input .= ">";
+        return $input .= ">";
     }
 
-    //Формирование тег select
+    //Формирование тега select
     private function getTagSelect($elem)
     {
         if (isset($elem["title"]) && $elem["title"]) {
-            $this->getTagLabel($elem);
+            $select .= $this->getTagLabel($elem["title"]);
         }
 
         $select .= "<select type=\"" . $elem["type"] . "\"";
@@ -317,15 +332,14 @@ class InterfaceForm extends Base
             $select .= $this->getTagOption($elem);
         }
 
-        $this->result .= $select .= "</select>";
-
+        return $select .= "</select>";
     }
 
-    //Формирование тег textarea
+    //Формирование тега textarea
     private function getTagTextarea($elem)
     {
         if (isset($elem["title"]) && $elem["title"]) {
-            $this->getTagLabel($elem);
+            $textarea .= $this->getTagLabel($elem);
         }
 
         $textarea .= "<textarea ";
@@ -338,11 +352,10 @@ class InterfaceForm extends Base
 
         $textarea .= $this->getPlaceholder($elem);
 
-        $textarea .= $this->getValue($elem);
-
         $textarea .= ">";
 
-        $this->result .= $textarea .= "</textarea>";
+        $textarea .= htmlspecialchars($elem["text"]);
 
+        return $textarea .= "</textarea>";
     }
 }

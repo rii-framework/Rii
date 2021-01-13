@@ -6,48 +6,50 @@ use Rii\Core\Page;
 $app = Application::getInstance();
 $app->header();
 Page::getInstance()->setProperty('Title', "История изменений");
+
 $app->includeComponent("rii:interfaceform", "default", 
 [
-    'additional_class' => 'form-25', //доп класс на контейнер формы
-    'attr' => [  // доп атрибуты
-        'data-form-id' => 'form-123'
+    'additional_class' => 'form-auth', //классы на контейнер формы
+    'attr' => [  //доп атрибуты
+        'id' => 'form-auth',
     ],
     'method' => 'post',
     'action' => '',
     'elements' => [  //список элементов формы
         [
-            'type' => 'text',
+            'type' => 'text', //тип элемента
             'name' => 'login',
-            'additional_class' => ['js-login', 'bor-r'],
-            'attr' => [
-                'data-id' => '17'
+            'additional_class' => 'js-login', //классы на элемент формы
+            'attr' => [ //доп атрибуты
+                'data-id' => 'login',
             ],
-            'title' => 'Логин',
-            'default' => 'Введите имя',
+            'title' => 'Логин', //label впереди элемента
+            'default' => 'Введите логин', //placeholder
             'wrap' => [ //обёртка в div
-                'additional_class' => 'form-group'
+                'additional_class' => 'form-group',
             ]
         ],
         [
             'type' => 'password',
             'name' => 'password',
+            'additional_class' => ['js-pass2', 'js-pass'],
             'title' => 'Пароль',
             'default' => 'Введите пароль',
             'wrap' => [
-                'additional_class' => 'form-group'
+                'additional_class' => 'form-group',
             ]
         ],
         [
             'type' => 'select',
-            'name' => 'login',
-            'additional_class' => 'js-login',
+            'name' => 'serv',
+            'additional_class' => 'js-serv',
             'attr' => [
-                'data-id' => '17'
-            ],
-            'wrap' => [
-                'additional_class' => 'form-group'
+                'data-id' => 'serv',
             ],
             'title' => 'Выберите сервер',
+            'wrap' => [
+                'additional_class' => 'form-group',
+            ],            
             'list' => [
                 [
                     'title' => 'Онлайнер',
@@ -66,12 +68,13 @@ $app->includeComponent("rii:interfaceform", "default",
         ],
         [
             'type' => 'checkbox',
-            'name' => 'login',
-            'additional_class' => 'js-login',
+            'name' => 'remember',
+            'additional_class' => 'js-remember',
             'attr' => [
-                'data-id' => '17'
+                'data-id' => 'remember'
             ],
-            'title' => 'Логин',
+            'checked' => true,
+            'title' => 'Запомнить',
             'wrap' => [
                 'additional_class' => 'form-group'
             ]
@@ -80,9 +83,9 @@ $app->includeComponent("rii:interfaceform", "default",
             'type' => 'submit',
             'additional_class' => 'js-btn',
             'attr' => [
-                'data-id' => '17'
+                'id' => 'sub-btn'
             ],
-            'value' => 'Отправить'
+            'value' => 'Войти'
         ],
         
     ]
