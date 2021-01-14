@@ -102,6 +102,11 @@ class Application
         echo $content;
     }
 
+    public function cssConn()
+    {
+        return $_SERVER['DOCUMENT_ROOT'] . 'rii/core/bootstrap/css/bootstrap.css';
+    }
+
     //Сброс контента буффера и продолжение его работы
     public function restartBuffer()
     {
