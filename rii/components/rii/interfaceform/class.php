@@ -13,6 +13,10 @@ class InterfaceForm extends Base
     {
         $this->result['attributes'] = $this->renderFormAttributes();
 
+        $this->result['method'] = $this->getMethod($this->params);
+
+        $this->result['action'] = $this->getAction($this->params);
+
         $this->result['elements'] = $this->renderFormElements();
 
         $this->template->render();
@@ -23,11 +27,7 @@ class InterfaceForm extends Base
     {
         $this->attributes .= $this->getClass($this->params) . " ";
 
-        $this->attributes .= $this->getAttr($this->params) . " ";
-
-        $this->attributes .= $this->getMethod($this->params) . " ";
-
-        $this->attributes .= $this->getAction($this->params);
+        $this->attributes .= $this->getAttr($this->params);
 
         return $this->attributes;
     }
@@ -63,6 +63,9 @@ class InterfaceForm extends Base
             case "text":
             case "password":
                 $currentElem = $this->getTagInput($elem);
+                break;
+            case "hidden":
+                $currentElem = $this->getTagIHidden($elem);
                 break;
             case "select":
                 $currentElem = $this->getTagSelect($elem);
@@ -307,6 +310,17 @@ class InterfaceForm extends Base
         $input .= $this->getValue($elem);
 
         $input .= $this->getChecked($elem);
+
+        return $input .= ">";
+    }
+
+    private function getTagIHidden($elem)
+    {
+        $input .= "<input type=\"" . $elem["type"] . "\"";
+
+        $input .= $this->getName($elem);
+
+        $input .= $this->getValue($elem);
 
         return $input .= ">";
     }

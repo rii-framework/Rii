@@ -40,6 +40,11 @@ $app->includeComponent("rii:interfaceform", "default",
             ]
         ],
         [
+            'type' => 'hidden',
+            'name' => 'word',
+            'value' => 'test',
+        ],
+        [
             'type' => 'select',
             'name' => 'serv',
             'additional_class' => 'js-serv',
