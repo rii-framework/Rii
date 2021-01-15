@@ -102,9 +102,13 @@ class Application
         echo $content;
     }
 
-    public function getTemplatePath()
+    public function getTemplatePath($absolute = false)
     {
-        return $_SERVER['DOCUMENT_ROOT'] . '/rii/templates/'. Config::get("TEMPLATE/ID");
+        if ($absolute = true)
+        {
+            return $_SERVER['DOCUMENT_ROOT'] . '/rii/templates/'. Config::get("TEMPLATE/ID");
+        } else return '/rii/templates/'. Config::get("TEMPLATE/ID");
+
     }
 
     //Сброс контента буффера и продолжение его работы
