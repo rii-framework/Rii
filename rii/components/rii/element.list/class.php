@@ -18,12 +18,22 @@ class ElementList extends Base
     {
         $strJsonFileContent = file_get_contents($_SERVER['DOCUMENT_ROOT'] . $params["data_file"]);   //Получаем содержимое upload/history.json в виде строки
         $jsonArray = json_decode($strJsonFileContent, true);   //Преобразуем строку в массив
-        return $data = array_reverse($jsonArray);
+        return $jsonArray;
+    }
+
+    private function sort($jsonArray)
+    {
+        $dateArray = [];
+        foreach ($jsonArray as $key => $array) {
+            $dateArray[$key] = strtotime($array['date']);
+        }
+        array_multisort($dateArray, SORT_DESC, SORT_STRING, $jsonArray);
+        return $jsonArray;
     }
 
     public function executeComponent()
     {
-        $this->result["data"] = $this->getContentJSON($this->params);
+        $this->result["data"] = $this->sort($this->getContentJSON($this->params));
         $this->result['paginationParams'] = $this->paginationParams($this->params);
         $this->template->render();
     }
