@@ -104,7 +104,7 @@ class Application
 
     public function getTemplatePath()
     {
-        return $_SERVER['DOCUMENT_ROOT'] . '/rii/templates/'. Config::get("TEMPLATE/ID") . '/style/bootstrap.css';
+        return $_SERVER['DOCUMENT_ROOT'] . '/rii/templates/'. Config::get("TEMPLATE/ID");
     }
 
     //Сброс контента буффера и продолжение его работы
