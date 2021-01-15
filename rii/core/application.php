@@ -102,9 +102,9 @@ class Application
         echo $content;
     }
 
-    public function cssConn()
+    public function getTemplatePath()
     {
-        return $_SERVER['DOCUMENT_ROOT'] . 'rii/core/bootstrap/css/bootstrap.css';
+        return $_SERVER['DOCUMENT_ROOT'] . '/rii/templates/'. Config::get("TEMPLATE/ID") . '/style/bootstrap.css';
     }
 
     //Сброс контента буффера и продолжение его работы
