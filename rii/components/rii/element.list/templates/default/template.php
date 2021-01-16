@@ -7,7 +7,7 @@ for ($i = $result["paginationParams"]["offset"]; $i < $result["paginationParams"
 }
 
 echo "<div class='pagination'>";
-for ($i = 1; $i <= ceil(count($result["data"]) / $result["paginationParams"]["limit"]); $i++) {
-    echo "<a href='index.php?page=" . $i . "'>" . $i . "</a>";
+foreach ($result['links'] as $link) {
+    echo "<a href=" . $link . ">" .++$k. "</a>";
 }
 echo "</div>";

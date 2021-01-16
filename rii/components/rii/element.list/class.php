@@ -11,10 +11,43 @@ class ElementList extends Base
         if (!$params["limit"]) { // Если лимит не установлен вручную, то ему присваивается значение поумолчанию
             $params["limit"] = 50;
         }
-        $paginationParams["page"] = $_GET['page'];
+        if (isset($_GET['page'])) {
+            $paginationParams["page"] = $_GET['page'];
+        } else {
+            $paginationParams["page"] = 1;
+        }
         $paginationParams["limit"] = $params["limit"];
         $paginationParams ["offset"] = $paginationParams["limit"] * ($paginationParams["page"] - 1);
         return $paginationParams;
+    }
+
+    private function pagination($result)
+    {
+        for ($i = 1; $i <= ceil(count($result["data"]) / $result["paginationParams"]["limit"]); $i++) {
+            $links[$i] = self::addEditedGets("page", $i);
+        }
+        return $links;
+    }
+
+    private function addEditedGets($parameter, $value)
+    {
+        $output = "?";
+        $firstRun = true;
+        foreach ($_GET as $key => $val) {
+            if ($key != $parameter) {
+                if (!$firstRun) {
+                    $output .= "&";
+                } else {
+                    $firstRun = false;
+                }
+                $output .= $key . "=" . urlencode($val);
+            }
+        }
+        if (!$firstRun) {
+            $output .= "&";
+        }
+        $output .= $parameter . "=" . urlencode($value);
+        return htmlentities($output);
     }
 
     private function getContentJSON($params)
@@ -48,6 +81,7 @@ class ElementList extends Base
     {
         $this->result["data"] = $this->sorting($this->params, $this->getContentJSON($this->params));
         $this->result['paginationParams'] = $this->paginationParams($this->params);
+        $this->result['links'] = $this->pagination($this->result);
         $this->template->render();
     }
 }
