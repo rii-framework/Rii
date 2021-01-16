@@ -104,7 +104,7 @@ class Application
 
     public function getTemplatePath($absolute = false)
     {
-        if ($absolute = true)
+        if ($absolute == true)
         {
             return $_SERVER['DOCUMENT_ROOT'] . '/rii/templates/'. Config::get("TEMPLATE/ID");
         } else return '/rii/templates/'. Config::get("TEMPLATE/ID");
