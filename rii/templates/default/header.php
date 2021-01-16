@@ -11,5 +11,5 @@ if ( !defined('RII_CORE_INCLUDED') ) die;?>
     <title><? \Rii\Core\Page::getInstance()->showProperty('Title'); ?></title>
 </head>
 <body>
-    <div class="p-2 mb-2 bg-header text-center text-white"> </div>
+
 <hr>
