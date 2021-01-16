@@ -98,6 +98,7 @@ $app->includeComponent("rii:interfaceform", "default",
 ?>
 <pre>
 
+<<<<<<< HEAD
 -------- 15.01.2021 - Ilya_V --------
     1. Добавление параметров method и action для хранения метода запроса и пути отправки данных формы
     2. Добавление метода getTagIHidden для формирования тега input типа hidden с атрибутами (name, value)
@@ -116,6 +117,16 @@ $app->includeComponent("rii:interfaceform", "default",
     6. Создание методов (getTagLabel, getTagOption, getTagInput, getTagSelect, getTagTextarea) для формирования тегов (label, option, input, select, textarea)
 
 -------- 06.01.2020 - Roma --------
+=======
+-------- 14.01.2021 - Roma --------
+    1. Добавлен метод в application.php getTemplatePath(). Путь к файлу со стилями
+
+-------- 12.01.2021 - Roma --------
+    1. Загрузка bootstrap в папку проекта rii/templates/default/style/bootstrap.css
+    2. Придание стилей header и footer
+
+-------- 06.01.2021 - Roma --------
+>>>>>>> main
     1. Доработана инициализация $template. Если $template пустая строка, то инициализируем дефолтный шаблон
 
 -------- 06.01.2021 - Ilya_V --------
@@ -127,13 +138,13 @@ $app->includeComponent("rii:interfaceform", "default",
     3. Создан rii/components/rii/element.list/templates/default/template.php
 
 
--------- 05.01.2020 - Roma --------
+-------- 05.01.2021 - Roma --------
     1. Исправлена переменная __path (теперь символы заменяются только в $id)
     2. Исправлен конструктор. Передаётся одна обязательная $id и две дефолтные $template и $params.
     3. Добавлены типы полям класса
     4. Доработана инициализация $template (теперь если значение равно null шаблон не загружается)
 
--------- 04.01.2020 - Roma --------
+-------- 04.01.2021 - Roma --------
     1. Создание базового класса для шаблонов
     
 -------- 04.01.2021 - Ilya_V --------
