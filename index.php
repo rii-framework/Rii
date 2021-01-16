@@ -6,10 +6,118 @@ use Rii\Core\Page;
 $app = Application::getInstance();
 $app->header();
 Page::getInstance()->setProperty('Title', "История изменений");
-$app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit' => 10 ]);
+
+$app->includeComponent("rii:interfaceform", "default", 
+[
+    'additional_class' => 'form-auth', //классы на контейнер формы
+    'attr' => [  //доп атрибуты
+        'id' => 'form-auth',
+    ],
+    'method' => 'post',
+    'action' => '',
+    'elements' => [  //список элементов формы
+        [
+            'type' => 'text', //тип элемента
+            'name' => 'login',
+            'additional_class' => 'js-login', //классы на элемент формы
+            'attr' => [ //доп атрибуты
+                'data-id' => 'login',
+            ],
+            'title' => 'Логин', //label впереди элемента
+            'default' => 'Введите логин', //placeholder
+            'wrap' => [ //обёртка в div
+                'additional_class' => 'form-group',
+            ]
+        ],
+        [
+            'type' => 'password',
+            'name' => 'password',
+            'additional_class' => ['js-pass2', 'js-pass'],
+            'title' => 'Пароль',
+            'default' => 'Введите пароль',
+            'wrap' => [
+                'additional_class' => 'form-group',
+            ]
+        ],
+        [
+            'type' => 'hidden',
+            'name' => 'word',
+            'value' => 'test',
+        ],
+        [
+            'type' => 'select',
+            'name' => 'serv',
+            'additional_class' => 'js-serv',
+            'attr' => [
+                'data-id' => 'serv',
+            ],
+            'title' => 'Выберите сервер',
+            'wrap' => [
+                'additional_class' => 'form-group',
+            ],            
+            'list' => [
+                [
+                    'title' => 'Онлайнер',
+                    'value' => 'onliner',
+                    'additional_class' => 'mini--option',
+                    'attr' => [
+                        'data-id' => '188'
+                    ],
+                    'selected' => true
+                ],
+                [
+                    'title' => 'Тутбай',
+                    'value' => 'tut',
+                ]
+            ]
+        ],
+        [
+            'type' => 'checkbox',
+            'name' => 'remember',
+            'additional_class' => 'js-remember',
+            'attr' => [
+                'data-id' => 'remember'
+            ],
+            'checked' => true,
+            'title' => 'Запомнить',
+            'wrap' => [
+                'additional_class' => 'form-group'
+            ]
+        ],
+        [
+            'type' => 'submit',
+            'additional_class' => 'js-btn',
+            'attr' => [
+                'id' => 'sub-btn'
+            ],
+            'value' => 'Войти'
+        ],
+        
+    ]
+]);
 ?>
 <pre>
 
+<<<<<<< HEAD
+-------- 15.01.2021 - Ilya_V --------
+    1. Добавление параметров method и action для хранения метода запроса и пути отправки данных формы
+    2. Добавление метода getTagIHidden для формирования тега input типа hidden с атрибутами (name, value)
+
+-------- 13.01.2021 - Ilya_V --------
+    1. Доработка компонента InterfaceForm
+    2. Добавление полей elements и attributes для хранения элементов и атрибутов формы
+    3. Добавление htmlspecialchars для преобразования выводимого текста на страницу
+
+-------- 11.01.2021 - Ilya_V --------
+    1. Создание класса(компонента) InterfaceForm
+    2. Создание метода renderForm для формирование формы
+    3. Создание метода renderElements для формирование элементов
+    4. Создание метода getAttr для формирования списка атрибутов или data- атрибутов
+    5. Создание методов (getClass, getAttr, getMethod, getId, getFor, getAccesskey, getAction, getName, getPlaceholder, getValue, getDisabled, getSelected, getChecked) для формирования атрибутов (class, доп атрибутов, method, id, for, accesskey, action, name, placeholder, value, disabled, selected, checked)
+    6. Создание методов (getTagLabel, getTagOption, getTagInput, getTagSelect, getTagTextarea) для формирования тегов (label, option, input, select, textarea)
+
+-------- 06.01.2020 - Roma --------
+=======
 -------- 14.01.2021 - Roma --------
     1. Добавлен метод в application.php getTemplatePath(). Путь к файлу со стилями
 
@@ -18,9 +126,10 @@ $app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit'
     2. Придание стилей header и footer
 
 -------- 06.01.2021 - Roma --------
+>>>>>>> main
     1. Доработана инициализация $template. Если $template пустая строка, то инициализируем дефолтный шаблон
 
-    -------- 06.01.2021 - Ilya_V --------
+-------- 06.01.2021 - Ilya_V --------
     1. Доработка класса Template
 
 -------- 06.01.2021 - Ilya_Ch --------
