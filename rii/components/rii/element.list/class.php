@@ -24,12 +24,12 @@ class ElementList extends Base
     private function pagination($result)
     {
         for ($i = 1; $i <= ceil(count($result["data"]) / $result["paginationParams"]["limit"]); $i++) {
-            $links[$i] = self::addEditedGets("page", $i);
+            $links[$i] = self::editURL('page', $i);
         }
         return $links;
     }
 
-    private function addEditedGets($parameter, $value)
+    private function editURL($parameter, $value)
     {
         $output = "?";
         $firstRun = true;
@@ -63,6 +63,11 @@ class ElementList extends Base
     {
         if (isset($params['sort'])) {  // Если указано, что нужна сортировка, то начнется процесс сортировки. Если нет, то выдаст оригинальный массив данных.
             $dateArray = [];
+
+            // Запилить проверку параметра массива JSON
+            // Если data, то готово
+            // Если NUM, то сортирнуть числа (например id)
+
             foreach ($jsonArray as $key => $array) {
                 $dateArray[$key] = strtotime($array['date']);
             }

@@ -58,5 +58,27 @@
     "programmer": "Илья Чернецкий",
     "date": "09.01.2021",
     "changes": "1. Разработка функционала компонента"
+  },
+  {
+    "programmer": "Илья Василевич",
+    "date": "15.01.2021",
+    "changes": "1. Добавление параметров method и action для хранения метода запроса и пути отправки данных формы<br>2. Добавление метода getTagIHidden для формирования тега input типа hidden с атрибутами (name, value)"
+  },
+  {
+    "programmer": "Роман Дудойть",
+    "date": "14.01.2021",
+    "changes": "1. Добавлен метод в application.php getTemplatePath(). Путь к файлу со стилями"
+  },{
+    "programmer": "Илья Василевич",
+    "date": "13.01.2021",
+    "changes": "1. Доработка компонента InterfaceForm<br>2. Добавление полей elements и attributes для хранения элементов и атрибутов формы<br>3. Добавление htmlspecialchars для преобразования выводимого текста на страницу"
+  },{
+    "programmer": "Роман Дудойть",
+    "date": "12.01.2021",
+    "changes": "1. Загрузка bootstrap в папку проекта rii/templates/default/style/bootstrap.css<br>2. Придание стилей header и footer"
+  },{
+    "programmer": "Илья Василевич",
+    "date": "11.01.2021",
+    "changes": "1. Создание класса(компонента) InterfaceForm<br>2. Создание метода renderForm для формирование формы<br>3. Создание метода renderElements для формирование элементов<br>4. Создание метода getAttr для формирования списка атрибутов или data- атрибутов<br>5. Создание методов (getClass, getAttr, getMethod, getId, getFor, getAccesskey, getAction, getName, getPlaceholder, getValue, getDisabled, getSelected, getChecked) для формирования атрибутов (class, доп атрибутов, method, id, for, accesskey, action, name, placeholder, value, disabled, selected, checked)<br>6. Создание методов (getTagLabel, getTagOption, getTagInput, getTagSelect, getTagTextarea) для формирования тегов (label, option, input, select, textarea)"
   }
 ]
