@@ -11,10 +11,10 @@ $app->includeComponent("rii:element.list", "default", ['sort' => 'date', 'limit'
 <pre>
 
 -------- 14.01.2021 - Roma --------
-    1. Добавлен метод в application.php. Путь к файлу со стилями
+    1. Добавлен метод в application.php getTemplatePath(). Путь к файлу со стилями
 
 -------- 12.01.2021 - Roma --------
-    1. Загрузка bootstrap в корневую папку проекта rii/core/bootstrap/css/bootstrap.css
+    1. Загрузка bootstrap в папку проекта rii/templates/default/style/bootstrap.css
     2. Придание стилей header и footer
 
 -------- 06.01.2021 - Roma --------

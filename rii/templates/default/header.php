@@ -12,5 +12,4 @@ if ( !defined('RII_CORE_INCLUDED') ) die;?>
 </head>
 <body>
     <div class="p-2 mb-2 bg-header text-center text-white"> <h2>Дневник проекта</h2> </div>
-</body>
 <hr>
