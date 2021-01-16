@@ -98,15 +98,21 @@ $app->includeComponent("rii:interfaceform", "default",
 ?>
 <pre>
 
-<<<<<<< HEAD
 -------- 15.01.2021 - Ilya_V --------
     1. Добавление параметров method и action для хранения метода запроса и пути отправки данных формы
     2. Добавление метода getTagIHidden для формирования тега input типа hidden с атрибутами (name, value)
+
+-------- 14.01.2021 - Roma --------
+    1. Добавлен метод в application.php getTemplatePath(). Путь к файлу со стилями
 
 -------- 13.01.2021 - Ilya_V --------
     1. Доработка компонента InterfaceForm
     2. Добавление полей elements и attributes для хранения элементов и атрибутов формы
     3. Добавление htmlspecialchars для преобразования выводимого текста на страницу
+
+-------- 12.01.2021 - Roma --------
+    1. Загрузка bootstrap в папку проекта rii/templates/default/style/bootstrap.css
+    2. Придание стилей header и footer
 
 -------- 11.01.2021 - Ilya_V --------
     1. Создание класса(компонента) InterfaceForm
@@ -116,17 +122,7 @@ $app->includeComponent("rii:interfaceform", "default",
     5. Создание методов (getClass, getAttr, getMethod, getId, getFor, getAccesskey, getAction, getName, getPlaceholder, getValue, getDisabled, getSelected, getChecked) для формирования атрибутов (class, доп атрибутов, method, id, for, accesskey, action, name, placeholder, value, disabled, selected, checked)
     6. Создание методов (getTagLabel, getTagOption, getTagInput, getTagSelect, getTagTextarea) для формирования тегов (label, option, input, select, textarea)
 
--------- 06.01.2020 - Roma --------
-=======
--------- 14.01.2021 - Roma --------
-    1. Добавлен метод в application.php getTemplatePath(). Путь к файлу со стилями
-
--------- 12.01.2021 - Roma --------
-    1. Загрузка bootstrap в папку проекта rii/templates/default/style/bootstrap.css
-    2. Придание стилей header и footer
-
 -------- 06.01.2021 - Roma --------
->>>>>>> main
     1. Доработана инициализация $template. Если $template пустая строка, то инициализируем дефолтный шаблон
 
 -------- 06.01.2021 - Ilya_V --------
