@@ -6,8 +6,10 @@ for ($i = $result["paginationParams"]["offset"]; $i < $result["paginationParams"
     }
 }
 
-echo "<div class='pagination'>";
-foreach ($result['links'] as $link) {
-    echo "<a href=" . $link . ">" .++$k. "</a>";
+if ($result['links'] != null) {
+    echo "<div class='pagination'>";
+    foreach ($result['links'] as $link) {
+        echo "<a href=" . $link . ">" . ++$k . "</a>";
+    }
+    echo "</div>";
 }
-echo "</div>";

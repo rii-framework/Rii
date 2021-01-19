@@ -8,9 +8,12 @@ class ElementList extends Base
 {
     private function paginationParams($params)
     {
-        if (!$params["limit"]) { // Если лимит не установлен вручную, то ему присваивается значение поумолчанию
-            $params["limit"] = 50;
+        if (!$params["limit"]) { // Если лимит не установлен вручную, то выведутся все посты
+            $paginationParams["limit"] = count(self::getContentJSON($params));
+            $paginationParams ["offset"] = 0;
+            return $paginationParams;
         }
+
         if (isset($_GET['page'])) {
             $paginationParams["page"] = $_GET['page'];
         } else {
@@ -23,10 +26,13 @@ class ElementList extends Base
 
     private function pagination($result)
     {
-        for ($i = 1; $i <= ceil(count($result["data"]) / $result["paginationParams"]["limit"]); $i++) {
-            $links[$i] = self::editURL('page', $i);
-        }
-        return $links;
+        $numOfPages = ceil(count($result["data"]) / $result["paginationParams"]["limit"]);
+        if ($numOfPages > 1) {
+            for ($i = 1; $i <= $numOfPages; $i++) {
+                $links[$i] = self::editURL('page', $i);
+            }
+            return $links;
+        } else return null;
     }
 
     private function editURL($parameter, $value)

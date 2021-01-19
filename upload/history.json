@@ -80,5 +80,10 @@
     "programmer": "Илья Василевич",
     "date": "11.01.2021",
     "changes": "1. Создание класса(компонента) InterfaceForm<br>2. Создание метода renderForm для формирование формы<br>3. Создание метода renderElements для формирование элементов<br>4. Создание метода getAttr для формирования списка атрибутов или data- атрибутов<br>5. Создание методов (getClass, getAttr, getMethod, getId, getFor, getAccesskey, getAction, getName, getPlaceholder, getValue, getDisabled, getSelected, getChecked) для формирования атрибутов (class, доп атрибутов, method, id, for, accesskey, action, name, placeholder, value, disabled, selected, checked)<br>6. Создание методов (getTagLabel, getTagOption, getTagInput, getTagSelect, getTagTextarea) для формирования тегов (label, option, input, select, textarea)"
+  },
+  {
+    "programmer": "Илья Чернецкий",
+    "date": "19.01.2021",
+    "changes": "1. Сделал файл history.json в котором разместил все записи из index.php<br>2. Создав функции getContentJSON для получения данных из upload/history.json<br>3. Создал функции pagination и paginationParams для постраничности<br>4. Создал функцию editURL для сохранения прописанных в URL параметров при пагинации.<br>5. Создал функцию sorting, которая сортирует данные, полученные из JSON-базы данных.<br>"
   }
 ]
