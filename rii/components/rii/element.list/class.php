@@ -61,21 +61,29 @@ class ElementList extends Base
 
     private function sorting($params, $jsonArray)
     {
-        if (isset($params['sort'])) {  // Если указано, что нужна сортировка, то начнется процесс сортировки. Если нет, то выдаст оригинальный массив данных.
-            $dateArray = [];
+        if (isset($params['sort'])) {  // Если указаны параметры сортировки, то начнется процесс сортировки. Если нет, то выдаст оригинальный массив данных.
 
-            // Запилить проверку параметра массива JSON
-            // Если data, то готово
-            // Если NUM, то сортирнуть числа (например id)
+            if (is_array($params['sort'])) {
+                $whatToSort = key($params['sort']);
+                $howToSort = current($params['sort']);
+            } else {
+                $whatToSort = $params['sort'];
+            }
+            $sortingArray = [];
 
             foreach ($jsonArray as $key => $array) {
-                $dateArray[$key] = strtotime($array['date']);
+                if ($whatToSort == 'date') {
+                    $sortingArray[$key] = strtotime($array[$whatToSort]);
+                } else {
+                    $sortingArray[$key] = $array[$whatToSort];
+                }
             }
-            if ($params['sort']['date'] == 'desc') {  // Если указана сортировка по возрастанию, то отсортирует так.
-                array_multisort($dateArray, SORT_DESC, SORT_STRING, $jsonArray);
-            } elseif ($params['sort']['date'] == 'asc') { // Если указана сортировка по убыванию, то отсортирует так.
-                array_multisort($dateArray, SORT_ASC, SORT_STRING, $jsonArray);
-            } // Если не указан тип сортировки, то выдаст оригинальный массив данных.
+
+            if ($howToSort == 'asc') { // Если указана сортировка по возрастанию, то отсортирует так.
+                array_multisort($sortingArray, SORT_ASC, SORT_REGULAR, $jsonArray);
+            } else {
+                array_multisort($sortingArray, SORT_DESC, SORT_REGULAR, $jsonArray);
+            } // Если тип сортировки не указан или указан неверно, то отсортироака по убыванию задается по умолчанию.
             return $jsonArray;
         } else {
             return $jsonArray;
