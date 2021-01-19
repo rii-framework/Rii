@@ -1,4 +1,5 @@
 <?php if (!defined('RII_CORE_INCLUDED')) die; ?>
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -6,9 +7,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/style/bootstrap.css'); ?>
     <title><? \Rii\Core\Page::getInstance()->showProperty('Title'); ?></title>
     <? \Rii\Core\Page::getInstance()->showHead(); ?>
 </head>
 <body>
 <h2>Дневник проекта</h2>
-<hr>
