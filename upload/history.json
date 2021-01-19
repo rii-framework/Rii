@@ -1,0 +1,89 @@
+[
+  {
+    "programmer": "Роман Дудойть",
+    "date": "19.12.2020",
+    "changes": "1. Создан файл автозагрузки классов<br>2. Добвалена константа проверки (RII_CORE_INCLUDED) для проверки подключения ядра<br>3. Исправлена переменная формирования пути. (добавлена переменная $_SERVER['DOCUMENT_ROOT'])"
+  },
+  {
+    "programmer": "Илья Василевич",
+    "date": "19.12.2020",
+    "changes": "1. Переписал функцию get класс Config<br>2. Создал класс Page (Singleton)<br>3. Содал макет под методы getProperty, setProperty, showProperty, addJs, addCss, addString"
+  },
+  {
+    "programmer": "Илья Чернецкий",
+    "date": "19.12.2020",
+    "changes": "1. Создал макет внешней оболочки сайта<br>2. Создал буффер"
+  },
+  {
+    "programmer": "Илья Василевич",
+    "date": "28.12.2020",
+    "changes": "1. Подправил наследование класса Page, и доступность полей и методов<br>2. Переделал пользовательский конструктор<br>3. Создал функцию getMacro для формирования макроса<br>4. Реализовал get, set, show для property (получение, установка, вывод макроса)<br>5. Реализовал add, show для js (получение, установка, вывод макроса)<br>6. Реализовал add, show для css (получение, установка, вывод макроса)<br>7. Реализовал add, show для string (получение, установка, вывод макроса)<br>9. Создал функцию getStr для преобразования готового массива в строку<br>10. Создал функцию getGroupingProperty для формирования массива property (макрос => значение)"
+  },
+  {
+    "programmer": "Илья Чернецкий",
+    "date": "29.12.2020",
+    "changes": "1. Вывожу footer через echo<br>2. Прописываю в своем классе DOCUMENT_ROOT<br>3. Делаю start / end / restart  (buffer) не статическими<br>5. endBuffer должен возвращать контент (предварительно заменив все свойства страницы. Это будет после того, как ты получишь себе класс Page)<br>6. Исключить возможность повторного подключения хэдэра и футера. Т.е. в статических методах мы должны работать с нашим синглтоном и понимать чем живёт страница"
+  },
+  {
+    "programmer": "Роман Дудойть",
+    "date": "04.01.2021",
+    "changes": "1. Создание базового класса для шаблонов"
+  },
+  {
+    "programmer": "Илья Василевич",
+    "date": "04.01.2021",
+    "changes": "1. Создание класса Template<br>2. Создание метода render для подключения файлов шаблона"
+  },
+  {
+    "programmer": "Роман Дудойть",
+    "date": "05.01.2021",
+    "changes": "1. Исправлена переменная __path (теперь символы заменяются только в $id)<br>2. Исправлен конструктор. Передаётся одна обязательная $id и две дефолтные $template и $params<br>3. Добавлены типы полям класса<br>4. Доработана инициализация $template (теперь если значение равно null шаблон не загружается)"
+  },
+  {
+    "programmer": "Илья Чернецкий",
+    "date": "06.01.2021",
+    "changes": "1. Создан метод Application::includeComponent<br>2. Создан компонент rii/components/rii/element.list/class.php<br>3. Создан rii/components/rii/element.list/templates/default/template.php"
+  },
+  {
+    "programmer": "Илья Василевич",
+    "date": "06.01.2021",
+    "changes": "1. Доработка класса Template"
+  },
+  {
+    "programmer": "Роман Дудойть",
+    "date": "06.01.2021",
+    "changes": "1. Доработана инициализация $template. Если $template пустая строка, то инициализируем дефолтный шаблон"
+  },
+  {
+    "programmer": "Илья Чернецкий",
+    "date": "09.01.2021",
+    "changes": "1. Разработка функционала компонента"
+  },
+  {
+    "programmer": "Илья Василевич",
+    "date": "15.01.2021",
+    "changes": "1. Добавление параметров method и action для хранения метода запроса и пути отправки данных формы<br>2. Добавление метода getTagIHidden для формирования тега input типа hidden с атрибутами (name, value)"
+  },
+  {
+    "programmer": "Роман Дудойть",
+    "date": "14.01.2021",
+    "changes": "1. Добавлен метод в application.php getTemplatePath(). Путь к файлу со стилями"
+  },{
+    "programmer": "Илья Василевич",
+    "date": "13.01.2021",
+    "changes": "1. Доработка компонента InterfaceForm<br>2. Добавление полей elements и attributes для хранения элементов и атрибутов формы<br>3. Добавление htmlspecialchars для преобразования выводимого текста на страницу"
+  },{
+    "programmer": "Роман Дудойть",
+    "date": "12.01.2021",
+    "changes": "1. Загрузка bootstrap в папку проекта rii/templates/default/style/bootstrap.css<br>2. Придание стилей header и footer"
+  },{
+    "programmer": "Илья Василевич",
+    "date": "11.01.2021",
+    "changes": "1. Создание класса(компонента) InterfaceForm<br>2. Создание метода renderForm для формирование формы<br>3. Создание метода renderElements для формирование элементов<br>4. Создание метода getAttr для формирования списка атрибутов или data- атрибутов<br>5. Создание методов (getClass, getAttr, getMethod, getId, getFor, getAccesskey, getAction, getName, getPlaceholder, getValue, getDisabled, getSelected, getChecked) для формирования атрибутов (class, доп атрибутов, method, id, for, accesskey, action, name, placeholder, value, disabled, selected, checked)<br>6. Создание методов (getTagLabel, getTagOption, getTagInput, getTagSelect, getTagTextarea) для формирования тегов (label, option, input, select, textarea)"
+  },
+  {
+    "programmer": "Илья Чернецкий",
+    "date": "19.01.2021",
+    "changes": "1. Сделал файл history.json в котором разместил все записи из index.php<br>2. Создав функции getContentJSON для получения данных из upload/history.json<br>3. Создал функции pagination и paginationParams для постраничности<br>4. Создал функцию editURL для сохранения прописанных в URL параметров при пагинации.<br>5. Создал функцию sorting, которая сортирует данные, полученные из JSON-базы данных.<br>"
+  }
+]

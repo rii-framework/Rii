@@ -1,4 +1,4 @@
-<?php if ( !defined('RII_CORE_INCLUDED') ) die;?>
+<?php if (!defined('RII_CORE_INCLUDED')) die; ?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -7,7 +7,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><? \Rii\Core\Page::getInstance()->showProperty('Title'); ?></title>
+    <? \Rii\Core\Page::getInstance()->showHead(); ?>
 </head>
 <body>
-<h3>Дневник проекта</h3>
+<h2>Дневник проекта</h2>
 <hr>
