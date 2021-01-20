@@ -1,0 +1,51 @@
+* {
+  font-size: 20px
+}
+
+.form-auth {
+  width: 25%;
+  border-top: 0.063rem solid black;
+  border-bottom: 0.063rem solid black;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 2.938rem;
+  padding: 0.938rem;
+  border: 0.063rem solid black;
+  border-top: none;
+}
+
+input, select {
+  padding: 0.625rem 0.625rem;
+  border: 0.063rem solid black;
+}
+
+input[type=submit] {
+  width: 100%;
+  border: none;
+  border-left: 0.063rem solid black;
+  border-right: 0.063rem solid black;
+  padding: 1.563rem;
+}
+
+input[type=submit]:hover{
+  background-color: #333;
+  color: #fff;
+}
+
+input[type=text]:hover,
+input[type=text]:focus,
+input[type=text]:hover::placeholder,
+input[type=text]:focus::placeholder,
+input[type=password]:hover,
+input[type=password]:focus,
+input[type=password]:hover::placeholder,
+input[type=password]:focus::placeholder {
+  border: 0.063rem solid #333;
+  background-color:#333;
+  color: #fff;
+}
