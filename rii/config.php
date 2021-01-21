@@ -11,5 +11,8 @@ return [
     ],
     "TEMPLATE" => [
         "ID" => "default"
-    ]
+    ],
+    "PHONE" => [
+    "NUMBER" => "+375 (29) 603 92 91"
+    ],
 ];
