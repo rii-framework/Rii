@@ -5,110 +5,41 @@ use Rii\Core\Application;
 use Rii\Core\Page;
 
 $app = Application::getInstance();
+$path = $app::getInstance()->getTemplatePath();
 $app->header();
 Page::getInstance()->setProperty('Title', "История изменений");
-
-$app->includeComponent("rii:interfaceform", "default", 
-[
-    'additional_class' => 'form-auth', //классы на контейнер формы
-    'attr' => [  //доп атрибуты
-        'id' => 'form-auth',
-    ],
-    'method' => 'post',
-    'action' => '',
-    'elements' => [  //список элементов формы
-        [
-            'type' => 'text', //тип элемента
-            'name' => 'login',
-            'additional_class' => 'js-login', //классы на элемент формы
-            'attr' => [ //доп атрибуты
-                'data-id' => 'login',
-            ],
-            'title' => 'Логин', //label впереди элемента
-            'default' => 'Введите логин', //placeholder
-            'wrap' => [ //обёртка в div
-                'additional_class' => 'form-group',
-            ]
-        ],
-        [
-            'wrap' => [
-                'additional_class' => 'spanss',
-                'attr' => [
-                    'id' => 'loginn',
-                ],
-            ],            
-        ],
-        [
-            'type' => 'password',
-            'name' => 'password',
-            'additional_class' => ['js-pass2', 'js-pass'],
-            'title' => 'Пароль',
-            'default' => 'Введите пароль',
-            'wrap' => [
-                'additional_class' => 'form-group',
-            ]
-        ],
-        [
-            'type' => 'hidden',
-            'name' => 'word',
-            'value' => 'test',
-        ],
-        [
-            'type' => 'select',
-            'name' => 'serv',
-            'additional_class' => 'js-serv',
-            'attr' => [
-                'data-id' => 'serv',
-            ],
-            'title' => 'Выберите сервер',
-            'wrap' => [
-                'additional_class' => 'form-group',
-            ],            
-            'list' => [
-                [
-                    'title' => 'Онлайнер',
-                    'value' => 'onliner',
-                    'additional_class' => 'mini--option',
-                    'attr' => [
-                        'data-id' => '188'
-                    ],
-                    'selected' => true
-                ],
-                [
-                    'title' => 'Тутбай',
-                    'value' => 'tut',
-                ]
-            ]
-        ],
-        [
-            'type' => 'checkbox',
-            'name' => 'remember',
-            'additional_class' => 'js-remember',
-            'attr' => [
-                'data-id' => 'remember'
-            ],
-            'checked' => true,
-            'title' => 'Запомнить',
-            'wrap' => [
-                'additional_class' => 'form-group'
-            ]
-        ],
-        [
-            'type' => 'submit',
-            'additional_class' => 'js-btn',
-            'attr' => [
-                'id' => 'sub-btn'
-            ],
-            'value' => 'Войти'
-        ],
-        
-    ]
-]);
 ?>
 
-<h2>История изменений проекта:</h2>
-<?php
-$app->includeComponent("rii:element.list", "default", ['sort' => ['date' => 'desc'], 'limit' => 5, 'data_type' => 'json', 'data_file' => '/upload/history.json']);
-?>
+<section class="s-section section-white" data-section="services-section">
+    <div class="container">
+        <h2>Основные услуги</h2>
+        <div class="servicesList">
+            <?php $app->includeComponent("rii:element.list", "services", ['sort' => ['date' => 'desc'], 'limit' => 5, 'data_type' => 'json', 'path_temp' => $path, 'data_file' => '/rii/db/services.json']); ?>
+        </div>
+        <a href="#" class="button-standart volume js-click-popup" data-click="call-back">посмотреть все услуги</a>
+    </div>
+</section>
+
+<section class="s-section section-black" data-section="advantages-section">
+    <div class="container">
+        <h2>Преимущества</h2>
+    </div>
+    <div class="slider--wrapp">
+        <div class="js-slider slider--block">
+            <?php $app->includeComponent("rii:element.list", "advantages", ['sort' => ['date' => 'desc'], 'limit' => 5, 'data_type' => 'json', 'path_temp' => $path, 'data_file' => '/rii/db/advantages.json']); ?>
+        </div>
+    </div>
+</section>
+
+<section class="s-section section-white" data-section="price-section">
+    <div class="container">
+        <h2>СТОИМОСТЬ УСЛУГ</h2>
+        <div class="price--wrapp js-price-block">
+            <?php $app->includeComponent("rii:element.list", "service_cost", ['sort' => ['date' => 'desc'], 'limit' => 5, 'data_type' => 'json', 'path_temp' => $path, 'data_file' => '/rii/db/service_cost.json']); ?>
+        </div>
+        <a href="#" class="button-standart volume js-click-more button-more">посмотреть еще</a>
+        <a href="#" class="button-standart volume js-click-popup button-hidden" data-click="call-back">Заказать звонок</a>
+    </div>
+</section>
 
 <? Application::getInstance()->footer(); ?>
