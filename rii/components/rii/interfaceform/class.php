@@ -13,9 +13,9 @@ class InterfaceForm extends Base
     {
         $this->result['attributes'] = $this->renderFormAttributes();
 
-        $this->result['method'] = $this->getMethod($this->params);
+        $this->result['method'] = $this->getMethod();
 
-        $this->result['action'] = $this->getAction($this->params);
+        $this->result['action'] = $this->getAction();
 
         $this->result['elements'] = $this->renderFormElements();
 
@@ -113,12 +113,12 @@ class InterfaceForm extends Base
     }
 
     //Формирование атрибута method
-    private function getMethod($array)
+    private function getMethod()
     {
         $output = "";
 
-        if (isset($array["method"]) && $array["method"]) {
-            $output = "method=\"" . $array["method"] . "\"";
+        if (isset($this->params["method"]) && $this->params["method"]) {
+            $output = "method=\"" . $this->params["method"] . "\"";
         }
 
         return $output;
@@ -161,12 +161,12 @@ class InterfaceForm extends Base
      }
 
     //Формирование атрибута action
-    private function getAction($array)
+    private function getAction()
     {
         $output = "";
 
-        if (isset($array["action"])) {
-            $output = "action=\"" . $array["action"] . "\"";
+        if (isset($this->params["action"])) {
+            $output = "action=\"" . $this->params["action"] . "\"";
         }
 
         return $output;
