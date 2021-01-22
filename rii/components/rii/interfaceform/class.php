@@ -37,9 +37,11 @@ class InterfaceForm extends Base
     {
         foreach ($this->params["elements"] as $elem) {
             if (isset($elem["wrap"])) {
-                $this->elements .= "<div " . $this->getClass($elem["wrap"]) . ">";
+                $elem["wrap"]["tag"] = empty($elem["wrap"]["tag"]) ? "div" : $elem["wrap"]["tag"];
+
+                $this->elements .= "<" . $elem["wrap"]["tag"] . " " . $this->getClass($elem["wrap"]) . " " . $this->getAttr($elem["wrap"]) . ">";
                 $this->elements .= $this->renderElem($elem);
-                $this->elements .= "</div>";
+                $this->elements .= "</" . $elem["wrap"]["tag"] . ">";
             } else {
                 $this->elements .= $this->renderElem($elem);
             }

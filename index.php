@@ -31,6 +31,14 @@ $app->includeComponent("rii:interfaceform", "default",
             ]
         ],
         [
+            'wrap' => [
+                'additional_class' => 'spanss',
+                'attr' => [
+                    'id' => 'loginn',
+                ],
+            ],            
+        ],
+        [
             'type' => 'password',
             'name' => 'password',
             'additional_class' => ['js-pass2', 'js-pass'],
