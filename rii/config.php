@@ -13,7 +13,7 @@ return [
         "ID" => "default",
     ],
     "PHONE" => [
-    "NUMBER" => "+375296039291"
+    "NUMBER" => "375296039291"
     ],
 
 ];

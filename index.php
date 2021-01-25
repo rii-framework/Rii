@@ -5,10 +5,8 @@ use Rii\Core\Application;
 use Rii\Core\Page;
 
 $app = Application::getInstance();
-$app->header();
-Page::getInstance()->setProperty('Title', "История изменений");
-?>
-
+Application::header();
+Page::getInstance()->setProperty('Title', "ELCAR24");?>
 <section class="s-section section-white" data-section="services-section">
     <div class="container">
         <h2>Основные услуги</h2>
@@ -104,4 +102,4 @@ Page::getInstance()->setProperty('Title', "История изменений");
     </div>
 </section>
 
-<? Application::getInstance()->footer(); ?>
+<? Application::footer(); ?>

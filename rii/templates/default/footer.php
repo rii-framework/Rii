@@ -8,12 +8,9 @@
                     <a href="#" class="logo--link"><img src="<?= '/img/ELCAR24.png' ?>" alt=""></a>
                     <div class="text">Автоэлектрик с выездом к клиенту</div>
                 </div>
-                <div class="footer--menuList">
                     <? self::getInstance()->includeComponent("rii:element.list", "menu-bot", ['data_type' => 'json', 'data_file' => '/rii/db/menu-bot.json']); ?>
-                </div>
                 <div class="phone--info">
-                    <a href="<? echo \Rii\Core\Config::get("PHONE/NUMBER") ?>" class="phone">+375 (29)
-                        <span>603 92 91</span></a>
+                    <a href="tel:+<?= \Rii\Core\Config::get("PHONE/NUMBER"); ?>" class="phone"><?= vsprintf("+%s%s%s (%s%s) <span>%s%s%s %s%s %s%s</span>", str_split(\Rii\Core\Config::get("PHONE/NUMBER"))); ?></a>
                     <div class="time">Ежедневно, с 8.00 до 21.00</div>
                 </div>
             </div>
