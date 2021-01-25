@@ -62,6 +62,7 @@ class InterfaceForm extends Base
             case "checkbox":
             case "button":
             case "submit":
+            case "email":
             case "text":
             case "password":
                 $currentElem = $this->getTagInput($elem);
@@ -136,29 +137,29 @@ class InterfaceForm extends Base
         return $output;
     }
 
-     //Формирование атрибута for
-     private function getFor($array)
-     {
-         $output = "";
- 
-         if (isset($array["for"]) && $array["for"]) {
-             $output = "for=\"" . $array["for"] . "\"";
-         }
- 
-         return $output;
-     }
+    //Формирование атрибута for
+    private function getFor($array)
+    {
+        $output = "";
 
-     //Формирование атрибута accesskey
-     private function getAccesskey($array)
-     {
-         $output = "";
- 
-         if (isset($array["accesskey"]) && $array["accesskey"]) {
-             $output = "accesskey=\"" . $array["accesskey"] . "\"";
-         }
- 
-         return $output;
-     }
+        if (isset($array["for"]) && $array["for"]) {
+            $output = "for=\"" . $array["for"] . "\"";
+        }
+
+        return $output;
+    }
+
+    //Формирование атрибута accesskey
+    private function getAccesskey($array)
+    {
+        $output = "";
+
+        if (isset($array["accesskey"]) && $array["accesskey"]) {
+            $output = "accesskey=\"" . $array["accesskey"] . "\"";
+        }
+
+        return $output;
+    }
 
     //Формирование атрибута action
     private function getAction()
@@ -266,7 +267,7 @@ class InterfaceForm extends Base
 
             $label .= htmlspecialchars($elem);
         }
-        
+
         return $label .= "</label>";
     }
 
