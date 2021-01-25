@@ -10,6 +10,10 @@ return [
         "PASSWORD" => "",
     ],
     "TEMPLATE" => [
-        "ID" => "default"
-    ]
+        "ID" => "default",
+    ],
+    "PHONE" => [
+    "NUMBER" => "+375296039291"
+    ],
+
 ];

@@ -1,0 +1,44 @@
+[
+  {
+    "title": "",
+    "link": "#",
+    "params": {
+      "data-click" : "index-section"
+    }
+  },
+  {
+  "title": "",
+  "link": "#",
+  "params": {
+  "data-click" : "services-section"
+    }
+  },
+  {
+  "title": "",
+  "link": "#",
+  "params": {
+  "data-click" : "advantages-section"
+    }
+  },
+  {
+  "title": "",
+  "link": "#",
+  "params": {
+  "data-click" : "price-section"
+     }
+  },
+  {
+  "title": "",
+  "link": "#",
+  "params": {
+  "data-click" : "reviews-section"
+    }
+  },
+  {
+  "title": "",
+  "link": "#",
+  "params": {
+  "data-click" : "auto-section"
+    }
+  }
+  ]

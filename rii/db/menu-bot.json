@@ -1,0 +1,31 @@
+
+[
+  {
+    "title": "Услуги",
+    "link": "#",
+    "params": {
+      "data-click" : "services-section"
+    }
+  },
+  {
+    "title": "Преимущества",
+    "link": "#",
+    "params": {
+      "data-click" : "advantages-section"
+    }
+  },
+  {
+    "title": "Стоимость",
+    "link": "#",
+    "params": {
+      "data-click" : "price-section"
+    }
+  },
+  {
+    "title": "Отзывы",
+    "link": "#",
+    "params": {
+      "data-click" : "reviews-section"
+    }
+  }
+]
