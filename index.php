@@ -9,6 +9,7 @@ $app = Application::getInstance(); ?>
 <? $app->header();
 Page::getInstance()->setProperty('Title', "История изменений");?>
 
+
 Контент
 
 <? Application::getInstance()->footer(); ?>
