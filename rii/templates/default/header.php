@@ -12,10 +12,7 @@
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/libs/slick/slick-theme.css'); ?>
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/style/main.css'); ?>
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/style/fonts.css'); ?>
-<<<<<<< HEAD
 
-=======
->>>>>>> 50c6a5749a55b1c002cc12a4aa07719154164066
     <title><? \Rii\Core\Page::getInstance()->showProperty('Title'); ?></title>
     <? \Rii\Core\Page::getInstance()->showCss(); ?>
 </head>
