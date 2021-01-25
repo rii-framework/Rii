@@ -1,4 +1,6 @@
-<?php if (!defined('RII_CORE_INCLUDED')) die; ?>
+<?php if (!defined('RII_CORE_INCLUDED')) die; 
+use Rii\Core\Page;
+?>
 
 <!doctype html>
 <html lang="ru">
@@ -80,5 +82,3 @@
         </div>
     </section>
 </div>
-
-<body>
