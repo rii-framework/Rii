@@ -12,7 +12,8 @@
                     <? self::getInstance()->includeComponent("rii:element.list", "menu-bot", ['data_type' => 'json', 'data_file' => '/rii/db/menu-bot.json']); ?>
                 </div>
                 <div class="phone--info">
-                    <a href="<? echo \Rii\Core\Config::get("PHONE/NUMBER") ?>" class="phone">+375 (29) <span>603 92 91</span></a>
+                    <a href="<? echo \Rii\Core\Config::get("PHONE/NUMBER") ?>" class="phone">+375 (29)
+                        <span>603 92 91</span></a>
                     <div class="time">Ежедневно, с 8.00 до 21.00</div>
                 </div>
             </div>
@@ -34,7 +35,6 @@
     </footer>
 </section>
 
-
 <?
 Rii\Core\Page::getInstance()->addJs(self::getInstance()->getTemplatePath() . '/libs/jquery-3.3.1.min.js');
 Rii\Core\Page::getInstance()->addJs(self::getInstance()->getTemplatePath() . '/libs/slick/slick.min.js');
@@ -42,6 +42,5 @@ Rii\Core\Page::getInstance()->addJs(self::getInstance()->getTemplatePath() . '/l
 Rii\Core\Page::getInstance()->addJs(self::getInstance()->getTemplatePath() . '/js/main.js');
 Rii\Core\Page::getInstance()->showJs(); ?>
 
-
 </body>
- </html>
+</html>

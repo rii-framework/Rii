@@ -4,7 +4,7 @@
     { ?>
     <div class='item'>
     <a href="<?= $menu["link"]?>"
-       class="item js-click-section"
+       class="link js-click-section"
        data-click="<?= $menu["params"]["data-click"]?>"><?= $menu["title"]?></a>
     </div>
 <?

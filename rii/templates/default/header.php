@@ -7,12 +7,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/style/main.css'); ?>
-    <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/style/fonts.css'); ?>
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/libs/normalize.css'); ?>
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/libs/slick/slick.css'); ?>
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/libs/slick/slick-theme.css'); ?>
-
+    <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/style/main.css'); ?>
+    <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/style/fonts.css'); ?>
     <title><? \Rii\Core\Page::getInstance()->showProperty('Title'); ?></title>
     <? \Rii\Core\Page::getInstance()->showCss(); ?>
 </head>
