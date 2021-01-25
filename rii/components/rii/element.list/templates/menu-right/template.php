@@ -2,7 +2,7 @@
 
     foreach ($result["data"] as $key => $menu )
     { ?>
-    <li class="active-link-menu">
+    <li class="">
         <a href="<?= $menu["link"]?>"
            title="<?= $menu["title"]?>"
            class="sectionMenu--item js-click-section"
