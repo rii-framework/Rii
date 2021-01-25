@@ -33,7 +33,6 @@
 </section>
 
 <?
-Rii\Core\Page::getInstance()->addJs(self::getInstance()->getTemplatePath() . '/libs/jquery-3.3.1.min.js');
 Rii\Core\Page::getInstance()->addJs(self::getInstance()->getTemplatePath() . '/libs/slick/slick.min.js');
 Rii\Core\Page::getInstance()->addJs(self::getInstance()->getTemplatePath() . '/libs/jquery.maskedinput.js');
 Rii\Core\Page::getInstance()->addJs(self::getInstance()->getTemplatePath() . '/js/main.js');
