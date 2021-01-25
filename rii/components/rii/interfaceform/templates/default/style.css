@@ -2,7 +2,7 @@
   font-size: 20px
 }
 
-.form-auth {
+.form-callback {
   width: 25%;
   border-top: 0.063rem solid black;
   border-bottom: 0.063rem solid black;
@@ -44,7 +44,11 @@ input[type=text]:focus::placeholder,
 input[type=password]:hover,
 input[type=password]:focus,
 input[type=password]:hover::placeholder,
-input[type=password]:focus::placeholder {
+input[type=password]:focus::placeholder,
+input[type=email]:hover,
+input[type=email]:focus,
+input[type=email]:hover::placeholder,
+input[type=email]:focus::placeholder {
   border: 0.063rem solid #333;
   background-color:#333;
   color: #fff;

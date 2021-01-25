@@ -4,12 +4,9 @@ include 'rii/init.php';
 use Rii\Core\Application;
 use Rii\Core\Page;
 
-$app = Application::getInstance(); ?>
-
-<? $app->header();
-Page::getInstance()->setProperty('Title', "История изменений");?>
-
-
-Контент
+$app = Application::getInstance();
+$app->header();
+Page::getInstance()->setProperty('Title', "История изменений");
+?>
 
 <? Application::getInstance()->footer(); ?>
