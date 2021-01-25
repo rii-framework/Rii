@@ -10,15 +10,23 @@
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/style/main.css'); ?>
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/style/fonts.css'); ?>
     <title><? \Rii\Core\Page::getInstance()->showProperty('Title'); ?></title>
-    <? \Rii\Core\Page::getInstance()->showHead(); ?>
+    <? \Rii\Core\Page::getInstance()->showCss(); ?>
 </head>
 <body>
 
+<div class="main-page-wrapper">
+    <div class="fixed-menu">
+        <div class="sectionMenu">
+            <ul class="sectionMenu--list">
+                <?php self::getInstance()->includeComponent("rii:element.list", "menu-right", ['data_type' => 'json', 'data_file' => '/rii/db/menu-right.json']); ?>
+            </ul>
+        </div>
+    </div>
 <section class="s-section section-black section--index" data-section="index-section">
     <header class="header">
         <div class="container">
             <div class="header--wrap">
-                <a href="#" class="logo--link"><img src="<?= self::getInstance()->getTemplatePath() . '/img/ELCAR24.png' ?>" alt="" class="logo"></a>
+                <a href="#" class="logo--link"><img src="<?= '/img/ELCAR24.png' ?>" alt="" class="logo"></a>
                 <div class="header--wrap-info js-mobile-block">
                     <button class="close js-close-menu"></button>
                     <div class="header--menuList">
@@ -65,6 +73,7 @@
         </div>
     </div>
 </section>
+</div>
 
 
 
