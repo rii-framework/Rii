@@ -1,15 +1,16 @@
 <?php
 include 'rii/init.php';
 
-use Rii\Core\Application;
+use Rii\Core\Page;
 
-$app = Application::getInstance();
-$path = $app::getInstance()->getTemplatePath();
+$path = self::getInstance()->getTemplatePath();
 
+Page::getInstance()->addJs($path . '/libs/jquery-3.3.1.min.js');
+Page::getInstance()->addJs($path . '/libs/slick/slick.min.js');
+Page::getInstance()->addJs($path . '/libs/jquery.maskedinput.js');
+Page::getInstance()->addJs($path . '/js/main.js');
 ?>
-    <script type="text/javascript" src="<?= $path; ?>/libs/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="<?= $path; ?>/libs/slick/slick.min.js"></script>
-    <script type="text/javascript" src="<?= $path; ?>/libs/jquery.maskedinput.js"></script>
-    <script type="text/javascript" src="<?= $path; ?>/js/main.js"></script>
+
+<? Page::getInstance()->showJs(); ?>
 </body>
  </html>

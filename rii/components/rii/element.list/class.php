@@ -101,7 +101,6 @@ class ElementList extends Base
         $this->result["data"] = $this->sorting($this->params, $this->getContentJSON($this->params));
         $this->result['paginationParams'] = $this->paginationParams($this->params);
         $this->result['links'] = $this->pagination($this->result);
-        $this->result['path'] = $this->params["path_temp"];
         $this->template->render();
     }
 }

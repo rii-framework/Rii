@@ -1,37 +1,5 @@
 [
     {
-        "name": "Peugeot",
-        "img": "PEUGEOT.svg"
-    },
-    {
-        "name": "Chevrolet",
-        "img": "Chevrolet.svg"
-    },
-    {
-        "name": "Jaguar",
-        "img": "jaguar.svg"
-    },
-    {
-        "name": "Jeep",
-        "img": "jeep.svg"
-    },
-    {
-        "name": "Seat",
-        "img": "seat.svg"
-    },
-    {
-        "name": "Subaru",
-        "img": "Subaru.svg"
-    },
-    {
-        "name": "Audi",
-        "img": "audi.svg"
-    },
-    {
-        "name": "Hyundai",
-        "img": "hyundai.svg"
-    },
-    {
         "name": "Mazda",
         "img": "mazda.svg"
     },
@@ -134,37 +102,5 @@
     {
         "name": "Hyundai",
         "img": "hyundai.svg"
-    },
-    {
-        "name": "Mazda",
-        "img": "mazda.svg"
-    },
-    {
-        "name": "BMW",
-        "img": "bmw.svg"
-    },
-    {
-        "name": "Citroen",
-        "img": "citroen.svg"
-    },
-    {
-        "name": "Geely",
-        "img": "geely.svg"
-    },
-    {
-        "name": "Volkswagen",
-        "img": "volkswagen.svg"
-    },
-    {
-        "name": "KIA",
-        "img": "kia.svg"
-    },
-    {
-        "name": "Nissan",
-        "img": "nissan.svg"
-    },
-    {
-        "name": "Honda",
-        "img": "honda.svg"
     }
 ]
