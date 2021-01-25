@@ -62,6 +62,7 @@ class InterfaceForm extends Base
             case "checkbox":
             case "button":
             case "submit":
+            case "email":
             case "text":
             case "password":
                 $currentElem = $this->getTagInput($elem);
@@ -136,29 +137,29 @@ class InterfaceForm extends Base
         return $output;
     }
 
-     //Формирование атрибута for
-     private function getFor($array)
-     {
-         $output = "";
- 
-         if (isset($array["for"]) && $array["for"]) {
-             $output = "for=\"" . $array["for"] . "\"";
-         }
- 
-         return $output;
-     }
+    //Формирование атрибута for
+    private function getFor($array)
+    {
+        $output = "";
 
-     //Формирование атрибута accesskey
-     private function getAccesskey($array)
-     {
-         $output = "";
- 
-         if (isset($array["accesskey"]) && $array["accesskey"]) {
-             $output = "accesskey=\"" . $array["accesskey"] . "\"";
-         }
- 
-         return $output;
-     }
+        if (isset($array["for"]) && $array["for"]) {
+            $output = "for=\"" . $array["for"] . "\"";
+        }
+
+        return $output;
+    }
+
+    //Формирование атрибута accesskey
+    private function getAccesskey($array)
+    {
+        $output = "";
+
+        if (isset($array["accesskey"]) && $array["accesskey"]) {
+            $output = "accesskey=\"" . $array["accesskey"] . "\"";
+        }
+
+        return $output;
+    }
 
     //Формирование атрибута action
     private function getAction()
@@ -266,8 +267,18 @@ class InterfaceForm extends Base
 
             $label .= htmlspecialchars($elem);
         }
-        
+
         return $label .= "</label>";
+    }
+
+    private function getTagError($array){
+        $tagErr = "";
+
+        if (is_array($array["error"])) {
+            $tagErr .= "<div " . $this->getId($array["error"]) . " " . $this->getClass($array["error"]) . "></div>";
+        }
+
+        return $tagErr;
     }
 
     //Формирование тега option
@@ -313,7 +324,13 @@ class InterfaceForm extends Base
 
         $input .= $this->getChecked($elem);
 
-        return $input .= ">";
+        $input .= ">";
+
+        if (isset($elem["error"]) && $elem["error"]) {
+            $input .= $this->getTagError($elem);
+        }
+
+        return $input;
     }
 
     private function getTagIHidden($elem)
@@ -348,7 +365,13 @@ class InterfaceForm extends Base
             $select .= $this->getTagOption($elem);
         }
 
-        return $select .= "</select>";
+        $select .= "</select>";
+
+        if (isset($elem["error"]) && $elem["error"]) {
+            $select .= $this->getTagError($elem);
+        }
+
+        return $select;
     }
 
     //Формирование тега textarea
@@ -372,6 +395,12 @@ class InterfaceForm extends Base
 
         $textarea .= htmlspecialchars($elem["text"]);
 
-        return $textarea .= "</textarea>";
+        $textarea .= "</textarea>";
+
+        if (isset($elem["error"]) && $elem["error"]) {
+            $select .= $this->getTagError($elem);
+        }
+
+        return $textarea;
     }
 }

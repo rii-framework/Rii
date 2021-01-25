@@ -1,0 +1,14 @@
+<svg 
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ width="173px" height="1050px">
+<defs>
+<linearGradient id="PSgrad_0" x1="0%" x2="13.917%" y1="99.027%" y2="0%">
+  <stop offset="0%" stop-color="rgb(0,0,0)" stop-opacity="0.354" />
+  <stop offset="100%" stop-color="rgb(0,0,0)" stop-opacity="0" />
+</linearGradient>
+
+</defs>
+<text font-family="ProximaNova" fill="rgb(255, 255, 255)" transform="matrix( 0, 0.7638610010342, -0.7638610010342, 0,2.09335938572139, 69.2079599879007)" font-size="327.285px">ELCAR&#50;&#52;</text>
+<text font-family="ProximaNova" fill="url(#PSgrad_0)" opacity="0.212" transform="matrix( 0, 0.7638610010342, -0.7638610010342, 0,2.09335938572139, 69.2079599879007)" font-size="327.285px">ELCAR&#50;&#52;</text>
+</svg>
