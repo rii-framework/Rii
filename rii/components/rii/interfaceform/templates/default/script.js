@@ -2,6 +2,7 @@ $(document).ready(function () {
     $(".form--wrapp").submit(function (event) {
         let customerName = document.getElementById("customerName").value;
         let customerNumber = document.getElementById("customerNumber").value;
+        console.log(customerName, customerNumber);
         event.preventDefault();
         $.ajax({
             url: 'rii/components/rii/interfaceform/templates/default/email.php',
@@ -11,12 +12,26 @@ $(document).ready(function () {
             dataType: 'JSON',
             success: function (data) {
                 if (data != 'success') {
-
-                    data.mailSend ? $('#messagePlace').text(data.mailSend) : $('#messagePlace').text(''); // Вместо отдельного <div id="messagePlace"></div> будет выделенное место в popup
-                    data.nameError ? $('#nameError').text(data.nameError) : $('#nameError').text(''); // А тут в каждый <div class="form-group"> можно добавить <div id='errorname'> для вывода ошибок
-                    data.numberError ? $('#numberError').text(data.numberError) : $('#numberError').text('');
+                    if (data.mailSend) {
+                        $('.pop-up--list').removeClass('active');
+                        $('.pop-up--item').removeClass("active");
+                        $('.pop-up--list').addClass('active');
+                        $('.pop-up--accepted').addClass('active');
+                        $('#messagePlace').text(data.mailSend);
+                    } else {
+                        $('.pop-up--list').removeClass('active');
+                        $('.pop-up--item').removeClass("active");
+                        $('.pop-up--list').addClass('active');
+                        $('.pop-up--error').addClass('active');
+                        $('#nameError').text(data.nameError);
+                        $('#numberError').text(data.numberError);
+                    }
                 }
             }
         })
     })
 })
+
+$('.submit').submit(function () {
+    $('.whichForm').html($(this).parents('.s-section').find('#bookNameAndAuthor').html());
+});

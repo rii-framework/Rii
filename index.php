@@ -49,15 +49,13 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                             'type' => 'text',
                             'name' => 'customerNumber',
                             'attr' => [
-                                'id' => 'customerNumber',
-                                'class' => "js-phone-mask"
-
+                                'id' => 'customerNumber'
                             ],
                             'default' => 'Ваш номер',
                         ], [
                             'type' => 'submit',
                             'attr' => [
-                                'id' => 'submit'
+                                'class' => 'submit'
                             ],
                             'value' => 'Заказать звонок'
                         ]
@@ -154,14 +152,13 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                             'type' => 'text',
                             'name' => 'customerNumber',
                             'attr' => [
-                                'id' => 'customerNumber',
-                                'class' => "js-phone-mask"
+                                'id' => 'customerNumber'
                             ],
                             'default' => 'Ваш номер',
                         ], [
                             'type' => 'submit',
                             'attr' => [
-                                'id' => 'submit'
+                                'class' => 'submit'
                             ],
                             'value' => 'Заказать звонок'
                         ]
@@ -181,8 +178,8 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
             <div class="content">
                 <h2>Заказать звонок</h2>
                 <? $app->includeComponent("rii:interfaceform", "default", [
-                    'additional_class' => 'form--wrapp', //классы на контейнер формы
-                    'attr' => [  //доп атрибуты
+                    'additional_class' => 'form--wrapp',
+                    'attr' => [
                         'id' => 'bottom-form',
                     ],
                     'elements' => [
@@ -201,16 +198,14 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                             'type' => 'text',
                             'name' => 'customerNumber',
                             'attr' => [
-                                'id' => 'customerNumber',
-                                'class' => "js-phone-mask"
+                                'id' => 'customerNumber'
                             ],
                             'wrap' => ['additional_class' => 'block--input'],
                             'default' => 'Введите телефон',
                         ], [
                             'type' => 'submit',
                             'attr' => [
-                                'id' => 'submit',
-                                'class' => "pop-up--button"
+                                'class' => 'submit pop-up--button'
                             ],
                             'value' => 'Заказать звонок'
                         ]
@@ -235,6 +230,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                 <button class="pop-up--button js-popup-close">Повторить</button>
             </div>
         </div>
+        <span class="whichForm"></span>
     </div>
 
 <? Application::footer(); ?>
