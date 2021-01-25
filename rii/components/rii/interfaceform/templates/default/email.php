@@ -9,7 +9,7 @@ if (isset($customerName, $customerNumber)) {
     if (empty($customerNumber)) {
         $message['numberError'] = 'Вы не ввели номер!';
     } else {
-        if (!preg_match('/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/', $customerNumber)) {
+        if (!preg_match('/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){9}(\s*)?$/', $customerNumber)) {
             $message['numberError'] = "Неправильно введен номер! ";
         }
     }

@@ -50,6 +50,8 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                             'name' => 'customerNumber',
                             'attr' => [
                                 'id' => 'customerNumber',
+                                'class' => "js-phone-mask"
+
                             ],
                             'default' => 'Ваш номер',
                         ], [
@@ -58,8 +60,6 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                                 'id' => 'submit'
                             ],
                             'value' => 'Заказать звонок'
-                        ], [
-                            'type' => '',
                         ]
                     ]
                 ]); ?>
@@ -155,6 +155,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                             'name' => 'customerNumber',
                             'attr' => [
                                 'id' => 'customerNumber',
+                                'class' => "js-phone-mask"
                             ],
                             'default' => 'Ваш номер',
                         ], [
@@ -163,8 +164,6 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                                 'id' => 'submit'
                             ],
                             'value' => 'Заказать звонок'
-                        ], [
-                            'type' => '',
                         ]
                     ]
                 ]); ?>
@@ -174,32 +173,66 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
             </div>
         </div>
     </section>
+
     <div class="pop-up--list">
         <div class="modal"></div>
         <div class="pop-up--item" data-block="call-back">
             <button class="pop-up--close js-popup-close"></button>
             <div class="content">
-                <h2>ЗАКАЗАТЬ ЗВОНОК</h2>
-                <form action="">
-                    <div class="block--input">
-                        <label for="name">Ваше имя</label>
-                        <input type="text" id="name">
-                    </div>
-                    <div class="block--input">
-                        <label for="phone">Ваш номер телефона</label>
-                        <input type="text" id="phone" class="js-phone-mask">
-                    </div>
-                    <input type="submit" class="pop-up--button" value="посмотреть вСЕ УСлуги">
-                </form>
+                <h2>Заказать звонок</h2>
+                <? $app->includeComponent("rii:interfaceform", "default", [
+                    'additional_class' => 'form--wrapp', //классы на контейнер формы
+                    'attr' => [  //доп атрибуты
+                        'id' => 'bottom-form',
+                    ],
+                    'elements' => [
+                        [
+                            'title' => 'Ваше имя',
+                            'type' => 'text',
+                            'name' => 'customerName',
+                            'attr' => [ //доп атрибуты
+                                'id' => 'customerName',
+                            ],
+                            'wrap' => ['additional_class' => 'block--input'],
+                            'default' => 'Введите имя',
+                        ], [
+                            'title' => 'Ваш телефон',
+
+                            'type' => 'text',
+                            'name' => 'customerNumber',
+                            'attr' => [
+                                'id' => 'customerNumber',
+                                'class' => "js-phone-mask"
+                            ],
+                            'wrap' => ['additional_class' => 'block--input'],
+                            'default' => 'Введите телефон',
+                        ], [
+                            'type' => 'submit',
+                            'attr' => [
+                                'id' => 'submit',
+                                'class' => "pop-up--button"
+                            ],
+                            'value' => 'Заказать звонок'
+                        ]
+                    ]
+                ]); ?>
             </div>
         </div>
         <div class="pop-up--item pop-up--accepted" data-block="accepted">
             <button class="pop-up--close js-popup-close"></button>
             <div class="content">
-                <h2>ЗАЯВКА ПРИНЯТА</h2>
-                <div class="text--message">В ближайшее время наш менеджер перезвонит вам и ответит на все ваши вопросы
-                </div>
-                <button class="pop-up--button js-popup-close">понятно</button>
+                <h2>Заявка принята</h2>
+                <div id="messagePlace"></div>
+                <button class="pop-up--button js-popup-close">Понятно</button>
+            </div>
+        </div>
+        <div class="pop-up--item pop-up--error" data-block="error">
+            <button class="pop-up--close js-popup-close"></button>
+            <div class="content">
+                <h2>Ошибка</h2>
+                <div id="nameError"></div>
+                <div id="numberError"></div>
+                <button class="pop-up--button js-popup-close">Повторить</button>
             </div>
         </div>
     </div>

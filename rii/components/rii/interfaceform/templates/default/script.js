@@ -11,6 +11,7 @@ $(document).ready(function () {
             dataType: 'JSON',
             success: function (data) {
                 if (data != 'success') {
+
                     data.mailSend ? $('#messagePlace').text(data.mailSend) : $('#messagePlace').text(''); // Вместо отдельного <div id="messagePlace"></div> будет выделенное место в popup
                     data.nameError ? $('#nameError').text(data.nameError) : $('#nameError').text(''); // А тут в каждый <div class="form-group"> можно добавить <div id='errorname'> для вывода ошибок
                     data.numberError ? $('#numberError').text(data.numberError) : $('#numberError').text('');
