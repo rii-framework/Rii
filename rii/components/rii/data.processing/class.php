@@ -8,7 +8,6 @@ class Mailer extends Base
 {
     private function hashCheck()
     {
-
     }
 
     public function executeComponent()

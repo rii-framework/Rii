@@ -1,8 +1,5 @@
 $(document).ready(function () {
     $(".form--wrapp").on('submit', function (e) {
-        const formData = new FormData(this);
-        formData.append('customerName', $(this).find('#customerName').val());
-        formData.append('customerNumber', $(this).find('#customerNumber').val());
         e.preventDefault();
         $.ajax({
             url: 'rii/components/rii/interfaceform/templates/default/email.php',
@@ -10,7 +7,7 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             type: 'POST',
-            data: formData,
+            data: new FormData(this),
             dataType: 'JSON',
             success: function (data) {
                 if (data != 'success') {

@@ -4,7 +4,6 @@ namespace Rii\Core\Component;
 
 abstract class Base
 {
-
     public $result = []; // результат работы компонента
     public $id = ''; // имя компонента
     public $params = []; // параметры для инициализации компонента
@@ -25,7 +24,6 @@ abstract class Base
             }
             $this->template = new Template($template, $this);
         }
-
     }
 
     abstract public function executeComponent(); // метод обязателен для переопределения
