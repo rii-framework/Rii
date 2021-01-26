@@ -6,7 +6,7 @@
         <div class="servicesList">
             <? foreach ($result["data"] as $data) : ?>
                 <a href="<?= $data["link"]; ?>" class="servicesList--item">
-                    <div class="content--wrapp">
+                    <div class="content--wrapp js-click-popup" data-click="call-back">
                         <div class="content">
                             <div class="b-icon"><img src="/img/<?= $data["img"]; ?>" alt=""></div>
                             <div class="caption"><?= $data["caption"]; ?></div>

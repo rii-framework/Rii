@@ -101,7 +101,6 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
     </section>
 
     <div class="pop-up--list">
-
         <div class="modal"></div>
 
         <div class="pop-up--item" data-block="call-back">
