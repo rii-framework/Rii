@@ -13,7 +13,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
             <div class="servicesList">
                 <?php $app->includeComponent("rii:element.list", "services", ['sort' => ['date' => 'desc'], 'limit' => 5, 'data_type' => 'json', 'data_file' => '/rii/db/services.json']); ?>
             </div>
-            <a href="#" class="button-standart volume js-click-popup" data-click="call-back">посмотреть все услуги</a>
+            <a href="#" class="button-standart volume js-click-popup" data-click="call-back">Узнать о всех услугах</a>
         </div>
     </section>
 
@@ -32,10 +32,10 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
         <div class="container">
             <div class="block--form block-mini">
                 <h2>получить бесплатную консультацию</h2>
-                <? $app->includeComponent("rii:interfaceform", "default", [
+                <?  $app->includeComponent("rii:interfaceform", "default", [
                     'additional_class' => 'form--wrapp', //классы на контейнер формы
                     'attr' => [  //доп атрибуты
-                        'id' => 'bottom-form',
+                        'id' => 'section-gradient-form',
                     ],
                     'elements' => [
                         [
@@ -138,7 +138,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                 <? $app->includeComponent("rii:interfaceform", "default", [
                     'additional_class' => 'form--wrapp', //классы на контейнер формы
                     'attr' => [  //доп атрибуты
-                        'id' => 'bottom-form',
+                        'id' => 'section-orange-form',
                     ],
                     'elements' => [
                         [
@@ -180,7 +180,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                 <? $app->includeComponent("rii:interfaceform", "default", [
                     'additional_class' => 'form--wrapp',
                     'attr' => [
-                        'id' => 'bottom-form',
+                        'id' => 'pop-up-form',
                     ],
                     'elements' => [
                         [
@@ -232,5 +232,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
         </div>
         <span class="whichForm"></span>
     </div>
+
+<? // $app->includeComponent("rii:mailer",'default',[]); ?>
 
 <? Application::footer(); ?>

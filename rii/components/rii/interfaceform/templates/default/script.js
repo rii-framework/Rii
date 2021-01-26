@@ -13,13 +13,11 @@ $(document).ready(function () {
             success: function (data) {
                 if (data != 'success') {
                     if (data.mailSend) {
-                        $('.pop-up--list').removeClass('active');
-                        $('.pop-up--item').removeClass("active");
+                        $('.pop-up--item').removeClass('active');
                         $('.pop-up--list').addClass('active');
                         $('.pop-up--accepted').addClass('active');
                         $('#messagePlace').text(data.mailSend);
                     } else {
-                        $('.pop-up--list').removeClass('active');
                         $('.pop-up--item').removeClass("active");
                         $('.pop-up--list').addClass('active');
                         $('.pop-up--error').addClass('active');
@@ -31,7 +29,3 @@ $(document).ready(function () {
         })
     })
 })
-
-$('.submit').submit(function () {
-    $('.whichForm').html($(this).parents('.s-section').find('#bookNameAndAuthor').html());
-});
