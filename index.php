@@ -15,7 +15,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
     <section class="s-section section-gradient">
         <div class="container">
             <div class="block--form block-mini">
-                <h2>получить бесплатную консультацию</h2>
+                <h2>Получить бесплатную консультацию</h2>
                 <? $app->includeComponent("rii:interfaceform", "default", [
                     'additional_class' => 'form--wrapp', //классы на контейнер формы
                     'attr' => [  //доп атрибуты
@@ -45,7 +45,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         ]
                     ]
                 ]); ?>
-                <div class="description">*Нажимая на кнопку «Отправить заявку», я даю согласие на обработку персональных
+                <div class="description">*Нажимая на кнопку «Заказать звонок», я даю согласие на обработку персональных
                     данных
                 </div>
             </div>
@@ -63,7 +63,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
     <section class="s-section section-orange">
         <div class="container">
             <div class="block--form">
-                <h2>остались вопросы?</h2>
+                <h2>Остались вопросы?</h2>
                 <? $app->includeComponent("rii:interfaceform", "default", [
                     'additional_class' => 'form--wrapp', //классы на контейнер формы
                     'attr' => [  //доп атрибуты
@@ -93,7 +93,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         ]
                     ]
                 ]); ?>
-                <div class="description">*Нажимая на кнопку «Отправить заявку», я даю согласие на обработку персональных
+                <div class="description">*Нажимая на кнопку «Заказать звонок», я даю согласие на обработку персональных
                     данных
                 </div>
             </div>
@@ -101,7 +101,9 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
     </section>
 
     <div class="pop-up--list">
+
         <div class="modal"></div>
+
         <div class="pop-up--item" data-block="call-back">
             <button class="pop-up--close js-popup-close"></button>
             <div class="content">
@@ -141,6 +143,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                 ]); ?>
             </div>
         </div>
+
         <div class="pop-up--item pop-up--accepted" data-block="accepted">
             <button class="pop-up--close js-popup-close"></button>
             <div class="content">
@@ -149,6 +152,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                 <button class="pop-up--button js-popup-close">Понятно</button>
             </div>
         </div>
+
         <div class="pop-up--item pop-up--error" data-block="error">
             <button class="pop-up--close js-popup-close"></button>
             <div class="content">
@@ -158,7 +162,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                 <button class="pop-up--button js-popup-close">Повторить</button>
             </div>
         </div>
-        <span class="whichForm"></span>
+
     </div>
 
 <? Application::footer(); ?>

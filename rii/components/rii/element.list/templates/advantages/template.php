@@ -6,15 +6,15 @@
     </div>
     <div class="slider--wrapp">
         <div class="js-slider slider--block">
-        <? foreach ($result["data"] as $key => $data) : ?>
-            <div class="slider--item" style="background-image: url('/img/<?= $data["img"]; ?>')">
-                <div class="number">0<?= $key + 1; ?></div>
-                <div class="content">
-                    <div class="caption"><?= $data["caption"]; ?></div>
-                    <div class="text"><?= $data["text"]; ?></div>
+            <? foreach ($result["data"] as $key => $data) : ?>
+                <div class="slider--item" style="background-image: url('/img/<?= $data["img"]; ?>')">
+                    <div class="number">0<?= $key + 1; ?></div>
+                    <div class="content">
+                        <div class="caption"><?= $data["caption"]; ?></div>
+                        <div class="text"><?= $data["text"]; ?></div>
+                    </div>
                 </div>
-            </div>
-        <? endforeach; ?>
+            <? endforeach; ?>
         </div>
     </div>
 </section>
