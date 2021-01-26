@@ -42,6 +42,11 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                                 'class' => 'submit'
                             ],
                             'value' => 'Заказать звонок'
+                        ],
+                        [
+                            'type' => 'hidden',
+                            'name' => 'hash',
+                            'value' => 'component_hash',
                         ]
                     ]
                 ]); ?>
@@ -90,6 +95,10 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                                 'class' => 'submit'
                             ],
                             'value' => 'Заказать звонок'
+                        ], [
+                            'type' => 'hidden',
+                            'name' => 'hash',
+                            'value' => 'component_hash',
                         ]
                     ]
                 ]); ?>

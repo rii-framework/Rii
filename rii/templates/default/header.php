@@ -113,6 +113,10 @@ use Rii\Core\Page; ?>
                             'class' => 'submit pop-up--button'
                         ],
                         'value' => 'Заказать звонок'
+                    ], [
+                        'type' => 'hidden',
+                        'name' => 'hash',
+                        'value' => 'component_hash',
                     ]
                 ]
             ]); ?>
