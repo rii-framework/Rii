@@ -20,6 +20,7 @@ use Rii\Core\Page; ?>
     <? \Rii\Core\Page::getInstance()->showCss(); ?>
 </head>
 <body>
+
 <div class="main-page-wrapper">
     <?php self::getInstance()->includeComponent("rii:element.list", "menu-right", ['data_type' => 'json', 'data_file' => '/rii/db/menu-right.json']); ?>
     <section class="s-section section-black section--index" data-section="index-section">
@@ -73,4 +74,67 @@ use Rii\Core\Page; ?>
             </div>
         </div>
     </section>
+</div>
+
+<div class="pop-up--list">
+    <div class="modal"></div>
+
+    <div class="pop-up--item" data-block="call-back">
+        <button class="pop-up--close js-popup-close"></button>
+        <div class="content">
+            <h2>Заказать звонок</h2>
+            <? self::getInstance()->includeComponent("rii:interfaceform", "default", [
+                'additional_class' => 'form--wrapp',
+                'attr' => [
+                    'id' => 'pop-up-form',
+                ],
+                'elements' => [
+                    [
+                        'title' => 'Ваше имя',
+                        'type' => 'text',
+                        'name' => 'customerName',
+                        'attr' => [ //доп атрибуты
+                            'id' => 'customerName',
+                        ],
+                        'wrap' => ['additional_class' => 'block--input'],
+                        'default' => 'Введите имя',
+                    ], [
+                        'title' => 'Ваш телефон',
+                        'type' => 'text',
+                        'name' => 'customerNumber',
+                        'attr' => [
+                            'id' => 'customerNumber'
+                        ],
+                        'wrap' => ['additional_class' => 'block--input'],
+                        'default' => 'Введите телефон',
+                    ], [
+                        'type' => 'submit',
+                        'attr' => [
+                            'class' => 'submit pop-up--button'
+                        ],
+                        'value' => 'Заказать звонок'
+                    ]
+                ]
+            ]); ?>
+        </div>
+    </div>
+
+    <div class="pop-up--item pop-up--accepted" data-block="accepted">
+        <button class="pop-up--close js-popup-close"></button>
+        <div class="content">
+            <h2>Заявка принята</h2>
+            <div id="messagePlace"></div>
+            <button class="pop-up--button js-popup-close">Понятно</button>
+        </div>
+    </div>
+
+    <div class="pop-up--item pop-up--error" data-block="error">
+        <button class="pop-up--close js-popup-close"></button>
+        <div class="content">
+            <h2>Ошибка</h2>
+            <div id="nameError"></div>
+            <div id="numberError"></div>
+            <button class="pop-up--button js-popup-close">Закрыть</button>
+        </div>
+    </div>
 </div>

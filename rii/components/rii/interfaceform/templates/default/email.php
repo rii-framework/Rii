@@ -26,7 +26,7 @@ if (isset($customerName, $customerNumber)) {
 if ($message == null) {
     $to = 'elcar24@gmail.com';
     $subject = 'Заявка на консультацию по телефону';
-    $text = 'Нам поступила заявка на консультацию по телефону от пользователя с именем ' . $customerName . '!<br>Его номер телефона: '.$customerNumber;
+    $text = 'Нам поступила заявка на консультацию по телефону от пользователя с именем ' . $customerName . '!<br>Его номер телефона: ' . $customerNumber;
     $headers = 'Content-type: text/html; charset=utf-8\r\n';
     mail($to, $subject, $text, $headers);
     $message['mailSend'] = $customerName . ", cпасибо за обращение! Ожидайте нашего ответа!";

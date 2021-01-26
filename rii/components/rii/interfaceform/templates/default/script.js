@@ -1,14 +1,16 @@
 $(document).ready(function () {
-    $(".form--wrapp").submit(function (event) {
-        let customerName = document.getElementById("customerName").value;
-        let customerNumber = document.getElementById("customerNumber").value;
-        console.log(customerName, customerNumber);
-        event.preventDefault();
+    $(".form--wrapp").on('submit', function (e) {
+        const formData = new FormData(this);
+        formData.append('customerName', $(this).find('#customerName').val());
+        formData.append('customerNumber', $(this).find('#customerNumber').val());
+        e.preventDefault();
         $.ajax({
             url: 'rii/components/rii/interfaceform/templates/default/email.php',
             cache: false,
+            processData: false,
+            contentType: false,
             type: 'POST',
-            data: {'customerName': customerName, 'customerNumber': customerNumber},
+            data: formData,
             dataType: 'JSON',
             success: function (data) {
                 if (data != 'success') {
