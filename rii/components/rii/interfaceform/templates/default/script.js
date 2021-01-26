@@ -14,16 +14,13 @@ $(document).ready(function () {
                 if (data != 'success') {
                     if (data.mailSend) {
                         $('.pop-up--item').removeClass('active');
-                        $('.pop-up--list').addClass('active');
-                        $('.pop-up--accepted').addClass('active');
+                        $('.pop-up--list, .pop-up--accepted').addClass('active');
                         $('#messagePlace').text(data.mailSend);
                     } else {
                         $('.pop-up--item').removeClass("active");
-                        $('.pop-up--list').addClass('active');
-                        $('.pop-up--error').addClass('active');
+                        $('.pop-up--list, .pop-up--error').addClass('active');
                         data.nameError ? $('#nameError').text(data.nameError) : $('#nameError').text('');
                         data.numberError ? $('#numberError').text(data.numberError) : $('#numberError').text('');
-
                     }
                 }
             }
