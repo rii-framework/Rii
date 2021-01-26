@@ -116,6 +116,7 @@ class Application
     {
         if ($this->isBufferStart == true) {
             ob_clean();
+            ob_start();
         } else {
             $this->startBuffer();
         }

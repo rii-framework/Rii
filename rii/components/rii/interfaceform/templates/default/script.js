@@ -21,8 +21,9 @@ $(document).ready(function () {
                         $('.pop-up--item').removeClass("active");
                         $('.pop-up--list').addClass('active');
                         $('.pop-up--error').addClass('active');
-                        $('#nameError').text(data.nameError);
-                        $('#numberError').text(data.numberError);
+                        data.nameError ? $('#nameError').text(data.nameError) : $('#nameError').text('');
+                        data.numberError ? $('#numberError').text(data.numberError) : $('#numberError').text('');
+
                     }
                 }
             }

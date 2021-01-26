@@ -233,6 +233,6 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
         <span class="whichForm"></span>
     </div>
 
-<? // $app->includeComponent("rii:mailer",'default',[]); ?>
+<? $app->includeComponent("rii:mailer",'default',[]); ?>
 
 <? Application::footer(); ?>
