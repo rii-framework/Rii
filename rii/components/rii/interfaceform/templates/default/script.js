@@ -13,9 +13,8 @@ $(document).ready(function () {
             dataType: 'JSON',
             success: function (data) {
                 alert('+');
-                // $('.pop-up--list).addClass('active');
-                // $('.pop-up--item').removeClass('active');
-                // $('.pop-up--list').text(data);
+                $('.pop-up--item').removeClass('active');
+                $('.pop-up--list').addClass('active').text(data);
             }
         })
     })
