@@ -78,7 +78,7 @@ class Application
     }
 
     //Завершение работы буффера
-    private function endBuffer()
+    public function endBuffer()
     {
         $content = ob_get_clean();
         $this->isBufferStart = false;
@@ -116,15 +116,9 @@ class Application
     {
         if ($this->isBufferStart == true) {
             ob_clean();
-            ob_start();
         } else {
             $this->startBuffer();
         }
-    }
-
-    public function getBufferContent(){
-        $content = ob_get_contents();
-        return $content;
     }
 
     //Проверка старта буффера
