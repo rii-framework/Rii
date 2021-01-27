@@ -6,8 +6,8 @@ Application::getInstance()->includeComponent($params['formName'], $params['formT
 
 if (isset($result['message'])) {
     $message = '';
-    foreach ($result['message'] as $item) {
-        echo $message .= $item . '<br>';
+    foreach ($result['message'] as $value) {
+        $message .= $value . '<br>';
     }
-    echo json_encode($message);
+    var_dump($message);
 }

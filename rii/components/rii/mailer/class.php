@@ -6,8 +6,9 @@ use Rii\Core\Component\Base;
 
 class Mailer extends Base
 {
-    private function hashCheck($requiredHash)
+    private function hashCheck()
     {
+        $requiredHash = $_POST['hash'];
         if ($this->hash == $requiredHash) {
             return true;
         } else return false;
@@ -58,20 +59,21 @@ class Mailer extends Base
     {
         $to = 'elcar24@gmail.com';
         $subject = 'Заявка на консультацию по телефону';
-        $text = 'Нам поступила заявка на консультацию по телефону от пользователя с именем ' . $_POST = ['customerName'] . '!<br>Его номер телефона: ' . $_POST = ['customerNumber'];
+        $text = 'Нам поступила заявка на консультацию по телефону от пользователя с именем ' . $_POST['customerName'] . '!<br>Его номер телефона: ' . $_POST['customerNumber'];
         $headers = 'Content-type: text/html; charset=utf-8\r\n';
         mail($to, $subject, $text, $headers);
-        $message['mailSend'] = $_POST = ['customerName'] . ", cпасибо за обращение! Ожидайте нашего ответа!";
-        $this->result['message'] = $message['mailSend'];
+        $message['mailSend'] = $_POST['customerName'] . ", cпасибо за обращение! Ожидайте нашего ответа!";
+        return $message;
         // return html-содержание pop-up об успехе
     }
 
     public function executeComponent()
     {
         $this->setHashValue($this->params);
-        if ($this->hashCheck($_POST['hash']) == true) {
+        if ($this->hashCheck() == true) {
             if ($this->validation() == null) { // проверка на наличие ошибок
-                $this->ourMail(); // отправка письма
+                $this->result['message'] = $this->ourMail();
+                // отправка письма
             } else $this->result['message'] = $this->validation();
         }
         $this->template->render();
