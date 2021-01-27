@@ -47,7 +47,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         [
                             'type' => 'hidden',
                             'name' => 'hash',
-                            'value' => 0,
+                            'value' => 'component_hash',
                         ]
                     ]
                 ]]); ?>
@@ -101,7 +101,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         ], [
                             'type' => 'hidden',
                             'name' => 'hash',
-                            'value' => '',
+                            'value' => 'component_hash',
                         ]
                     ]
                 ]]); ?>

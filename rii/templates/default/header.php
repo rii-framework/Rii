@@ -117,7 +117,7 @@ use Rii\Core\Page; ?>
                     ], [
                         'type' => 'hidden',
                         'name' => 'hash',
-                        'value' => '',
+                        'value' => 'component_hash',
                     ]
                 ]
             ]]); ?>

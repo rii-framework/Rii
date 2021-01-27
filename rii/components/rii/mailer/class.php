@@ -40,6 +40,20 @@ class Mailer extends Base
         return $message;
     }
 
+    function setHashValue(&$array)
+    {
+        foreach ($array as $key => &$value) {
+            if (is_array($value)) {
+                self::setHashValue($value);
+            } else {
+                if ($key == 'value' && $value == 'component_hash') {
+                    $array['value'] = $this->hash;
+                    break;
+                }
+            }
+        }
+    }
+
     private function ourMail()
     {
         $to = 'elcar24@gmail.com';
@@ -54,7 +68,8 @@ class Mailer extends Base
 
     public function executeComponent()
     {
-        if ($this->hashCheck($_POST['hash']) === true) {
+        $this->setHashValue($this->params);
+        if ($this->hashCheck($_POST['hash']) == true) {
             if ($this->validation() == null) { // проверка на наличие ошибок
                 $this->ourMail(); // отправка письма
             } else $this->result['message'] = $this->validation();
