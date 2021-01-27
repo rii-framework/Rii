@@ -78,12 +78,10 @@ use Rii\Core\Page; ?>
 
 <div class="pop-up--list">
     <div class="modal"></div>
-
     <div class="pop-up--item" data-block="call-back">
         <button class="pop-up--close js-popup-close"></button>
         <div class="content">
             <h2>Заказать звонок</h2>
-
             <?php self::getInstance()->includeComponent("rii:mailer", "default", ['formName' => "rii:interfaceform", 'formTemplate' => "default", 'params' => [
                 'additional_class' => 'form--wrapp',
                 'attr' => [
@@ -121,26 +119,6 @@ use Rii\Core\Page; ?>
                     ]
                 ]
             ]]); ?>
-
-        </div>
-    </div>
-
-    <div class="pop-up--item pop-up--accepted" data-block="accepted">
-        <button class="pop-up--close js-popup-close"></button>
-        <div class="content">
-            <h2>Заявка принята</h2>
-            <div id="messagePlace"></div>
-            <button class="pop-up--button js-popup-close">Понятно</button>
-        </div>
-    </div>
-
-    <div class="pop-up--item pop-up--error" data-block="error">
-        <button class="pop-up--close js-popup-close"></button>
-        <div class="content">
-            <h2>Ошибка</h2>
-            <div id="nameError"></div>
-            <div id="numberError"></div>
-            <button class="pop-up--button js-popup-close">Закрыть</button>
         </div>
     </div>
 </div>

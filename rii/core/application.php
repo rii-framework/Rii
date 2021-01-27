@@ -122,6 +122,11 @@ class Application
         }
     }
 
+    public function getBufferContent(){
+        $content = ob_get_contents();
+        return $content;
+    }
+
     //Проверка старта буффера
     private $isBufferStart = false;
 }
