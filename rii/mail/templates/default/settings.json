@@ -1,0 +1,9 @@
+[
+    {
+        "subject": "#SUBJECT#",
+        "to": "#TO_EMAIL#",
+        "from": "admin@example.com",
+        "fromCopy": "admin2@example.com",
+        "fromCopyH": "admin3@example.com"
+    }
+]
