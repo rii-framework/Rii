@@ -15,22 +15,49 @@ class Mailer extends Base
 
     private function validation()
     {
-        // валидация
-        // return html-содержание pop-up при наличие ошибок
+        $customerName = $_POST['customerName'];
+        $customerNumber = $_POST['customerNumber'];
+
+        if (isset($customerName, $customerNumber)) {
+            $message = array();
+
+            if (empty($customerNumber)) {
+                $message['numberError'] = 'Вы не ввели номер!';
+            } else {
+                if (!preg_match('/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){9,12}(\s*)?$/', $customerNumber)) {
+                    $message['numberError'] = "Неправильно введен номер! ";
+                }
+            }
+
+            if (empty($customerName)) {
+                $message['nameError'] = 'Вы не ввели имя!';
+            } else {
+                if (!preg_match("/^[a-zA-Zа-яёА-ЯЁ\s\-]+$/u", $customerName)) {
+                    $message['nameError'] = "Допустимы только кириллица и латиница!";
+                }
+            }
+        }
+        return $message;
     }
 
     private function ourMail()
     {
-        // код отправки письма
+        $to = 'elcar24@gmail.com';
+        $subject = 'Заявка на консультацию по телефону';
+        $text = 'Нам поступила заявка на консультацию по телефону от пользователя с именем ' . $_POST = ['customerName'] . '!<br>Его номер телефона: ' . $_POST = ['customerNumber'];
+        $headers = 'Content-type: text/html; charset=utf-8\r\n';
+        mail($to, $subject, $text, $headers);
+        $message['mailSend'] = $_POST = ['customerName'] . ", cпасибо за обращение! Ожидайте нашего ответа!";
+        $this->result['message'] = $message['mailSend'];
         // return html-содержание pop-up об успехе
     }
 
     public function executeComponent()
     {
-        $requiredHash = $_POST['hash'];
-        if ($this->hashCheck($requiredHash) == true) {
-            $this->validation(); // проверка на наличие ошибок
-            $this->ourMail(); // отправка письма
+        if ($this->hashCheck($_POST['hash']) === true) {
+            if ($this->validation() == null) { // проверка на наличие ошибок
+                $this->ourMail(); // отправка письма
+            } else $this->result['message'] = $this->validation();
         }
         $this->template->render();
     }
