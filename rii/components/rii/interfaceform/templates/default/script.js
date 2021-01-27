@@ -1,13 +1,16 @@
 $(document).ready(function () {
     $(".form--wrapp").on('submit', function (e) {
+        let data = new FormData(this);
+        data.append('ajax', 'yes');
         e.preventDefault();
         $.ajax({
             url: 'rii/components/rii/interfaceform/templates/default/email.php',
+            // url: this.action,
             cache: false,
             processData: false,
             contentType: false,
             type: 'POST',
-            data: new FormData(this),
+            data: data,
             dataType: 'JSON',
             success: function (data) {
                 if (data != 'success') {

@@ -24,6 +24,7 @@ abstract class Base
             }
             $this->template = new Template($template, $this);
         }
+        $this->hash = md5(serialize([debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT | DEBUG_BACKTRACE_IGNORE_ARGS), $this->id, $this->params, $this->template]));
     }
 
     abstract public function executeComponent(); // метод обязателен для переопределения

@@ -16,7 +16,8 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
         <div class="container">
             <div class="block--form block-mini">
                 <h2>Получить бесплатную консультацию</h2>
-                <? $app->includeComponent("rii:interfaceform", "default", [
+
+                <?php $app->includeComponent("rii:mailer", "default", ['formName' => "rii:interfaceform", 'formTemplate' => "default", 'params' => [
                     'additional_class' => 'form--wrapp', //классы на контейнер формы
                     'attr' => [  //доп атрибуты
                         'id' => 'section-gradient-form',
@@ -46,10 +47,11 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         [
                             'type' => 'hidden',
                             'name' => 'hash',
-                            'value' => 'component_hash',
+                            'value' => 0,
                         ]
                     ]
-                ]); ?>
+                ]]); ?>
+
                 <div class="description">*Нажимая на кнопку «Заказать звонок», я даю согласие на обработку персональных
                     данных
                 </div>
@@ -69,7 +71,8 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
         <div class="container">
             <div class="block--form">
                 <h2>Остались вопросы?</h2>
-                <? $app->includeComponent("rii:interfaceform", "default", [
+
+                <?php $app->includeComponent("rii:mailer", "default", ['formName' => "rii:interfaceform", 'formTemplate' => "default", 'params' => [
                     'additional_class' => 'form--wrapp', //классы на контейнер формы
                     'attr' => [  //доп атрибуты
                         'id' => 'section-orange-form',
@@ -98,10 +101,11 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         ], [
                             'type' => 'hidden',
                             'name' => 'hash',
-                            'value' => 'component_hash',
+                            'value' => '',
                         ]
                     ]
-                ]); ?>
+                ]]); ?>
+
                 <div class="description">*Нажимая на кнопку «Заказать звонок», я даю согласие на обработку персональных
                     данных
                 </div>

@@ -83,7 +83,8 @@ use Rii\Core\Page; ?>
         <button class="pop-up--close js-popup-close"></button>
         <div class="content">
             <h2>Заказать звонок</h2>
-            <? self::getInstance()->includeComponent("rii:interfaceform", "default", [
+
+            <?php self::getInstance()->includeComponent("rii:mailer", "default", ['formName' => "rii:interfaceform", 'formTemplate' => "default", 'params' => [
                 'additional_class' => 'form--wrapp',
                 'attr' => [
                     'id' => 'pop-up-form',
@@ -116,10 +117,10 @@ use Rii\Core\Page; ?>
                     ], [
                         'type' => 'hidden',
                         'name' => 'hash',
-                        'value' => 'component_hash',
+                        'value' => '',
                     ]
                 ]
-            ]); ?>
+            ]]); ?>
         </div>
     </div>
 

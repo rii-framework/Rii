@@ -19,8 +19,6 @@ class InterfaceForm extends Base
 
         $this->result['elements'] = $this->renderFormElements();
 
-        $this->result['component_hash'] = debug_backtrace(false);
-
         $this->template->render();
     }
 
