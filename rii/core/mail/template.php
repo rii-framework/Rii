@@ -4,18 +4,18 @@ namespace Rii\Core\Mail;
 
 class Template
 {
-    private $__path; // абсолютный путь к шаблону письма
-    private $__pathTemp; // Путь к файлу шаблона - /template.html
-    private $__pathSett; // Путь к файлу настроек - /settings.json
-    private $__pathAtta; // Путь к папке с подключаемыми файлами - /attachments/
+    private $__path = ""; // абсолютный путь к шаблону письма
+    private $__pathTemp = ""; // Путь к файлу шаблона - /template.html
+    private $__pathSett = ""; // Путь к файлу настроек - /settings.json
+    private $__pathAtta = ""; // Путь к папке с подключаемыми файлами - /attachments/
 
-    private $id; //Имя шаблона
+    private $id = ""; //Имя шаблона
     private $fields; //Поля
     
     private $macros = []; //Массив макросов
-    private $settings; //Настройки
-    private $pathFiles; //Пути подключаемых файлов шаблона
-    private $message; //Шаблон письма
+    private $settings = []; //Настройки
+    private $pathFiles = []; //Массив путей подключаемых файлов шаблона
+    private $message = ""; //Шаблон письма
 
     public function __construct($id, $fields = [])
     {
@@ -70,11 +70,13 @@ class Template
     //Формирование настроек шаблона письма
     private function setSettings()
     {
+        $jsonSettings = file_get_contents($this->__pathSett);
+
         if (!empty($this->macros)) {
-            $this->settings = json_decode(str_replace(array_keys($this->macros), $this->macros, file_get_contents($this->__pathSett)), true)[0];
-        } else {
-            $this->settings = json_decode(file_get_contents($this->__pathSett), true)[0];
+            $jsonSettings = str_replace(array_keys($this->macros), $this->macros, $jsonSettings);
         }
+
+        $this->settings = json_decode($jsonSettings, true)[0];
     }
 
     //Получение настроек шаблона письма
@@ -86,13 +88,17 @@ class Template
     //Формирование путей подключаемых файлов в шаблоне письма
     private function setAttachFile()
     {
+        $attachFiles = [];
+
         if (file_exists($this->__pathAtta) && (count($fileAtta = scandir($this->__pathAtta)) > 2)) {
             foreach ($fileAtta as $key => $nameFile) {
                 if ($nameFile != "." && $nameFile != "..") {
-                    $this->pathFiles[] = $this->__pathAtta . $nameFile;
+                    $attachFiles[] = $this->__pathAtta . $nameFile;
                 }
             }
         }
+
+        $this->pathFiles = $attachFiles;
     }
 
     //Получение путей подключаемых файлов в шаблоне письма
@@ -104,12 +110,13 @@ class Template
     //Формирование шаблона письма
     private function setTemplate()
     {
+        $template = file_get_contents($this->__pathTemp);
+
         if (!empty($this->macros)) {
-            $this->message = str_replace(array_keys($this->macros), $this->macros, file_get_contents($this->__pathTemp));
-        } else {
-            $this->message = file_get_contents($this->__pathTemp);
+            $template = str_replace(array_keys($this->macros), $this->macros, $template);
         }
-        
+
+        $this->message = $template;
     }
 
     //Получение шаблона письма
