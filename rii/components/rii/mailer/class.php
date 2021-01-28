@@ -4,6 +4,7 @@ namespace Rii\Components\Rii;
 
 use Rii\Core\Application;
 use Rii\Core\Component\Base;
+use Rii\Core\Validator\Validator;
 
 class Mailer extends Base
 {
@@ -67,11 +68,22 @@ class Mailer extends Base
         return $message;
     }
 
+    private function sendFields()
+    {
+        $mailParams['fields'] = $_POST;
+        return $mailParams;
+    }
+
     public function executeComponent()
     {
         $this->setHashValue($this->params);
         if ($this->hashCheck() == true) {
-            if ($this->validation() == null) { // проверка на наличие ошибок
+            $this->result['check'] = $this->sendFields();
+            if ($this->validation() == null) {
+//                $this->result['message'] = Validator::validation($_POST);
+//                if ($this->result['message'] == null) {
+//                    Mail::send($this->sendFields());
+//                }
                 $this->result['message'] = $this->ourMail();
                 Application::getInstance()->restartBuffer();
                 $this->template->render('succes');
