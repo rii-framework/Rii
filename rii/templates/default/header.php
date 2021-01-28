@@ -9,14 +9,13 @@ use Rii\Core\Page; ?>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><? \Rii\Core\Page::getInstance()->showProperty('Title'); ?></title>
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/libs/normalize.css'); ?>
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/libs/slick/slick.css'); ?>
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/libs/slick/slick-theme.css'); ?>
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/style/main.css'); ?>
     <? \Rii\Core\Page::getInstance()->addCss(self::getInstance()->getTemplatePath() . '/style/fonts.css'); ?>
-    <? Rii\Core\Page::getInstance()->addJs(self::getInstance()->getTemplatePath() . '/libs/jquery-3.3.1.min.js'); ?>
-
-    <title><? \Rii\Core\Page::getInstance()->showProperty('Title'); ?></title>
+    <? \Rii\Core\Page::getInstance()->addJs(self::getInstance()->getTemplatePath() . '/libs/jquery-3.3.1.min.js'); ?>
     <? \Rii\Core\Page::getInstance()->showCss(); ?>
 </head>
 <body>
@@ -121,4 +120,23 @@ use Rii\Core\Page; ?>
             ]]); ?>
         </div>
     </div>
+
+    <div class="pop-up--item pop-up--accepted" data-block="accepted">
+        <button class="pop-up--close js-popup-close"></button>
+        <div class="content">
+            <h2>Заявка принята</h2>
+            <span class="message"></span>
+            <button class="pop-up--button js-popup-close">Понятно</button>
+        </div>
+    </div>
+
+    <div class="pop-up--item pop-up--error" data-block="error">
+        <button class="pop-up--close js-popup-close"></button>
+        <div class="content">
+            <h2>Ошибка</h2>
+            <span class="message"></span>
+            <button class="pop-up--button js-popup-close">Закрыть</button>
+        </div>
+    </div>
+
 </div>

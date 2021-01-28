@@ -73,8 +73,7 @@ class Application
     private function startBuffer()
     {
         ob_start();
-        $flag = new Application();
-        $flag->isBufferStart = true;
+        $this->isBufferStart = true;
     }
 
     //Завершение работы буффера
@@ -88,14 +87,14 @@ class Application
     }
 
     //Подключение хэдэра шаблона сайта и запуск буффера
-    public static function header()
+    public function header()
     {
         self::getInstance()->startBuffer();
         include $_SERVER['DOCUMENT_ROOT'] . "/rii/templates/" . Config::get("TEMPLATE/ID") . "/header.php";
     }
 
     //Завершение работы буффера, замена макросов подмены, вывод содержимого буффера
-    public static function footer()
+    public function footer()
     {
         include $_SERVER['DOCUMENT_ROOT'] . "/rii/templates/" . Config::get("TEMPLATE/ID") . "/footer.php";
         $content = self::getInstance()->endBuffer();
@@ -104,10 +103,9 @@ class Application
 
     public function getTemplatePath($absolute = false)
     {
-        if ($absolute == true)
-        {
-            return $_SERVER['DOCUMENT_ROOT'] . '/rii/templates/'. Config::get("TEMPLATE/ID");
-        } else return '/rii/templates/'. Config::get("TEMPLATE/ID");
+        if ($absolute == true) {
+            return $_SERVER['DOCUMENT_ROOT'] . '/rii/templates/' . Config::get("TEMPLATE/ID");
+        } else return '/rii/templates/' . Config::get("TEMPLATE/ID");
 
     }
 

@@ -2,6 +2,7 @@
 
 namespace Rii\Components\Rii;
 
+use Rii\Core\Application;
 use Rii\Core\Component\Base;
 
 class Mailer extends Base
@@ -62,9 +63,8 @@ class Mailer extends Base
         $text = 'Нам поступила заявка на консультацию по телефону от пользователя с именем ' . $_POST['customerName'] . '!<br>Его номер телефона: ' . $_POST['customerNumber'];
         $headers = 'Content-type: text/html; charset=utf-8\r\n';
         mail($to, $subject, $text, $headers);
-        $message['mailSend'] = $_POST['customerName'] . ", cпасибо за обращение! Ожидайте нашего ответа!";
+        $message = $_POST['customerName'] . ", cпасибо за обращение! Ожидайте нашего ответа!";
         return $message;
-        // return html-содержание pop-up об успехе
     }
 
     public function executeComponent()
@@ -73,9 +73,15 @@ class Mailer extends Base
         if ($this->hashCheck() == true) {
             if ($this->validation() == null) { // проверка на наличие ошибок
                 $this->result['message'] = $this->ourMail();
-                // отправка письма
-            } else $this->result['message'] = $this->validation();
-        }
-        $this->template->render();
+                Application::getInstance()->restartBuffer();
+                $this->template->render('succes');
+                Application::getInstance()->endBuffer();
+            } else {
+                $this->result['message'] = $this->validation();
+                Application::getInstance()->restartBuffer();
+                $this->template->render('failed');
+                Application::getInstance()->endBuffer();
+            }
+        } else $this->template->render();
     }
 }
