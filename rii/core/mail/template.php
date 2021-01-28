@@ -60,11 +60,15 @@ class Template
     //Формирование массива макросов из параметров
     private function setMacros()
     {
+        $arrMacro = [];
+
         if (!empty($this->fields)) {
             foreach ($this->fields as $key => $value) {
-                $this->macros["#$key#"] = $value;
+                $arrMacro["#$key#"] = $value;
             }
         }
+
+        $this->macros = $arrMacro;
     }
 
     //Формирование настроек шаблона письма
