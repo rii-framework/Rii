@@ -4,17 +4,20 @@ namespace Rii\Core\Mail;
 
 class Template
 {
-    private $__path; // F:/OpenServer/domains/Rii/rii/mail/templates/default
+    private $__path; // абсолютный путь к шаблону письма
     private $__pathTemp; // Путь к файлу шаблона - /template.html
     private $__pathSett; // Путь к файлу настроек - /settings.json
     private $__pathAtta; // Путь к папке с подключаемыми файлами - /attachments/
 
     private $id; //Имя шаблона
-    private $fields; //Параметры
+    private $fields; //Поля
+    
     private $macros = []; //Массив макросов
-    private $result;
+    private $settings; //Настройки
+    private $pathFiles; //Пути подключаемых файлов шаблона
+    private $message; //Шаблон письма
 
-    public function __construct($id, $fields)
+    public function __construct($id, $fields = [])
     {
         $this->__path = $_SERVER['DOCUMENT_ROOT'] . "/rii/mail/templates/" . $id;
 
@@ -25,63 +28,93 @@ class Template
         $this->__pathTemp = $this->__path . "/template.html";
 
         if (!file_exists($this->__pathTemp)) {
-            throw new \Exception("Файл с шаблоном не найдена!");
+            throw new \Exception("Файл с шаблоном не найден!");
         }
 
         $this->__pathSett = $this->__path . "/settings.json";
 
         if (!file_exists($this->__pathSett)) {
-            throw new \Exception("Файла с настройками не найден!");
+            throw new \Exception("Файл с настройками не найден!");
         }
 
         $this->__pathAtta = $this->__path . "/attachments/";
 
         $this->id = $id;
         $this->fields = $fields;
+
+        $this->init();
     }
 
-    //Сборный метод
-    public function render() {
+    //Инициализация свойств
+    private function init()
+    {
         $this->setMacros();
 
-        $this->result["sett"] = $this->getSettings();
+        $this->setSettings();
 
-        $this->getAttachFile();
+        $this->setAttachFile();
 
-        $this->result["mess"] = $this->getTemplate();
-
-        return $this->result;
+        $this->setTemplate();
     }
 
     //Формирование массива макросов из параметров
     private function setMacros()
     {
-        foreach ($this->fields as $key => $value) {
-            $this->macros["#$key#"] = $value;
+        if (!empty($this->fields)) {
+            foreach ($this->fields as $key => $value) {
+                $this->macros["#$key#"] = $value;
+            }
         }
     }
 
-    //Получаем настройки и заменяем макросы
-    private function getSettings()
+    //Формирование настроек шаблона письма
+    private function setSettings()
     {
-        return json_decode(str_replace(array_keys($this->macros), $this->macros, file_get_contents($this->__pathSett)), true)[0];
+        if (!empty($this->macros)) {
+            $this->settings = json_decode(str_replace(array_keys($this->macros), $this->macros, file_get_contents($this->__pathSett)), true)[0];
+        } else {
+            $this->settings = json_decode(file_get_contents($this->__pathSett), true)[0];
+        }
     }
 
-    //Если есть файлы для подключения к шаблопу, то записываем в result["file"]
-    private function getAttachFile()
+    //Получение настроек шаблона письма
+    public function getSettings()
+    {
+        return $this->settings;
+    }
+
+    //Формирование путей подключаемых файлов в шаблоне письма
+    private function setAttachFile()
     {
         if (file_exists($this->__pathAtta) && (count($fileAtta = scandir($this->__pathAtta)) > 2)) {
             foreach ($fileAtta as $key => $nameFile) {
                 if ($nameFile != "." && $nameFile != "..") {
-                    $this->result["file"][] = $this->__pathAtta . $nameFile;
+                    $this->pathFiles[] = $this->__pathAtta . $nameFile;
                 }
             }
         }
     }
 
-    //Подключение шаблона
-    private function getTemplate()
+    //Получение путей подключаемых файлов в шаблоне письма
+    public function getAttachFile()
     {
-        return str_replace(array_keys($this->macros), $this->macros, file_get_contents($this->__pathTemp));
+        return $this->pathFiles;
+    }
+
+    //Формирование шаблона письма
+    private function setTemplate()
+    {
+        if (!empty($this->macros)) {
+            $this->message = str_replace(array_keys($this->macros), $this->macros, file_get_contents($this->__pathTemp));
+        } else {
+            $this->message = file_get_contents($this->__pathTemp);
+        }
+        
+    }
+
+    //Получение шаблона письма
+    public function getTemplate()
+    {
+        return $this->message;
     }
 }
