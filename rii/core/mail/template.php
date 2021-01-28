@@ -67,7 +67,7 @@ class Template
         return json_decode(str_replace(array_keys($this->macros), $this->macros, file_get_contents($this->__pathSett)), true)[0];
     }
 
-    //Если есть файлы для подключения к шаблопу, то записываем в result["attach"]
+    //Если есть файлы для подключения к шаблопу, то записываем в result["file"]
     private function getAttachFile()
     {
         if (file_exists($this->__pathAtta) && (count($fileAtta = scandir($this->__pathAtta)) > 2)) {
