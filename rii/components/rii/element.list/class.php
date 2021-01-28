@@ -1,6 +1,6 @@
 <?php
 
-namespace Rii\Component\Rii;
+namespace Rii\Components\Rii;
 
 use Rii\Core\Component\Base;
 

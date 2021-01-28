@@ -1,21 +1,26 @@
 $(document).ready(function () {
-    $("#form-callback").submit(function (event) {
-        let customerName = document.getElementById("customerName").value;
-        let customerEmail = document.getElementById("customerEmail").value;
-        let customerNumber = document.getElementById("customerNumber").value;
-        event.preventDefault();
+    $(".form--wrapp").on('submit', function (e) {
+        let data = new FormData(this);
+        data.append('ajax', 'yes');
+        e.preventDefault();
         $.ajax({
-            url: 'rii/components/rii/interfaceform/templates/default/email.php',
+            url: this.action,
             cache: false,
+            processData: false,
+            contentType: false,
             type: 'POST',
-            data: {'customerName': customerName, 'customerEmail': customerEmail, 'customerNumber': customerNumber},
+            data: data,
             dataType: 'JSON',
             success: function (data) {
-                if (data != 'success') {
-                    data.mailSend ? $('#messagePlace').text(data.mailSend) : $('#messagePlace').text(''); // Вместо отдельного <div id="messagePlace"></div> будет выделенное место в popup
-                    data.nameError ? $('#nameError').text(data.nameError) : $('#nameError').text(''); // А тут в каждый <div class="form-group"> можно добавить <div id='errorname'> для вывода ошибок
-                    data.emailError ? $('#emailError').text(data.emailError) : $('#emailError').text('');
-                    data.numberError ? $('#numberError').text(data.numberError) : $('#numberError').text('');
+                if (data.succes) {
+                    $('.pop-up--item').removeClass("active");
+                    $('.pop-up--list, .pop-up--accepted').addClass('active');
+                    $('.message').text(data.succes);
+                }
+                if (data.failed) {
+                    $('.pop-up--item').removeClass("active");
+                    $('.pop-up--list, .pop-up--error').addClass('active');
+                    $('.message').text(data.failed);
                 }
             }
         })
