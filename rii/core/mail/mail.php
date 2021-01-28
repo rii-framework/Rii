@@ -3,37 +3,62 @@ namespace Rii\Core\Mail;
 
 class Mail
 {
+    private $template;
+    private $headers;
+    private $params = [];
+    private $result = [];
 
-
-    public  function sendMail($params)
+    public function __construct($params, $headers = "")
     {
-      $arr =  Template::getTemplate($params["template"], $params["field"]);
+        $this->params = $params;
+        $this->template = new Template($params["template"], $params["field"]);
+        $this->result = $this->template->getSettings();
+        $this->headers = $headers;
+        $this->setHeaders();
+    }
 
-        $headers = "From: #Email_From#\r\n";
-        $headers .= "Reply-To: #Email_Reply# \r\n";
-        if ($params["attach"] || $arr["attach"])
+    public function send()
+    {
+        $to = $this->result["to"];
+        $file = $this->template->getAttachFile();
+        $message = $this->template->getTemplate();
+
+        if (!empty($this->params["file"]) || !empty($file))
         {
-            $headers .= $this->sendFiles($this->checkFiles($arr, $params));
+            $this->headers .= $this->sendFiles($this->checkFiles($file));
         }
-        var_dump($headers);
-       return mail($arr["field"]["email"], $arr["subject"], $arr["message"], $headers);
+       return mail($to, $this->result["subject"], $message, $this->getHeaders());
     }
 
-    public function checkFiles($arr, $params)
+    private function setHeaders()
     {
-        if ($arr["attach"] && $params["attach"])
-        {
-           return $fileArrPath = array_merge($arr["attach"], $params["attach"]);
-        } elseif ($arr["attach"])
-        {
-            return  $arr["attach"];
-        }   else return $params["attach"];
+        $this->headers .= "From: " . $this->result['from']  . "\r\n";
+        $this->headers .= "Reply-To: " . $this->result['from'] . "\r\n";
+        $this->headers .= "Cc: " . $this->result['fromCopy'] . "\nBcc: " . $this->result['sett']['fromCopyH'] . "\n";
+        $this->headers .= "Content-type: text/html; charset=utf-8\n";
+        $this->headers .= "X-Mailer: PHP/" . phpversion();
     }
 
-    private function sendFiles($arr)
+    public function getHeaders()
     {
-        $result = "";
-        foreach ($arr as $filePath)
+        return $this->headers;
+    }
+
+    private function checkFiles($file)
+    {
+        if (!empty($file) && !empty($this->params["file"]))
+        {
+           return $fileArrPath = array_merge($file, $this->params["file"]);
+        } elseif (!empty($file))
+        {
+            return  $file;
+        }   else return $this->params["file"];
+    }
+
+    private function sendFiles($result)
+    {
+        var_dump($result);
+        foreach ($result as $filePath)
         {
             $fileName   = basename($filePath);
             $fileSize   = filesize($filePath);
@@ -41,14 +66,12 @@ class Mail
             $content    = fread($handle, $fileSize);
             fclose($handle);
             $content = chunk_split(base64_encode($content));
-            $result .= "Content-Type: application/octet-stream; name=\"".$fileName."\"\r\n";
-            $result .= "Content-Transfer-Encoding: base64\r\n";
-            $result .= "Content-Disposition: attachment; filename=\"".$fileName."\"\r\n";
-            $result .= $content."\r\n";
+            $headers = "Content-Type: application/octet-stream; name=\"".$fileName."\"\r\n";
+            $headers .= "Content-Transfer-Encoding: base64\r\n";
+            $headers .= "Content-Disposition: attachment; filename=\"".$fileName."\"\r\n";
+            $headers .= $content."\r\n";
         }
-        return $result;
+        return $headers;
     }
-
-
 }
 
