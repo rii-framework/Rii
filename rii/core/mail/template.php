@@ -17,7 +17,7 @@ class Template
     private $pathFiles = []; //Массив путей подключаемых файлов шаблона
     private $message = ""; //Шаблон письма
 
-    public function __construct($id, $fields = [])
+    public function __construct($id = "default", $fields = [])
     {
         $this->__path = $_SERVER['DOCUMENT_ROOT'] . "/rii/mail/templates/" . $id;
 
@@ -96,9 +96,11 @@ class Template
 
         if (file_exists($this->__pathAtta) && (count($fileAtta = scandir($this->__pathAtta)) > 2)) {
             foreach ($fileAtta as $key => $nameFile) {
-                if ($nameFile != "." && $nameFile != "..") {
-                    $attachFiles[] = $this->__pathAtta . $nameFile;
+                if ($nameFile == "." || $nameFile == "..") {
+                    continue;
                 }
+
+                $attachFiles[] = $this->__pathAtta . $nameFile;
             }
         }
 
