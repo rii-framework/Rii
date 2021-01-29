@@ -21,12 +21,12 @@ class Mail
         $this->headers = $this->setHeaders();
     }
 
-    public function send()
+    public function send(): bool
     {
         return mail($this->settings["to"], $this->settings["subject"], $this->message, $this->headers);
     }
 
-    private function setHeadersFrom()
+    private function setHeadersFrom(): string
     {
         $form = "";
         if (!empty($this->params["headers"]["from"]))
@@ -39,7 +39,7 @@ class Mail
         return $form;
     }
 
-    private function setHeadersReplyTo()
+    private function setHeadersReplyTo(): string
     {
         $replyTo = "";
         if (!empty($this->params["headers"]["reply-to"]))
@@ -52,7 +52,7 @@ class Mail
         return $replyTo;
     }
 
-    private function setHeadersCc()
+    private function setHeadersCc(): string
     {
         $cc = "";
         if (!empty($this->params["headers"]["cc"]))
@@ -65,7 +65,7 @@ class Mail
         return $cc;
     }
 
-    private function setHeadersBcc()
+    private function setHeadersBcc(): string
     {
         $bcc = "";
         if (!empty($this->params["headers"]["Bcc"]))
@@ -78,7 +78,7 @@ class Mail
         return $bcc;
     }
 
-    private function setHeadersContentType()
+    private function setHeadersContentType(): string
     {
         $contentType = "";
         if (!empty($this->params["headers"]["content-type"]))
@@ -91,12 +91,12 @@ class Mail
 
     }
 
-    public function setHeaders()
+    public function setHeaders(): string
     {
         $this->headers = $this->setHeadersFrom();
         if (empty($this->headers))
         {
-            throw new \Exception("не введён заголовок From");
+            throw new Exception("не введён заголовок From");
         }
         $this->headers .= $this->setHeadersFrom();
         $this->headers .= $this->setHeadersReplyTo();
@@ -110,7 +110,7 @@ class Mail
         return $this->headers;
     }
 
-    private function checkFiles()
+    private function checkFiles(): string
     {
         if (!empty($this->files) && !empty($this->params["files"]))
         {
