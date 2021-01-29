@@ -17,7 +17,7 @@ class Mail
         $this->template = new Template($params["template"], $params["field"]);
         $this->settings = $this->template->getSettings();
         $this->files = $this->template->getAttachFile();
-        $this->message = $this->template->getTemplate();
+        $this->message = $this->template->getMessage();
         $this->headers = $this->setHeaders();
     }
 
