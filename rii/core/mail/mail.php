@@ -1,6 +1,8 @@
 <?php
 namespace Rii\Core\Mail;
 
+use Exception;
+
 class Mail
 {
     private $template = null;
