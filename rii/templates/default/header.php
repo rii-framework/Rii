@@ -90,7 +90,7 @@ use Rii\Core\Page; ?>
                     [
                         'title' => 'Ваше имя',
                         'type' => 'text',
-                        'name' => 'customerName',
+                        'name' => 'name',
                         'attr' => [ //доп атрибуты
                             'id' => 'customerName',
                         ],
@@ -99,7 +99,7 @@ use Rii\Core\Page; ?>
                     ], [
                         'title' => 'Ваш телефон',
                         'type' => 'text',
-                        'name' => 'customerNumber',
+                        'name' => 'phone',
                         'attr' => [
                             'id' => 'customerNumber'
                         ],
@@ -114,7 +114,7 @@ use Rii\Core\Page; ?>
                     ], [
                         'type' => 'hidden',
                         'name' => 'hash',
-                        'value' => 'component_hash',
+                        'value' => '',
                     ]
                 ]
             ]]); ?>

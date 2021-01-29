@@ -16,40 +16,13 @@ class Mailer extends Base
         } else return false;
     }
 
-    private function validation()
-    {
-        $customerName = $_POST['customerName'];
-        $customerNumber = $_POST['customerNumber'];
-
-        if (isset($customerName, $customerNumber)) {
-            $message = array();
-
-            if (empty($customerNumber)) {
-                $message['numberError'] = 'Вы не ввели номер!';
-            } else {
-                if (!preg_match('/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){9,12}(\s*)?$/', $customerNumber)) {
-                    $message['numberError'] = "Неправильно введен номер! ";
-                }
-            }
-
-            if (empty($customerName)) {
-                $message['nameError'] = 'Вы не ввели имя!';
-            } else {
-                if (!preg_match("/^[a-zA-Zа-яёА-ЯЁ\s\-]+$/u", $customerName)) {
-                    $message['nameError'] = "Допустимы только кириллица и латиница!";
-                }
-            }
-        }
-        return $message;
-    }
-
     function setHashValue(&$array)
     {
         foreach ($array as $key => &$value) {
             if (is_array($value)) {
                 self::setHashValue($value);
             } else {
-                if ($key == 'value' && $value == 'component_hash') {
+                if ($key == 'value' && $value == '') {
                     $array['value'] = $this->hash;
                     break;
                 }
@@ -61,35 +34,61 @@ class Mailer extends Base
     {
         $to = 'elcar24@gmail.com';
         $subject = 'Заявка на консультацию по телефону';
-        $text = 'Нам поступила заявка на консультацию по телефону от пользователя с именем ' . $_POST['customerName'] . '!<br>Его номер телефона: ' . $_POST['customerNumber'];
+        $text = 'Нам поступила заявка на консультацию по телефону от пользователя с именем ' . $_POST['name'] . '!<br>Его номер телефона: ' . $_POST['phone'];
         $headers = 'Content-type: text/html; charset=utf-8\r\n';
         mail($to, $subject, $text, $headers);
-        $message = $_POST['customerName'] . ", cпасибо за обращение! Ожидайте нашего ответа!";
+        $message = $_POST['name'] . ", cпасибо за обращение! Ожидайте нашего ответа!";
         return $message;
     }
 
-    private function sendFields()
+    private function validate()
     {
-        $mailParams['fields'] = $_POST;
-        return $mailParams;
+        $validationRules = [
+            'name' => [
+                'required' => true,
+                'min' => 2,
+                'max' => 30,
+            ],
+            'lastName' => [
+                'required' => true,
+                'min' => 2,
+                'max' => 50,
+            ], 'email' => [
+                'required' => true,
+            ], 'phone' => [
+                'required' => true,
+                'min' => 9,
+                'max' => 12
+            ], 'password' => [
+                'required' => true,
+                'min' => 6,
+            ], 'login' => [
+                'required' => true,
+                'min' => 4,
+                'max' => 30,
+            ], 'ajax' => [
+                'required' => true,
+            ]
+        ];
+        $validation = new Validator();
+        foreach ($_POST as $item) {
+            $validation->validate($item, $validationRules);
+        }
+
     }
 
     public function executeComponent()
     {
         $this->setHashValue($this->params);
         if ($this->hashCheck() == true) {
-            $this->result['check'] = $this->sendFields();
-            if ($this->validation() == null) {
-//                $this->result['message'] = Validator::validation($_POST);
-//                if ($this->result['message'] == null) {
-//                    Mail::send($this->sendFields());
-//                }
+            $errors = $this->validate();
+            if ($errors == null) {
                 $this->result['message'] = $this->ourMail();
                 Application::getInstance()->restartBuffer();
                 $this->template->render('succes');
                 Application::getInstance()->endBuffer();
             } else {
-                $this->result['message'] = $this->validation();
+                $this->result['message'] = $errors;
                 Application::getInstance()->restartBuffer();
                 $this->template->render('failed');
                 Application::getInstance()->endBuffer();

@@ -24,14 +24,14 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                     'elements' => [
                         [
                             'type' => 'text',
-                            'name' => 'customerName',
+                            'name' => 'name',
                             'attr' => [ //доп атрибуты
                                 'id' => 'customerName',
                             ],
                             'default' => 'Ваше имя',
                         ], [
                             'type' => 'text',
-                            'name' => 'customerNumber',
+                            'name' => 'phone',
                             'attr' => [
                                 'id' => 'customerNumber'
                             ],
@@ -46,7 +46,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         [
                             'type' => 'hidden',
                             'name' => 'hash',
-                            'value' => 'component_hash',
+                            'value' => '',
                         ]
                     ]
                 ]]); ?>
@@ -72,21 +72,21 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                 <h2>Остались вопросы?</h2>
 
                 <?php Application::getInstance()->includeComponent("rii:mailer", "default", ['formName' => "rii:interfaceform", 'formTemplate' => "default", 'params' => [
-                    'additional_class' => 'form--wrapp', //классы на контейнер формы
-                    'attr' => [  //доп атрибуты
+                    'additional_class' => 'form--wrapp',
+                    'attr' => [
                         'id' => 'section-orange-form',
                     ],
                     'elements' => [
                         [
                             'type' => 'text',
-                            'name' => 'customerName',
-                            'attr' => [ //доп атрибуты
+                            'name' => 'name',
+                            'attr' => [
                                 'id' => 'customerName',
                             ],
                             'default' => 'Ваше имя',
                         ], [
                             'type' => 'text',
-                            'name' => 'customerNumber',
+                            'name' => 'phone',
                             'attr' => [
                                 'id' => 'customerNumber'
                             ],
@@ -100,7 +100,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         ], [
                             'type' => 'hidden',
                             'name' => 'hash',
-                            'value' => 'component_hash',
+                            'value' => '',
                         ]
                     ]
                 ]]); ?>
