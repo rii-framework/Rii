@@ -81,12 +81,11 @@ class Mailer extends Base
     private function error($array)
     {
         // Вывод конкретных ошибок
-        $i = 0;
         foreach ($array as $typeKey=>$item){
             foreach ($item as $value){
                 var_dump($value);
                 if ($value == false){
-                    $error[$i++] = 'Error';
+                    $error[] = 'Error';
                 }
             }
         }
