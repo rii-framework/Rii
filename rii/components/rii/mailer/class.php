@@ -80,6 +80,7 @@ class Mailer extends Base
 
     private function error($array)
     {
+        // Вывод конкретных ошибок
         $i = 0;
         foreach ($array as $typeKey=>$item){
             foreach ($item as $value){
