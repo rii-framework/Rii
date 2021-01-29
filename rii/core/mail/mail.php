@@ -3,12 +3,12 @@ namespace Rii\Core\Mail;
 
 class Mail
 {
-    private $template;
+    private $template = null;
     private $params = [];
     private $settings = [];
-    private $headers;
-    private $message;
-    private $files;
+    private $headers = "";
+    private $message = "";
+    private $files = [];
 
 
     public function __construct($params)
