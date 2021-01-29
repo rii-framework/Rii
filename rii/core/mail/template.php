@@ -54,7 +54,7 @@ class Template
 
         $this->setAttachFile();
 
-        $this->setTemplate();
+        $this->setMessage();
     }
 
     //Формирование массива макросов из параметров
@@ -114,7 +114,7 @@ class Template
     }
 
     //Формирование шаблона письма
-    private function setTemplate()
+    private function setMessage()
     {
         $template = file_get_contents($this->__pathTemp);
 
@@ -126,7 +126,7 @@ class Template
     }
 
     //Получение шаблона письма
-    public function getTemplate()
+    public function getMessage()
     {
         return $this->message;
     }
