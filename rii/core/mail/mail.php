@@ -29,10 +29,10 @@ class Mail
     private function setHeadersFrom()
     {
         $form = "";
-        if (empty($this->params["headers"]["from"]))
+        if (!empty($this->params["headers"]["from"]))
         {
             $form = "From: " . $this->params["headers"]["from"]  . "\r\n";
-        } elseif (!empty($this->result['from']))
+        } elseif (!empty($this->settings['from']))
         {
             $form = "From: " . $this->settings['from']  . "\r\n";
         }
@@ -42,7 +42,7 @@ class Mail
     private function setHeadersReplyTo()
     {
         $replyTo = "";
-        if (empty($this->params["headers"]["reply-to"]))
+        if (!empty($this->params["headers"]["reply-to"]))
         {
             $replyTo .= "Reply-To: " . $this->params["headers"]["reply-to"]  . "\r\n";
         } elseif (!empty($this->settings['from']))
@@ -55,7 +55,7 @@ class Mail
     private function setHeadersCc()
     {
         $cc = "";
-        if (empty($this->params["headers"]["cc"]))
+        if (!empty($this->params["headers"]["cc"]))
         {
             $cc .= "Cc: " . $this->params["headers"]["cc"]  . "\n";
         } elseif (!empty($this->settings['fromCopy']))
@@ -68,7 +68,7 @@ class Mail
     private function setHeadersBcc()
     {
         $bcc = "";
-        if (empty($this->params["headers"]["Bcc"]))
+        if (!empty($this->params["headers"]["Bcc"]))
         {
             $bcc .= "Bcc: " . $this->params["headers"]["Bcc"]  . "\n";
         } elseif (!empty($this->settings['fromCopyH']))
@@ -81,11 +81,11 @@ class Mail
     private function setHeadersContentType()
     {
         $contentType = "";
-        if (empty($this->params["headers"]["content-type"]))
+        if (!empty($this->params["headers"]["content-type"]))
         {
             $contentType .= "Content-type: " . $this->params["headers"]["content-type"]  . "\n";
         } else $contentType .= "Content-type: text/html; charset=utf-8\n";
-        $contentType .= "X-Mailer: PHP/" . phpversion();
+        $contentType .= "X-Mailer: PHP/" . phpversion() . "\n";
 
         return $contentType;
 
@@ -105,19 +105,19 @@ class Mail
         $this->headers .= $this->setHeadersContentType();
         if (!empty($this->params["files"]) || !empty($this->files))
         {
-            $this->headers .= $this->checkFiles($this->files);
+            $this->headers .= $this->checkFiles();
         }
         return $this->headers;
     }
 
-    private function checkFiles($files)
+    private function checkFiles()
     {
-        if (!empty($files) && !empty($this->params["files"]))
+        if (!empty($this->files) && !empty($this->params["files"]))
         {
-            $fileArrPath = array_merge($files, $this->params["files"]);
-        } elseif (!empty($files))
+            $fileArrPath = array_merge($this->files, $this->params["files"]);
+        } elseif (!empty($this->files))
         {
-            $fileArrPath =  $files;
+            $fileArrPath =  $this->files;
         }   else $fileArrPath = $this->params["files"];
 
         foreach ($fileArrPath as $filePath)
@@ -136,4 +136,12 @@ class Mail
         return $headers;
     }
 }
+
+
+// Testing code
+//$mail = new Mail(["template" => "default", "files" => ["img/auto.svg"], "field" => ["EMAIL" => "exaple@mail.com", "to" => "guest@mail.com"], "headers" => ["Bcc" => "yourEmail@mail.com"]]);
+//echo "<pre>";
+//var_dump($mail);
+////var_dump($mail->send());
+//echo "</pre>";
 
