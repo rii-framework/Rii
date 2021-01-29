@@ -45,54 +45,71 @@ class Mailer extends Base
     {
         $validationRules = [
             'name' => [
-                'required' => true,
-                'min' => 2,
-                'max' => 30,
+                (new Validator('required', true))->exec($_POST['name']),
+                (new Validator('minLength', 2))->exec($_POST['name']),
+                (new Validator('maxLength', 20))->exec($_POST['name']),
             ],
-            'lastName' => [
-                'required' => true,
-                'min' => 2,
-                'max' => 50,
-            ], 'email' => [
-                'required' => true,
-            ], 'phone' => [
-                'required' => true,
-                'min' => 9,
-                'max' => 12
-            ], 'password' => [
-                'required' => true,
-                'min' => 6,
-            ], 'login' => [
-                'required' => true,
-                'min' => 4,
-                'max' => 30,
-            ], 'ajax' => [
-                'required' => true,
-            ]
+            'phone' => [
+                (new Validator('required', true))->exec($_POST['phone']),
+                (new Validator('regexp', '/\+?([0-9]{1,3})-?([0-9]{2})-?([0-9]{7})/'))->exec($_POST['phone']),
+            ],
+//            'password' => [
+//                (new Validator('required', true))->exec($_POST['password']),
+//                (new Validator('minLength', 6))->exec($_POST['password']),
+//                (new Validator('regexp', "/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/"))->exec($_POST['password']),
+//            ],
+//            'login' => [
+//                (new Validator('required', true))->exec($_POST['login']),
+//                (new Validator('minLength', 4))->exec($_POST['login']),
+//                (new Validator('maxLength', 20))->exec($_POST['login']),
+//                (new Validator('regexp', '/^[A-Za-z0-9]{0,}$/'))->exec($_POST['login']),
+//            ],
+//            'lastName' => [
+//                (new Validator('required', true))->exec($_POST['lastName'])->exec($_POST['name']),
+//                (new Validator('minLength', 2))->exec($_POST['lastName'])->exec($_POST['name']),
+//                (new Validator('maxLength', 30))->exec($_POST['lastName'])->exec($_POST['name']),
+//                (new Validator('regexp', '/^[A-Za-zА-Яа-яЁё]{0,}$/'))->exec($_POST['lastName'])->exec($_POST['name']),
+//            ],
+//            'email' => [
+//                (new Validator('required', true))->exec($_POST['email']),
+//                (new Validator('email', true))->exec($_POST['email']),
+//            ]
         ];
-        $validation = new Validator();
-        foreach ($_POST as $item) {
-            $validation->validate($item, $validationRules);
-        }
+        return $validationRules;
+    }
 
+    private function error($array)
+    {
+        $i = 0;
+        foreach ($array as $typeKey=>$item){
+            foreach ($item as $value){
+                var_dump($value);
+                if ($value == false){
+                    $error[$i++] = 'Error';
+                }
+            }
+        }
+        return $error;
     }
 
     public function executeComponent()
     {
         $this->setHashValue($this->params);
         if ($this->hashCheck() == true) {
-            $errors = $this->validate();
-            if ($errors == null) {
-                $this->result['message'] = $this->ourMail();
-                Application::getInstance()->restartBuffer();
-                $this->template->render('succes');
-                Application::getInstance()->endBuffer();
-            } else {
-                $this->result['message'] = $errors;
+            $errors = $this->error($this->validate());
+            if ($errors != null) {
+                $error[] = 'Есть ошибки';
+                $this->result['message'] = $error;
                 Application::getInstance()->restartBuffer();
                 $this->template->render('failed');
                 Application::getInstance()->endBuffer();
+            } else {
+                Application::getInstance()->restartBuffer();
+                $this->result['message'] = $this->ourMail();
+                $this->template->render('succes');
+                Application::getInstance()->endBuffer();
             }
-        } else $this->template->render();
+        } else
+            $this->template->render();
     }
 }
