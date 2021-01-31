@@ -81,7 +81,7 @@ use Rii\Core\Page; ?>
         <button class="pop-up--close js-popup-close"></button>
         <div class="content">
             <h2>Заказать звонок</h2>
-            <?php self::getInstance()->includeComponent("rii:mailer", "default", ['formName' => "rii:interfaceform", 'formTemplate' => "default", 'params' => [
+            <?php self::getInstance()->includeComponent("rii:data.processing", "default", ['formName' => "rii:interfaceform", 'formTemplate' => "default", 'params' => [
                 'additional_class' => 'form--wrapp',
                 'attr' => [
                     'id' => 'pop-up-form',
@@ -125,7 +125,7 @@ use Rii\Core\Page; ?>
         <button class="pop-up--close js-popup-close"></button>
         <div class="content">
             <h2>Заявка принята</h2>
-            <span class="message"></span>
+            <pre class="message"></pre>
             <button class="pop-up--button js-popup-close">Понятно</button>
         </div>
     </div>
@@ -134,7 +134,7 @@ use Rii\Core\Page; ?>
         <button class="pop-up--close js-popup-close"></button>
         <div class="content">
             <h2>Ошибка</h2>
-            <span class="message"></span>
+            <pre class="message"></pre>
             <button class="pop-up--button js-popup-close">Закрыть</button>
         </div>
     </div>

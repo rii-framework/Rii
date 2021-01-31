@@ -16,7 +16,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
             <div class="block--form block-mini">
                 <h2>Получить бесплатную консультацию</h2>
 
-                <?php Application::getInstance()->includeComponent("rii:mailer", "default", ['formName' => "rii:interfaceform", 'formTemplate' => "default", 'params' => [
+                <?php Application::getInstance()->includeComponent("rii:data.processing", "default", ['formName' => "rii:interfaceform", 'formTemplate' => "default", 'params' => [
                     'additional_class' => 'form--wrapp', //классы на контейнер формы
                     'attr' => [  //доп атрибуты
                         'id' => 'section-gradient-form',
@@ -71,7 +71,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
             <div class="block--form">
                 <h2>Остались вопросы?</h2>
 
-                <?php Application::getInstance()->includeComponent("rii:mailer", "default", ['formName' => "rii:interfaceform", 'formTemplate' => "default", 'params' => [
+                <?php Application::getInstance()->includeComponent("rii:data.processing", "default", ['formName' => "rii:interfaceform", 'formTemplate' => "default", 'params' => [
                     'additional_class' => 'form--wrapp',
                     'attr' => [
                         'id' => 'section-orange-form',

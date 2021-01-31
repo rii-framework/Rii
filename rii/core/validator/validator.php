@@ -51,16 +51,25 @@ class Validator
     function required($value)
     {
 //        var_dump($this->valid);
-        if ($value == null) {
-            if ($this->set === true) {
-                return false;
-            } else return true;
-        } else {
+        $ret = true;
+
+        if ($this->set === true && $value == null) {
+            $ret = false;
+        }
+
+//        if ($this->set === false && $value == null) {
+//            $ret = true;
+//        }
+
+        if ($value != null) {
             foreach ($this->valid as $rule) {
-                if ($rule == false) {
-                    return false;
-                } else return true;
+                if (!$rule->exec($value)) {
+                    $ret = false;
+                    break;
+                }
             }
         }
+
+        return $ret;
     }
 }
