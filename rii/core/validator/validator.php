@@ -33,7 +33,8 @@ class Validator
 
     function email($value)
     {
-        return filter_var($value, FILTER_VALIDATE_EMAIL);
+        $this->set = '/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/';
+        return self::regexp($value);
     }
 
     function phone($value)
@@ -42,9 +43,14 @@ class Validator
         return self::regexp($value);
     }
 
+    function regexp($value)
+    {
+        return (bool)preg_match($this->set, $value);
+    }
+
     function required($value)
     {
-        var_dump($this->valid);
+//        var_dump($this->valid);
         if ($value == null) {
             if ($this->set === true) {
                 return false;
@@ -56,17 +62,5 @@ class Validator
                 } else return true;
             }
         }
-//        if ($this->set === true) {
-//            if ($value == null) {
-//                return false;
-//            } else {
-//                return true;
-//            }
-//        } else return true;
-    }
-
-    function regexp($value)
-    {
-        return (bool)preg_match($this->set, $value);
     }
 }

@@ -9,8 +9,6 @@ use Rii\Core\Validator\Validator;
 
 class Mailer extends Base
 {
-    private $value = [];
-
     private function hashCheck()
     {
         $requiredHash = $_POST['hash'];
@@ -47,12 +45,18 @@ class Mailer extends Base
     {
         $validationRules = [
             'name' => [
-                (new Validator('required', false, [(new Validator('minLength', 2))->exec($_POST['name']), (new Validator('maxLength', 20))->exec($_POST['name']),]))->exec($_POST['name'])
-//            ],
-//            'phone' => [
-//                new Validator('required', true),
-//                new Validator('phone'),
-//            ],
+                (new Validator('required', true, [
+                    (new Validator('minLength', 2))->exec($_POST['name']),
+                    (new Validator('maxLength', 20))->exec($_POST['name']),
+                    (new Validator('regexp', 'C'))->exec($_POST['name']),
+                ]))->exec($_POST['name'],
+                )
+            ],
+            'phone' => [
+                (new Validator('required', true, [
+                    (new Validator('phone'))->exec($_POST['phone']),
+                ]))->exec($_POST['phone']),
+            ],
 //            'password' => [
 //                new Validator('required', true),
 //                new Validator('minLength', 6),
@@ -68,15 +72,13 @@ class Mailer extends Base
 //                new Validator('required', true),
 //                new Validator('minLength', 2),
 //                new Validator('maxLength', 30),
-//                new Validator('regexp', '/^[A-Za-zА-Яа-яЁё]{0,}$/'),
+//                new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u'),
 //            ],
 //            'email' => [
 //                new Validator('required', true),
-//                new Validator('email', true),
+//                new Validator('email'),
 //            ],
-            ]];
-
-//        $validationRules = $this->value;
+        ];
 
 //        foreach ($validationRules as $key1 => $rule) {
 //            foreach ($rule as $key2 => $item) {
@@ -88,19 +90,20 @@ class Mailer extends Base
 //            }
 //        }
 
-        var_dump($validationRules);
+//        var_dump($validationRules);
 
         return $validationRules;
     }
 
     private function errors($array)
     {
+        $replacements = ['name' => 'Имя введено некоректно!', 'phone' => 'Телефон введен некоректно!', 'lastName' => 'Фамилия введена некоректно', 'login' => 'Логин введен некоректно', 'email' => 'Почта введена некоректно', 'password' => 'Пароль введен некоректно'];
+
         foreach ($array as $typeKey => $item) {
-//            var_dump($typeKey);
             foreach ($item as $value) {
-//                var_dump($value);
                 if ($value == false) {
-                    $errors[$typeKey] = "{$typeKey} entered incorrectly!";
+                    $errors[$typeKey] = $typeKey;
+                    $errors[$typeKey] = str_replace($typeKey, $replacements[$typeKey], $errors[$typeKey]);
                 }
             }
         }
@@ -114,7 +117,7 @@ class Mailer extends Base
             if ($_POST['ajax'] != 'yes') die();
             $errors = $this->errors($this->validate());
             $this->ourMail();
-            die();
+//            die();
             if ($errors != null) {
                 $this->result['message'] = $errors;
                 Application::getInstance()->restartBuffer();
