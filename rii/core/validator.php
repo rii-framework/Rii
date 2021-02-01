@@ -32,7 +32,7 @@ class Validator
                 }
                 continue;
             }
-            if ($rule->exec($this->value) == false) {
+            if ($rule->exec($this->value) == false || $this->value == null) {
                 $result = false;
                 break;
             }

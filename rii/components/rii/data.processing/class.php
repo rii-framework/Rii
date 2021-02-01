@@ -53,7 +53,6 @@ class DataProcessing extends Base
             }
             $results[$key] = $rule->exec($_POST[$key]);
         }
-
         return $results;
     }
 
