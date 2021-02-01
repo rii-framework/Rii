@@ -52,29 +52,29 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         ]
                     ]
                 ], 'validationRules' => [
-                    'name' => new Validator('required', true, [
+                    'name' => new Validator('chain', [
                         new Validator('minLength', 2),
                         new Validator('maxLength', 20),
                         new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
                     ]),
-                    'phone' => new Validator('required', true, [
+                    'phone' => new Validator('chain', [
                         new Validator('phone')
                     ]),
-                    'password' => new Validator('required', true, [
+                    'password' => new Validator('chain', [
                         new Validator('minLength', 6),
                         new Validator('regexp', "/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/")
                     ]),
-                    'login' => new Validator('required', true, [
+                    'login' => new Validator('chain', [
                         new Validator('minLength', 4),
                         new Validator('maxLength', 20),
                         new Validator('regexp', '/^[A-Za-z0-9]{0,}$/')
                     ]),
-                    'lastName' => new Validator('required', true, [
+                    'lastName' => new Validator('chain', [
                         new Validator('minLength', 2),
                         new Validator('maxLength', 30),
                         new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
                     ]),
-                    'email' => new Validator('required', true, [
+                    'email' => new Validator('chain', [
                         new Validator('email')
                     ]),
                 ], 'sendFields' => ['name', 'phone']]); ?>
@@ -132,29 +132,29 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         ]
                     ]
                 ], 'validationRules' => [
-                    'name' => new Validator('required', true, [
+                    'name' => new Validator('chain', [
                         new Validator('minLength', 2),
                         new Validator('maxLength', 20),
                         new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
                     ]),
-                    'phone' => new Validator('required', true, [
+                    'phone' => new Validator('chain', [
                         new Validator('phone')
                     ]),
-                    'password' => new Validator('required', true, [
+                    'password' => new Validator('chain', [
                         new Validator('minLength', 6),
                         new Validator('regexp', "/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/")
                     ]),
-                    'login' => new Validator('required', true, [
+                    'login' => new Validator('chain', [
                         new Validator('minLength', 4),
                         new Validator('maxLength', 20),
                         new Validator('regexp', '/^[A-Za-z0-9]{0,}$/')
                     ]),
-                    'lastName' => new Validator('required', true, [
+                    'lastName' => new Validator('chain', [
                         new Validator('minLength', 2),
                         new Validator('maxLength', 30),
                         new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
                     ]),
-                    'email' => new Validator('required', true, [
+                    'email' => new Validator('chain', [
                         new Validator('email')
                     ]),
                 ], 'sendFields' => ['name', 'phone']]); ?>

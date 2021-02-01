@@ -6,41 +6,38 @@ class Validator
 {
     private $type = '';
     private $set = null;
-    private $validation = null;
     private $value = null;
+    const MAY_BE_EMPTY = 'Empty value';
 
-    function __construct($function, $param = null, $validation = null)
+    function __construct($function, $param = null)
     {
         $this->type = $function;
         $this->set = $param;
-        $this->validation = $validation;
     }
 
     function exec($value)
     {
         $this->value = $value;
         $validator = $this->type;
-        return $this->$validator($value);
+        return $this->$validator();
     }
 
-    function required()
+    function chain()
     {
-        $ret = true;
-
-        if ($this->set === true && $this->value == null) {
-            $ret = false;
-        }
-
-        if ($this->value != null) {
-            foreach ($this->validation as $rule) {
-                if (!$rule->exec($this->value)) {
-                    $ret = false;
-                    break;
+        $result = true;
+        foreach ($this->set as $rule) {
+            if ($rule == self::MAY_BE_EMPTY) {
+                if ($this->value == null) {
+                    return true;
                 }
+                continue;
+            }
+            if ($rule->exec($this->value) == false) {
+                $result = false;
+                break;
             }
         }
-
-        return $ret;
+        return $result;
     }
 
     function minLength()
