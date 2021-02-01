@@ -120,7 +120,6 @@ use Rii\Core\Validator; ?>
                 ]
             ], 'validationRules' => [
                 'name' => new Validator('chain', [
-                    Validator::MAY_BE_EMPTY,
                     new Validator('minLength', 2),
                     new Validator('maxLength', 20),
                     new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
@@ -136,13 +135,12 @@ use Rii\Core\Validator; ?>
                     new Validator('regexp', '/^[A-Za-z0-9]{0,}$/')
                 ]),
                 'lastName' => new Validator('chain', [
+                        Validator::MAY_BE_EMPTY,
                     new Validator('minLength', 2),
                     new Validator('maxLength', 30),
                     new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
                 ]),
-                'email' => new Validator('chain', [
-                    new Validator('email')
-                ]),
+                'email' => new Validator('email'),
             ], 'sendFields' => ['name', 'phone']]); ?>
         </div>
     </div>

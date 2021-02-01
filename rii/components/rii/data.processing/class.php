@@ -33,9 +33,11 @@ class DataProcessing extends Base
 
     private function ourMail()
     {
-        $params['template'] = $this->params['formTemplate'];
-        $params['fields'] = $this->params['sendFields'];
-        $mail = new Mail($params);
+        $emailFields['template'] = $this->params['formTemplate'];
+        foreach ($this->params['sendFields'] as $key) {
+            $emailFields['fields'][$key] = $_POST[$key];
+        }
+        $mail = new Mail($emailFields);
         $mail->send();
         $message = $_POST['name'] . ", cпасибо за обращение! Ожидайте нашего ответа!";
         return $message;
@@ -57,11 +59,9 @@ class DataProcessing extends Base
 
     private function errors($array)
     {
-        $replacements = ['name' => 'Имя введено некоректно!', 'phone' => 'Телефон введен некоректно!', 'lastName' => 'Фамилия введена некоректно', 'login' => 'Логин введен некоректно', 'email' => 'Почта введена некоректно', 'password' => 'Пароль введен некоректно'];
-
         foreach ($array as $key => $value) {
             if ($value == false) {
-                $errors[$key] = $replacements[$key];
+                $errors[$key] = $key;
             }
         }
         return $errors;

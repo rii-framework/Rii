@@ -7,7 +7,7 @@ class Validator
     private $type = '';
     private $set = null;
     private $value = null;
-    const MAY_BE_EMPTY = 'Empty value';
+    const MAY_BE_EMPTY = null;
 
     function __construct($function, $param = null)
     {
