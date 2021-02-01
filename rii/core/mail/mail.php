@@ -139,11 +139,10 @@ class Mail
     }
 }
 
-
 // Testing code
-$mail = new Mail(["template" => "default", "files" => ["img/auto.svg"], "field" => ["EMAIL" => "exaple@mail.com", "to" => "guest@mail.com"], "headers" => ["Bcc" => "yourEmail@mail.com"]]);
-echo "<pre>";
-var_dump($mail);
-//var_dump($mail->send());
-echo "</pre>";
+//$mail = new Mail(["template" => "default", "files" => ["img/auto.svg"], "field" => ["EMAIL" => "exaple@mail.com", "to" => "guest@mail.com"], "headers" => ["Bcc" => "yourEmail@mail.com"]]);
+//echo "<pre>";
+//var_dump($mail);
+////var_dump($mail->send());
+//echo "</pre>";
 
