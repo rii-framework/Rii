@@ -1,6 +1,7 @@
 <?php if (!defined('RII_CORE_INCLUDED')) die;
 
-use Rii\Core\Page; ?>
+use Rii\Core\Page;
+use Rii\Core\Validator; ?>
 
 <!doctype html>
 <html lang="ru">
@@ -117,7 +118,33 @@ use Rii\Core\Page; ?>
                         'value' => '',
                     ]
                 ]
-            ]]); ?>
+            ], 'validationRules' => [
+                'name' => new Validator('required', true, [
+                    new Validator('minLength', 2),
+                    new Validator('maxLength', 20),
+                    new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
+                ]),
+                'phone' => new Validator('required', true, [
+                    new Validator('phone')
+                ]),
+                'password' => new Validator('required', true, [
+                    new Validator('minLength', 6),
+                    new Validator('regexp', "/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/")
+                ]),
+                'login' => new Validator('required', true, [
+                    new Validator('minLength', 4),
+                    new Validator('maxLength', 20),
+                    new Validator('regexp', '/^[A-Za-z0-9]{0,}$/')
+                ]),
+                'lastName' => new Validator('required', true, [
+                    new Validator('minLength', 2),
+                    new Validator('maxLength', 30),
+                    new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
+                ]),
+                'email' => new Validator('required', true, [
+                    new Validator('email')
+                ]),
+            ], 'sendFields' => ['name', 'phone']]); ?>
         </div>
     </div>
 
@@ -125,7 +152,7 @@ use Rii\Core\Page; ?>
         <button class="pop-up--close js-popup-close"></button>
         <div class="content">
             <h2>Заявка принята</h2>
-            <pre class="message"></pre>
+            <div class="message"></div>
             <button class="pop-up--button js-popup-close">Понятно</button>
         </div>
     </div>
@@ -134,7 +161,7 @@ use Rii\Core\Page; ?>
         <button class="pop-up--close js-popup-close"></button>
         <div class="content">
             <h2>Ошибка</h2>
-            <pre class="message"></pre>
+            <div class="message"></div>
             <button class="pop-up--button js-popup-close">Закрыть</button>
         </div>
     </div>

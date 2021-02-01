@@ -1,8 +1,9 @@
 <?php
 
-$message['failed'] = '';
+$message['failed'] = '<div>';
 foreach ($result['message'] as $value) {
-    $message['failed'] .= $value . "\n";
+    $message['failed'] .= $value . "<br>";
 }
-echo json_encode($message, JSON_HEX_QUOT | JSON_HEX_TAG);
+$message['failed'] .= '</div>';
+echo json_encode($message, JSON_UNESCAPED_UNICODE);
 die();

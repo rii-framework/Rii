@@ -15,12 +15,12 @@ $(document).ready(function () {
                 if (data.succes) {
                     $('.pop-up--item').removeClass("active");
                     $('.pop-up--list, .pop-up--accepted').addClass('active');
-                    $('.message').text(data.succes);
+                    $('.message').html(data.succes);
                 }
                 if (data.failed) {
                     $('.pop-up--item').removeClass("active");
                     $('.pop-up--list, .pop-up--error').addClass('active');
-                    $('.message').text(data.failed);
+                    $('.message').html(data.failed);
                 }
             }
         })

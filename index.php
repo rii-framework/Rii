@@ -3,6 +3,8 @@ include 'rii/init.php';
 
 use Rii\Core\Application;
 use Rii\Core\Page;
+use Rii\Core\Validator;
+
 
 Application::getInstance()->header();
 Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
@@ -49,7 +51,33 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                             'value' => '',
                         ]
                     ]
-                ]]); ?>
+                ], 'validationRules' => [
+                    'name' => new Validator('required', true, [
+                        new Validator('minLength', 2),
+                        new Validator('maxLength', 20),
+                        new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
+                    ]),
+                    'phone' => new Validator('required', true, [
+                        new Validator('phone')
+                    ]),
+                    'password' => new Validator('required', true, [
+                        new Validator('minLength', 6),
+                        new Validator('regexp', "/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/")
+                    ]),
+                    'login' => new Validator('required', true, [
+                        new Validator('minLength', 4),
+                        new Validator('maxLength', 20),
+                        new Validator('regexp', '/^[A-Za-z0-9]{0,}$/')
+                    ]),
+                    'lastName' => new Validator('required', true, [
+                        new Validator('minLength', 2),
+                        new Validator('maxLength', 30),
+                        new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
+                    ]),
+                    'email' => new Validator('required', true, [
+                        new Validator('email')
+                    ]),
+                ], 'sendFields' => ['name', 'phone']]); ?>
 
                 <div class="description">*Нажимая на кнопку «Заказать звонок», я даю согласие на обработку персональных
                     данных
@@ -103,7 +131,33 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                             'value' => '',
                         ]
                     ]
-                ]]); ?>
+                ], 'validationRules' => [
+                    'name' => new Validator('required', true, [
+                        new Validator('minLength', 2),
+                        new Validator('maxLength', 20),
+                        new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
+                    ]),
+                    'phone' => new Validator('required', true, [
+                        new Validator('phone')
+                    ]),
+                    'password' => new Validator('required', true, [
+                        new Validator('minLength', 6),
+                        new Validator('regexp', "/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/")
+                    ]),
+                    'login' => new Validator('required', true, [
+                        new Validator('minLength', 4),
+                        new Validator('maxLength', 20),
+                        new Validator('regexp', '/^[A-Za-z0-9]{0,}$/')
+                    ]),
+                    'lastName' => new Validator('required', true, [
+                        new Validator('minLength', 2),
+                        new Validator('maxLength', 30),
+                        new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
+                    ]),
+                    'email' => new Validator('required', true, [
+                        new Validator('email')
+                    ]),
+                ], 'sendFields' => ['name', 'phone']]); ?>
 
                 <div class="description">*Нажимая на кнопку «Заказать звонок», я даю согласие на обработку персональных
                     данных
