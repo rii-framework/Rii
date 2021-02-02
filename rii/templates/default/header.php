@@ -107,22 +107,22 @@ use Rii\Core\Validator; ?>
                         'wrap' => ['additional_class' => 'block--input'],
                         'default' => 'Введите телефон',
                     ],
-                    [
-                        'type' => 'select',
-                        'name' => 'servers',
-                        'title' => 'Выберите сервер',
-                        'list' => [
-                            [
-                                'selected' => true,
-                                'title' => 'Онлайнер',
-                                'value' => 'onliner',
-                            ],
-                            [
-                                'title' => 'Тутбай',
-                                'value' => 'tutby',
-                            ]
-                        ], 'wrap' => ['additional_class' => 'block--input'],
-                    ],
+//                    [
+//                        'type' => 'select',
+//                        'name' => 'servers',
+//                        'title' => 'Выберите сервер',
+//                        'list' => [
+//                            [
+//                                'selected' => true,
+//                                'title' => 'Онлайнер',
+//                                'value' => 'onliner',
+//                            ],
+//                            [
+//                                'title' => 'Тутбай',
+//                                'value' => 'tutby',
+//                            ]
+//                        ], 'wrap' => ['additional_class' => 'block--input'],
+//                    ],
                     [
                         'type' => 'submit',
                         'attr' => [
