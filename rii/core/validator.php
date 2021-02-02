@@ -7,7 +7,7 @@ class Validator
     private $type = '';
     private $set = null;
     private $value = null;
-    const MAY_BE_EMPTY = null;
+    const MAY_BE_EMPTY = 'Input_Value_Can_Be_Empty';
 
     function __construct($function, $param = null)
     {
@@ -27,7 +27,7 @@ class Validator
         $result = true;
         foreach ($this->set as $rule) {
             if ($rule == self::MAY_BE_EMPTY) {
-                if ($this->value == null) {
+                if ($this->value == null || $this->value == '') {
                     return true;
                 }
                 continue;
@@ -65,5 +65,26 @@ class Validator
     function regexp()
     {
         return (bool)preg_match($this->set, $this->value);
+    }
+
+    function between()
+    {
+        if ($this->value < $this->set['under'] && $this->value > $this->set['upper']) {
+            return false;
+        } else return true;
+    }
+
+    function in()
+    {
+        echo '<pre>';
+        var_dump($this->value);
+        echo '</pre>';
+        $result = false;
+        foreach ($this->set as $value){
+            if ($this->value == $value){
+                return true;
+            }
+        }
+        return $result;
     }
 }

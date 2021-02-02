@@ -57,26 +57,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         new Validator('maxLength', 20),
                         new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
                     ]),
-                    'phone' => new Validator('chain', [
-                        new Validator('phone')
-                    ]),
-                    'password' => new Validator('chain', [
-                        new Validator('minLength', 6),
-                        new Validator('regexp', "/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/")
-                    ]),
-                    'login' => new Validator('chain', [
-                        new Validator('minLength', 4),
-                        new Validator('maxLength', 20),
-                        new Validator('regexp', '/^[A-Za-z0-9]{0,}$/')
-                    ]),
-                    'lastName' => new Validator('chain', [
-                        new Validator('minLength', 2),
-                        new Validator('maxLength', 30),
-                        new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
-                    ]),
-                    'email' => new Validator('chain', [
-                        new Validator('email')
-                    ]),
+                    'phone' => new Validator('phone'),
                 ], 'sendFields' => ['name', 'phone']]); ?>
 
                 <div class="description">*Нажимая на кнопку «Заказать звонок», я даю согласие на обработку персональных
@@ -137,26 +118,7 @@ Page::getInstance()->setProperty('Title', "ELCAR24"); ?>
                         new Validator('maxLength', 20),
                         new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
                     ]),
-                    'phone' => new Validator('chain', [
-                        new Validator('phone')
-                    ]),
-                    'password' => new Validator('chain', [
-                        new Validator('minLength', 6),
-                        new Validator('regexp', "/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/")
-                    ]),
-                    'login' => new Validator('chain', [
-                        new Validator('minLength', 4),
-                        new Validator('maxLength', 20),
-                        new Validator('regexp', '/^[A-Za-z0-9]{0,}$/')
-                    ]),
-                    'lastName' => new Validator('chain', [
-                        new Validator('minLength', 2),
-                        new Validator('maxLength', 30),
-                        new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
-                    ]),
-                    'email' => new Validator('chain', [
-                        new Validator('email')
-                    ]),
+                    'phone' => new Validator('phone'),
                 ], 'sendFields' => ['name', 'phone']]); ?>
 
                 <div class="description">*Нажимая на кнопку «Заказать звонок», я даю согласие на обработку персональных

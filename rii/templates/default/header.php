@@ -106,7 +106,24 @@ use Rii\Core\Validator; ?>
                         ],
                         'wrap' => ['additional_class' => 'block--input'],
                         'default' => 'Введите телефон',
-                    ], [
+                    ],
+                    [
+                        'type' => 'select',
+                        'name' => 'servers',
+                        'title' => 'Выберите сервер',
+                        'list' => [
+                            [
+                                'selected' => true,
+                                'title' => 'Онлайнер',
+                                'value' => 'onliner',
+                            ],
+                            [
+                                'title' => 'Тутбай',
+                                'value' => 'tutby',
+                            ]
+                        ], 'wrap' => ['additional_class' => 'block--input'],
+                    ],
+                    [
                         'type' => 'submit',
                         'attr' => [
                             'class' => 'submit pop-up--button'
@@ -117,31 +134,17 @@ use Rii\Core\Validator; ?>
                         'name' => 'hash',
                         'value' => '',
                     ]
-                ]
-            ], 'validationRules' => [
+                ]], 'validationRules' => [
                 'name' => new Validator('chain', [
                     new Validator('minLength', 2),
-                    new Validator('maxLength', 20),
                     new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
                 ]),
                 'phone' => new Validator('phone'),
-                'password' => new Validator('chain', [
-                    new Validator('minLength', 6),
-                    new Validator('regexp', "/^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])\S*$/")
-                ]),
-                'login' => new Validator('chain', [
-                    new Validator('minLength', 4),
-                    new Validator('maxLength', 20),
-                    new Validator('regexp', '/^[A-Za-z0-9]{0,}$/')
-                ]),
-                'lastName' => new Validator('chain', [
-                    Validator::MAY_BE_EMPTY,
-                    new Validator('minLength', 2),
-                    new Validator('maxLength', 30),
-                    new Validator('regexp', '/^[a-zA-Z\p{Cyrillic}\d\s\-]+$/u')
-                ]),
-                'email' => new Validator('email'),
-            ], 'sendFields' => ['name', 'phone']]); ?>
+//                'servers' => new Validator('chain', [
+//                    new Validator('in', ['onliner', 'tutby']),
+//                    new Validator('between', ['under' => 1, 'upper' => 10]),
+//                ])
+            ], 'sendFields' => ['name', 'phone']]) ?>
         </div>
     </div>
 
